@@ -1,0 +1,22 @@
+// SETTINGS -- Declaramos las variables
+@import '01.settings/_settings.scss';
+
+// TOOLS -- Declaramos las funtions y mixins
+@import '02.tools/_functions.scss';
+@import '02.tools/_mixins.scss';
+
+// GENERIC -- Reset, estilos propios globales
+@import '03.generic/_generic.scss';
+
+// TAGS - h2, strong, p ,.....
+@import '04.tags/_tags.scss'
+
+// KEYFRAMES
+// OBJECTS -- Clases que se pueden reutilizar. Ejm... container
+
+// COMPONENTS
+// SCOPES -- Librerias
+// UTLITIES -- Capaciadad para anular un selector scss. Normalmente usamos !Important
+
+
+

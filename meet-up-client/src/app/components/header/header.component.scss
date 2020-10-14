@@ -1,0 +1,28 @@
+.header {
+  width: 100%;
+  background-color: antiquewhite;
+
+    &__nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__logo {
+      display: flex;
+      cursor: pointer;
+
+    }
+
+    &__links {
+      display: flex;
+      cursor: pointer;
+
+    }
+
+    &__links-items {
+       text-decoration: none;
+       margin-right: 20px;
+    }
+
+}

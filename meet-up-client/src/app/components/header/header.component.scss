@@ -1,17 +1,20 @@
 .header {
-  width: 100%;
-  background-color: antiquewhite;
+      min-height: 70px;
+      background-color: antiquewhite;
+      display: flex;
 
     &__nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      width: 100%;
+      font-size: 1.8rem; // Equivale a 18px; 10px * 1.8 =
     }
 
     &__logo {
       display: flex;
       cursor: pointer;
-
+      margin-left: 1.5rem;
     }
 
     &__links {

@@ -1,6 +1,8 @@
+@use '../../../scss/01.settings/_settings' as color;
+
 .header {
       min-height: 70px;
-      background-color: antiquewhite;
+      background-color: color.$color-primary;
       display: flex;
 
     &__nav {
@@ -26,6 +28,17 @@
     &__links-items {
        text-decoration: none;
        margin-right: 20px;
+       background-image: linear-gradient(slategrey, slategrey);
+       background-position: 0% 100%;
+       background-repeat: no-repeat;
+       background-size: 0% 2px;
+       transition: background-size .3s;
+       color: slategrey;
+
+       &:hover, &:focus {
+         color: grey;
+         background-size: 100% 2px;
+       }
     }
 
 }

@@ -1,10 +1,49 @@
-form {
-  width: 12rem;
-  margin: 0 auto;
+@use '../../../scss/01.settings/settings' as color;
+
+.search {
+  height: 80px;
+
+  &__container {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__item,
+  input[type="search"] {
+    width: 500px;
+    min-width: 300px;
+    margin: 10px;
+    padding: 10px 16px;
+    border-radius: 32px;
+    outline: none;
+    border: 2px solid color.$color-primary;
+    background: #d5dadf;
+    transition: all 0.5s;
+    font-size: 2.5rem;
+  }
+
+    &__item::-webkit-search-cancel-button {
+     position:relative;
+     right:20px;
+     -webkit-appearance: none;
+     height: 20px;
+     width: 20px;
+     border-radius:10px;
+     border: 3px solid color.$color-primary;
+     //background: red;
+   }
+
+
+  &__item,
+  input[type="search"]:focus {
+    background: #fff;
+    width: 50%;
+  }
+
+
+
 }
 
-input {
-  display: block;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
+
+
+

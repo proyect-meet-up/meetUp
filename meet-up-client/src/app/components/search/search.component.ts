@@ -3,13 +3,19 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
+  public greaterThanValue = 0;
+  public lessThanValue = 1;
+  public isInvalid: boolean = false;
 
-  constructor() { }
+  onChange(event: any): void {
 
-  ngOnInit(): void {
+    this.isInvalid = this.greaterThanValue > this.lessThanValue;
   }
 
+  onSubmit(){
+    console.log(this.greaterThanValue > this.lessThanValue);
+  }
 }

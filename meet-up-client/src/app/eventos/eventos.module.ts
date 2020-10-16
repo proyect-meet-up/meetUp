@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { EventosRoutingModule } from './eventos-routing.module';
 
-import { ListadoEventosComponent } from './listado-eventos/listado-eventos.component';
 import { CardEventoComponent } from './card-evento/card-evento.component';
 import { DetalleEventoComponent } from './detalle-evento/detalle-evento.component';
 import { ReservaEventoComponent } from './reserva-evento/reserva-evento.component';
@@ -13,8 +12,7 @@ import { DetalleRegistradoComponent } from './detalle-registrado/detalle-registr
 
 
 @NgModule({
-  declarations: [
-    ListadoEventosComponent, 
+  declarations: [   
     CardEventoComponent, 
     DetalleEventoComponent, 
     ReservaEventoComponent, 

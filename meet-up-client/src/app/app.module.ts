@@ -6,8 +6,11 @@ import { AppComponent } from './app.component';
 
 import { ComponentsModule } from './shared/components.module';
 
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+                AppComponent,                 
+              ],
   imports: [BrowserModule, AppRoutingModule, ComponentsModule],
   providers: [],
   bootstrap: [AppComponent],

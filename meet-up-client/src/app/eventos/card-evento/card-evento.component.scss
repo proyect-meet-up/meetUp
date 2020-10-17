@@ -5,14 +5,16 @@
   align-items: center;
   margin-top: 2rem;
   background-color: darkcyan;
+  cursor: pointer;
 
-  &__item {
-    width: 450px;
+  &__container-imagen {
+    max-width: 450px;
     height: 300px;
-    background-color: chocolate;
   }
 
-  &__imagen {}
+  &__imagen {
+    height: 100%;
+  }
 
   &__title {
     max-width: fit-content;

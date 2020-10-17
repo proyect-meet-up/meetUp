@@ -15,8 +15,17 @@ export class EventoService {
     return this.cursos.slice(); // con .slice devolvemos una copia del array, evitamos la mutabilidad
   }
 
-  obtenerEvento(id: number) {
-    return this.cursos[id];
+  obtenerEvento(id: number): Evento {
+    let curso = this.cursos.filter(curso => curso.uid === id); // Filtramos por el id
+    let [evento] = curso; // Aplicando destructuring. El filter nos devuelve un array y de ahí obtenemos el objeto evento.Buenas prácticas -- Programación funcional
+
+    // Comprobamos que nos devuleve un evento
+    if (!evento) {
+      return;
+    }
+
+    return evento;
+
   }
 
 }

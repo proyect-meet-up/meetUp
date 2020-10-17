@@ -8,16 +8,18 @@ import { DetalleEventoComponent } from './detalle-evento/detalle-evento.componen
 import { ReservaEventoComponent } from './reserva-evento/reserva-evento.component';
 import { ListadoRegistradoComponent } from './listado-registrado/listado-registrado.component';
 import { DetalleRegistradoComponent } from './detalle-registrado/detalle-registrado.component';
+import { ListadoEventosComponent } from './listado-eventos/listado-eventos.component';
 
 
 
 @NgModule({
-  declarations: [   
-    CardEventoComponent, 
-    DetalleEventoComponent, 
-    ReservaEventoComponent, 
-    ListadoRegistradoComponent, 
-    DetalleRegistradoComponent
+  declarations: [
+    CardEventoComponent,
+    DetalleEventoComponent,
+    ReservaEventoComponent,
+    ListadoRegistradoComponent,
+    DetalleRegistradoComponent,
+    ListadoEventosComponent
   ],
   imports: [
     CommonModule,

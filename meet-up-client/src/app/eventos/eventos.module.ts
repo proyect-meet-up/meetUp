@@ -9,16 +9,6 @@ import { ReservaEventoComponent } from './reserva-evento/reserva-evento.componen
 import { ListadoRegistradoComponent } from './listado-registrado/listado-registrado.component';
 import { DetalleRegistradoComponent } from './detalle-registrado/detalle-registrado.component';
 import { ListadoEventosComponent } from './listado-eventos/listado-eventos.component';
-<<<<<<< HEAD
-
-
-@NgModule({
-  declarations: [   
-    CardEventoComponent, 
-    DetalleEventoComponent, 
-    ReservaEventoComponent, 
-    ListadoRegistradoComponent, 
-=======
 
 
 
@@ -28,11 +18,10 @@ import { ListadoEventosComponent } from './listado-eventos/listado-eventos.compo
     DetalleEventoComponent,
     ReservaEventoComponent,
     ListadoRegistradoComponent,
->>>>>>> efe932b79e6c141eea74169f6c3fe9f627355308
     DetalleRegistradoComponent,
     ListadoEventosComponent
   ],
-  imports: [    
+  imports: [
     CommonModule,
     EventosRoutingModule
   ]

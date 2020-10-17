@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
@@ -13,17 +14,17 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () =>
-      import('./register/register.module').then((m) => m.RegisterModule),
+      import('./auth/register/register.module').then((m) => m.RegisterModule),
   },
   {
     path: 'login',
     loadChildren: () =>
-      import('./login/login.module').then((m) => m.LoginModule),
+      import('./auth/login/login.module').then((m) => m.LoginModule),
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [CommonModule, RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

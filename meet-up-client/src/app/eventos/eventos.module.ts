@@ -8,7 +8,7 @@ import { DetalleEventoComponent } from './detalle-evento/detalle-evento.componen
 import { ReservaEventoComponent } from './reserva-evento/reserva-evento.component';
 import { ListadoRegistradoComponent } from './listado-registrado/listado-registrado.component';
 import { DetalleRegistradoComponent } from './detalle-registrado/detalle-registrado.component';
-
+import { ListadoEventosComponent } from './listado-eventos/listado-eventos.component';
 
 
 @NgModule({
@@ -17,9 +17,10 @@ import { DetalleRegistradoComponent } from './detalle-registrado/detalle-registr
     DetalleEventoComponent, 
     ReservaEventoComponent, 
     ListadoRegistradoComponent, 
-    DetalleRegistradoComponent
+    DetalleRegistradoComponent,
+    ListadoEventosComponent
   ],
-  imports: [
+  imports: [    
     CommonModule,
     EventosRoutingModule
   ]

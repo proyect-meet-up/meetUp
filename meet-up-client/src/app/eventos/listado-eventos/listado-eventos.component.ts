@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Evento, eventos } from '../evento.model'
 
 @Component({
   selector: 'app-listado-eventos',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listado-eventos.component.scss']
 })
 export class ListadoEventosComponent implements OnInit {
+
+  eventos: Evento[] = eventos;
 
   constructor() { }
 

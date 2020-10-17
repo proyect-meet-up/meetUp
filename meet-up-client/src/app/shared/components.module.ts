@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 import { FooterComponent } from './footer/footer.component';
-import { CardComponent } from './card/card.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
@@ -12,8 +11,7 @@ import { RouterModule } from '@angular/router';
   declarations: [
     HeaderComponent,
     SearchComponent,
-    FooterComponent,
-    CardComponent
+    FooterComponent
   ],
   imports: [
     CommonModule,

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  selector: 'app-buscador',
+  templateUrl: './buscador.component.html',
+  styleUrls: ['./buscador.component.scss'],
 })
-export class SearchComponent {
+export class BuscadorComponent {
   public greaterThanValue = 0;
   public lessThanValue = 1;
   public isInvalid: boolean = false;

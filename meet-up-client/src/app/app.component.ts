@@ -7,7 +7,7 @@ import { Router, NavigationEnd, RouterEvent } from "@angular/router";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-  title = "meet-up";
+  title = "Barum";
   show: boolean = true;
 
   constructor(private router: Router) {

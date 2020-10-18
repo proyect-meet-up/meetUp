@@ -1,23 +1,25 @@
 @use '../02.tools/_mixins' as breakpoints;
+@use '../01.settings/settings' as color;
 
 html {
   font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
+  height: 100%;
 }
 html {
   @include breakpoints.respond(big-desktop) {
-    background-color: bisque;
+    background-color: color.$color-primary-lighter;
   }
 
   @include breakpoints.respond(tab-port) {
-    background-color: honeydew;
+     background-color: color.$color-primary-lighter;
   }
 
   @include breakpoints.respond(tab-land) {
-    background-color: palegreen;
+     background-color: color.$color-primary-lighter;
   }
 
   @include breakpoints.respond(phone) {
-    background-color: salmon;
+     background-color: color.$color-primary-lighter;
   }
 
 }

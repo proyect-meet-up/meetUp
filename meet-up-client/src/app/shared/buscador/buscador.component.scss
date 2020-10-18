@@ -6,6 +6,7 @@
   &__container {
     display: flex;
     justify-content: center;
+    margin-top: 3rem;
   }
 
   &__item,
@@ -13,24 +14,24 @@
     width: 500px;
     min-width: 300px;
     margin: 10px;
-    padding: 10px 16px;
+    padding: 10px 12px;
     border-radius: 32px;
     outline: none;
-    border: 2px solid color.$color-primary;
-    background: #d5dadf;
+    border: 1px solid slategrey;
+    background: whitesmoke;
     transition: all 0.5s;
-    font-size: 2.5rem;
+    font-size: 1.8rem;
   }
 
     &__item::-webkit-search-cancel-button {
-     position:relative;
-     right:20px;
-     -webkit-appearance: none;
-     height: 20px;
-     width: 20px;
-     border-radius:10px;
-     border: 3px solid color.$color-primary;
-     //background: red;
+    position: relative;
+    right: 20px;
+    -webkit-appearance: none;
+    height: 10px;
+    width: 10px;
+    border-radius: 10px;
+    background: darkslategrey;
+    cursor: pointer;
    }
 
 
@@ -38,6 +39,7 @@
   input[type="search"]:focus {
     background: #fff;
     width: 50%;
+    color: slategrey;
   }
 
 

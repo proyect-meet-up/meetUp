@@ -13,12 +13,9 @@ import { RouterModule } from '@angular/router';
 
 
 
+
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    FooterComponent,
-    BuscadorComponent,
-  ],
+  declarations: [HeaderComponent, FooterComponent, BuscadorComponent],
   imports: [CommonModule, FormsModule, RouterModule],
   exports: [HeaderComponent, FooterComponent, BuscadorComponent],
 })

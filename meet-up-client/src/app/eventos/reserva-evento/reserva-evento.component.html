@@ -1,1 +1,48 @@
-<p>reserva-evento works!</p>
+<div class="reserva-form" *ngIf="evento">
+  <div class="reserva-form__left">
+    <div class="reserva-form__title">
+      <h3>Datos personales</h3>
+    </div>
+    <form class="reserva-form__form">
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="Nombre">
+        <mat-icon matSuffix>account_circle</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Apellido</mat-label>
+        <input matInput placeholder="Apellido">
+        <mat-icon matSuffix>account_circle</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>E-mail</mat-label>
+        <input matInput placeholder="E-mail">
+        <mat-icon matSuffix>mail</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Teléfono</mat-label>
+        <input matInput placeholder="Teléfono">
+        <mat-icon matSuffix>phone</mat-icon>
+      </mat-form-field>
+    </form>
+    <button mat-raised-button>Reservar</button>
+  </div>
+  <div class="reserva-form__right">
+     <div class="reserva-form__title">
+      <h3>{{evento.titulo}}</h3>
+    </div>
+    <div class="reserva-form__imagen">
+      <img src="{{evento.imagen}}" alt="{{evento.imagen}}">
+    </div>
+    <div class="reserva-form__location">
+      <div class="reserva-form__direction">
+        <p>La Granola</p>
+        <p>{{evento.direccion}}</p>
+        <p>Código postal</p>
+      </div>
+    </div>
+  </div>
+</div>

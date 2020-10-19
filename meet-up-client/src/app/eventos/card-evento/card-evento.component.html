@@ -1,4 +1,4 @@
-<div class="card" *ngIf="curso" (click)="irDetalleEvento(curso.uid)">
+<div class="card" *ngIf="curso" [routerLink]="['detalle-evento', curso.uid]">
   <div class="card__container-imagen">
     <img class="card__imagen" [src]="curso.imagen" alt="{{curso.imagen}}">
   </div>

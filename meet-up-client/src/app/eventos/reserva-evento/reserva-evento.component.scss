@@ -1,0 +1,41 @@
+.reserva-form {
+  display: flex;
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    flex: 0.75;
+
+    button.mat-raised-button {
+      align-self: flex-start;
+    }
+
+  }
+
+  &__title {
+    font-size: 2rem;
+    padding-top: 5px;
+    padding-bottom: 10px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__imagen {
+    max-width: 400px;
+  }
+
+  &__location {
+
+  }
+}

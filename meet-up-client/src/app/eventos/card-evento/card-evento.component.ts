@@ -15,7 +15,5 @@ export class CardEventoComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  irDetalleEvento(id: number) {
-    this.router.navigate(["detalle-evento", this.curso.uid]);
-  }
+
 }

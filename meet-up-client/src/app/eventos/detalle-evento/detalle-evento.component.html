@@ -19,6 +19,7 @@
       </div>
     </div>
   </div>
-  <button mat-raised-button color="primary">Reserva</button>
-
+  <button mat-raised-button [routerLink]="['','reserva-evento', evento.uid]">
+      Reserva
+  </button>
 </div>

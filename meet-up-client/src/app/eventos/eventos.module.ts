@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PipesModule } from '../pipes/pipes.module';
 
 import { EventosRoutingModule } from './eventos-routing.module';
+import { MatButtonModule } from "@angular/material/button";
 
 // Componentes
 import { CardEventoComponent } from './card-evento/card-evento.component';
@@ -23,12 +24,13 @@ import { ListadoEventosComponent } from './listado-eventos/listado-eventos.compo
     ReservaEventoComponent,
     ListadoRegistradoComponent,
     DetalleRegistradoComponent,
-    ListadoEventosComponent
+    ListadoEventosComponent,
   ],
   imports: [
     CommonModule,
     EventosRoutingModule,
-    PipesModule
-  ]
+    PipesModule,
+    MatButtonModule
+  ],
 })
 export class EventosModule { }

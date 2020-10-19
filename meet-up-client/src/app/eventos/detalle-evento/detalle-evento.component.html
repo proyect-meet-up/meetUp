@@ -1,1 +1,24 @@
-{{evento | json}}
+<div class="detalle-evento">
+  <div class="detalle-evento__title">
+    {{evento.titulo | uppercase}}
+  </div>
+  <div class="detalle-evento__context">
+    <div class="detalle-evento__left">
+      <div class="detalle-evento__imagen">
+        <img src="{{evento.imagen}}" alt="{{evento.titulo}}">
+      </div>
+    </div>
+    <div class="detalle-evento__right">
+      <div class="detalle-evento__descripction">
+        <h5>Descripción:</h5>
+        <span>{{evento.descripcion}}</span>
+      </div>
+      <div class="detalle-evento__location">
+        <h5>Dirección:</h5>
+        <address>{{evento.direccion}}</address>
+      </div>
+    </div>
+  </div>
+  <button mat-raised-button color="primary">Reserva</button>
+
+</div>

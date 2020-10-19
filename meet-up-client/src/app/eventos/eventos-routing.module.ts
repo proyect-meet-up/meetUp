@@ -8,6 +8,7 @@ import { DetalleEventoComponent } from "./detalle-evento/detalle-evento.componen
 const routes: Routes = [
   { path: "", component: ListadoEventosComponent },
   { path: "detalle-evento/:id", component: DetalleEventoComponent },
+
 ];
 
 @NgModule({

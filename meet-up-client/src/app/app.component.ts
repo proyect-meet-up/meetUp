@@ -8,20 +8,20 @@ import { Router, NavigationEnd, RouterEvent } from "@angular/router";
 })
 export class AppComponent {
   title = "Barum";
-  show: boolean = true;
+  showBuscador: boolean = true;
 
   constructor(private router: Router) {
 
         this.router.events.subscribe((event: RouterEvent) => {
           if (event instanceof NavigationEnd) {
             if (
-              event.url.includes("detalle") ||
-              event.url.includes("login") ||
-              event.url.includes("register")
+              event.url.includes('detalle') ||
+              event.url.includes('login') ||
+              event.url.includes('register')
             ) {
-              this.show = false;
+              this.showBuscador = false;
             } else {
-              this.show = true;
+              this.showBuscador = true;
             }
           }
         });

@@ -11,6 +11,7 @@ export class EventoService {
   constructor() {}
 
   obtenerEventos(): Evento[] {
+    console.log("todos los eventos desde el servidor ", this.cursos)
     return this.cursos.slice();
   }
 
@@ -24,5 +25,14 @@ export class EventoService {
     }
 
     return evento;
+  }
+
+  obtenerEventoDeBuscador(busqueda: string) {
+    let curso = this.cursos.filter((curso) => curso.titulo.includes(busqueda)); 
+    console.log("eventos ENCONTRADOS: ", curso)  
+    let [evento] = curso;
+    
+     return evento;
+  
   }
 }

@@ -1,5 +1,8 @@
-import { Component,OnInit } from '@angular/core';
-
+import { Component,OnInit, ViewChild } from '@angular/core';
+import { NgModel } from '@angular/forms';
+import { Evento } from 'src/app/eventos/evento.model';
+import { EventoService } from 'src/app/eventos/evento.service';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-buscador',
@@ -8,13 +11,45 @@ import { Component,OnInit } from '@angular/core';
 })
 export class BuscadorComponent implements OnInit{
 
+  @ViewChild('filtroInput' ,{static: true}) filtroInput: NgModel;  // tipo NgModel, si no sería por defecto HtmlElement y no tendría el observable valueChanges
+  // NOTA {static: true} : https://stackoverflow.com/questions/62214770/cannot-read-property-valuechanges-of-undefined
+  terminoBusqueda: string;
+  eventos;
 
-
-  ngOnInit() {
+  constructor( private eventosService: EventoService) {
 
   }
 
 
+  ngOnInit() {
+
+    this.filtroInput
+      .valueChanges
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged()
+      )
+      .subscribe((busqueda)=> {
+        if(busqueda) {          
+          this.obtenerEventoPorTerminoBuscado(busqueda)
+        } else {
+            this.obtenerTodosLosEventos();
+        }
+      })
+
+  }
+
+  obtenerEventoPorTerminoBuscado( termino: string) {
+    this.eventos = [];
+    this.eventos = this.eventosService.obtenerEventoDeBuscador(termino);
+    console.log("que es: ", this.eventos); 
+   
+  }
+
+  obtenerTodosLosEventos() {
+    this.eventos = this.eventosService.obtenerEventos();
+    console.log("todos los eventos: ", this.eventos)
+  }
 
 
 

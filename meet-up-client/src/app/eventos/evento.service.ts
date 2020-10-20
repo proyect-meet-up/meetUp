@@ -14,8 +14,7 @@ export class EventoService {
 
   constructor() {}
 
-  obtenerEventos(): Evento[] {
-    console.log("todos los eventos desde el servidor ", this.cursos)
+  obtenerEventos(): Evento[] {    
     this.eventosBuscadosSource.next(this.cursos);
     return this.cursos.slice();
   }
@@ -34,10 +33,7 @@ export class EventoService {
 
   obtenerEventoDeBuscador(busqueda: string) {
     let cursos = this.cursos.filter((curso) => curso.titulo.includes(busqueda)); 
-    this.eventosBuscadosSource.next(cursos);
-    console.log("eventos ENCONTRADOS: ", cursos)  
-       
-     return cursos;
-  
+    this.eventosBuscadosSource.next(cursos);          
+    return cursos;  
   }
 }

@@ -3,32 +3,32 @@
     <div class="reserva-form__title">
       <h3>Datos personales</h3>
     </div>
-    <form class="reserva-form__form">
+    <form class="reserva-form__form" [formGroup]="formularioReserva" (ngSubmit)="reservarEvento()">
       <mat-form-field appearance="fill">
-        <mat-label>{{person.nombre}}</mat-label>
-        <input matInput placeholder="Nombre">
+        <mat-label>{{usuario?.nombre}}</mat-label>
+        <input matInput placeholder="Nombre" formControlName="nombre">
         <mat-icon matSuffix>face</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>Apellido</mat-label>
-        <input matInput placeholder="Apellido">
+        <mat-label>{{usuario?.apellido}}</mat-label>
+        <input matInput placeholder="Apellido" formControlName="apellido">
         <mat-icon matSuffix>person</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>E-mail</mat-label>
-        <input matInput placeholder="E-mail">
+        <mat-label>{{usuario?.email}}</mat-label>
+        <input matInput placeholder="E-mail" formControlName="email">
         <mat-icon matSuffix>mail</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Teléfono</mat-label>
-        <input matInput placeholder="Teléfono">
+        <input matInput placeholder="Teléfono" formControlName="telefono">
         <mat-icon matSuffix>phone</mat-icon>
       </mat-form-field>
+      <button mat-raised-button color="green">Reservar</button>
     </form>
-    <button mat-raised-button color="green">Reservar</button>
   </div>
   <div class="reserva-form__right">
      <div class="reserva-form__title">

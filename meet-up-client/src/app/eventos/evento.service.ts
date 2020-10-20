@@ -32,8 +32,14 @@ export class EventoService {
   }
 
   obtenerEventoDeBuscador(busqueda: string) {
-    let cursos = this.cursos.filter((curso) => curso.titulo.includes(busqueda)); 
+    let sinAcentos = this.quitarAcentos(busqueda);
+    let cursos = this.cursos.filter((curso) => this.quitarAcentos(curso.titulo.toLowerCase()).includes(sinAcentos.toLowerCase())); 
     this.eventosBuscadosSource.next(cursos);          
     return cursos;  
+  }
+
+  quitarAcentos(cadena){
+    const acentos = {'á':'a','é':'e','í':'i','ó':'o','ú':'u','Á':'A','É':'E','Í':'I','Ó':'O','Ú':'U'};
+    return cadena.split('').map( letra => acentos[letra] || letra).join('').toString();	
   }
 }

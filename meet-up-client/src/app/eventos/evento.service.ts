@@ -25,4 +25,12 @@ export class EventoService {
 
     return evento;
   }
+
+  obtenerEventoDeBuscador(busqueda: string) {
+    let curso = this.cursos.filter((curso) => curso.titulo.includes(busqueda));
+    let [evento] = curso;
+    
+     return evento;
+  
+  }
 }

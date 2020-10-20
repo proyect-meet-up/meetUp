@@ -1,1 +1,43 @@
-<p>register works!</p>
+<div class="registro">
+  <div class="registro__title">
+    <h2>Registro</h2>
+  </div>
+  <form class="registro__form" (ngSubmit)="registro()">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput placeholder="Nombre">
+      <mat-icon matSuffix>face</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Apellido</mat-label>
+      <input matInput placeholder="Apellido">
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Email">
+      <mat-icon matSuffix>mail</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Repetir password</mat-label>
+      <input matInput placeholder="Repetir password" [type]="hide2 ? 'password' : 'text'">
+      <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+
+    <button mat-raised-button>
+      Sign Up
+    </button>
+
+  </form>
+</div>

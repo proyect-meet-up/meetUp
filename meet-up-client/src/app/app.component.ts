@@ -9,6 +9,7 @@ import { Router, NavigationEnd, RouterEvent } from "@angular/router";
 export class AppComponent {
   title = "Barum";
   showBuscador: boolean = true;
+  showFooter: boolean = true;
 
   constructor(private router: Router) {
 
@@ -23,6 +24,16 @@ export class AppComponent {
             } else {
               this.showBuscador = true;
             }
+
+            if (
+                  event.url.includes('reserva') || event.url.includes('detalle')
+            ) {
+              this.showFooter = false;
+            } else {
+              this.showFooter = true;
+            }
+
+
           }
         });
   }

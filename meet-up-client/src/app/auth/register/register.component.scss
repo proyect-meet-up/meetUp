@@ -1,0 +1,27 @@
+.registro {
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    align-self: center;
+    padding: 20px;
+    h2 {
+      font-size: 2rem;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0 40%;
+
+    button.mat-raised-button {
+      align-self: center;
+    }
+
+  }
+
+
+}

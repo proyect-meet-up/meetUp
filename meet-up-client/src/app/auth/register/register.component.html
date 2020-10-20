@@ -2,40 +2,40 @@
   <div class="registro__title">
     <h2>Registro</h2>
   </div>
-  <form class="registro__form" (ngSubmit)="registro()">
+  <form class="registro__form" [formGroup]="formularioRegistro" (ngSubmit)="registro()">
 
     <mat-form-field appearance="outline">
       <mat-label>Nombre</mat-label>
-      <input matInput placeholder="Nombre">
+      <input matInput placeholder="Nombre"  formControlName="nombre">
       <mat-icon matSuffix>face</mat-icon>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Apellido</mat-label>
-      <input matInput placeholder="Apellido">
+      <input matInput placeholder="Apellido" formControlName="apellido">
       <mat-icon matSuffix>person</mat-icon>
     </mat-form-field>
 
 
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput placeholder="Email">
+      <input matInput placeholder="Email" formControlName="email">
       <mat-icon matSuffix>mail</mat-icon>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
-      <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
+      <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password">
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Repetir password</mat-label>
-      <input matInput placeholder="Repetir password" [type]="hide2 ? 'password' : 'text'">
+      <input matInput placeholder="Repetir password" [type]="hide2 ? 'password' : 'text'" formControlName="confirmacionPassword">
       <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
 
-    <button mat-raised-button>
+    <button mat-raised-button [disabled]="formularioRegistro.invalid"> 
       Sign Up
     </button>
 

@@ -29,9 +29,12 @@ export class BuscadorComponent implements OnInit{
         debounceTime(500),
         distinctUntilChanged()
       )
-      .subscribe((busqueda)=> {
-        if(busqueda) {          
-          this.obtenerEventoPorTerminoBuscado(busqueda)
+      .subscribe((terminoABuscar)=> {
+        if(terminoABuscar) {          
+          this.obtenerEventoPorTerminoBuscado(terminoABuscar);
+          if (this.eventos.length === 0) {
+            console.log ("es igual a cero")
+          }
         } else {
             this.obtenerTodosLosEventos();
         }

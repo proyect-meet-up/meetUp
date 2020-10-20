@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { BehaviorSubject, Subject } from 'rxjs';
 
 import { Evento, eventos } from "./evento.model";
 
@@ -8,10 +9,14 @@ import { Evento, eventos } from "./evento.model";
 export class EventoService {
   cursos: Evento[] = eventos;
 
+  eventosBuscadosSource = new BehaviorSubject<Evento[]>(this.cursos);
+  eventosBuscados$ = this.eventosBuscadosSource.asObservable();
+
   constructor() {}
 
   obtenerEventos(): Evento[] {
     console.log("todos los eventos desde el servidor ", this.cursos)
+    this.eventosBuscadosSource.next(this.cursos);
     return this.cursos.slice();
   }
 
@@ -28,11 +33,11 @@ export class EventoService {
   }
 
   obtenerEventoDeBuscador(busqueda: string) {
-    let curso = this.cursos.filter((curso) => curso.titulo.includes(busqueda)); 
-    console.log("eventos ENCONTRADOS: ", curso)  
-    let [evento] = curso;
-    
-     return evento;
+    let cursos = this.cursos.filter((curso) => curso.titulo.includes(busqueda)); 
+    this.eventosBuscadosSource.next(cursos);
+    console.log("eventos ENCONTRADOS: ", cursos)  
+       
+     return cursos;
   
   }
 }

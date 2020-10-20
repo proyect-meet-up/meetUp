@@ -2,17 +2,24 @@
   <div class="login__title">
     <h2>Login</h2>
   </div>
-  <form class="login__form" (ngSubmit)="login()">
+  <form [formGroup]="formularioLogin" class="login__form" (ngSubmit)="login()">
 
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput placeholder="Email">
+      <input matInput placeholder="Email" formControlName="email">
       <mat-icon matSuffix>mail</mat-icon>
     </mat-form-field>
+    <small *ngIf="mailNoValido">El email no es váildo</small>
 
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
-      <input matInput placeholder="Password">
+      <input matInput placeholder="Password" formControlName="password">
+      <mat-icon matSuffix>password</mat-icon>
+    </mat-form-field>
+
+     <mat-form-field appearance="outline">
+      <mat-label>Password1</mat-label>
+      <input matInput placeholder="Password" formControlName="password1">
       <mat-icon matSuffix>password</mat-icon>
     </mat-form-field>
 

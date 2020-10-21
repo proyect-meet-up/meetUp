@@ -9,11 +9,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UpperLetterFisrtWordPipe } from '../pipes/upper-letter-fisrt-word.pipe';
-
+import { MatTabsModule } from "@angular/material/tabs";
+import { TabDatosUsuarioComponent } from './tab-datos-usuario/tab-datos-usuario.component';
+import { TabCambioPasswordComponent } from './tab-cambio-password/tab-cambio-password.component';
 
 @NgModule({
-  declarations: [UsuarioComponent],
+  declarations: [UsuarioComponent, TabDatosUsuarioComponent, TabCambioPasswordComponent],
   imports: [
     CommonModule,
     UsuarioRoutingModule,
@@ -22,7 +23,8 @@ import { UpperLetterFisrtWordPipe } from '../pipes/upper-letter-fisrt-word.pipe'
     MatFormFieldModule,
     MatIconModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    MatTabsModule
+  ],
 })
-export class UsuarioModule { }
+export class UsuarioModule {}

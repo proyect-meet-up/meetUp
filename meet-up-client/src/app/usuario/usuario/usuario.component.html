@@ -1,53 +1,11 @@
-<div class="registro">
-    <div class="registro__title">
-      <h2>Tus datos</h2>
-    </div>
-    <form class="registro__form" [formGroup]="formularioUsuario" >
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Nombre</mat-label>
-        <input matInput placeholder="Nombre"  formControlName="nombre">
-        <mat-icon matSuffix>face</mat-icon>
-        <mat-error *ngIf="NoEsCampoValido('nombre')">
-          {{ obtenerMensajeError('nombre') }}
-        </mat-error>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Apellido</mat-label>
-        <input matInput placeholder="Apellido" formControlName="apellido">
-        <mat-icon matSuffix>person</mat-icon>
-        <mat-error *ngIf="NoEsCampoValido('apellido')">
-          {{ obtenerMensajeError('apellido') }}
-        </mat-error>      
-      </mat-form-field>  
-  
-      <mat-form-field appearance="outline" >
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Email" formControlName="email">
-        <mat-icon matSuffix>mail</mat-icon>
-      </mat-form-field>
+<div class="usuario">
+  <mat-tab-group mat-stretch-tabs class="mat-elevation-z4">
+    <mat-tab label="Datos del usuario">
+      <app-tab-datos-usuario [datosUsuario]="usuario"></app-tab-datos-usuario>
+    </mat-tab>
+    <mat-tab label="Cambiar contraseña">
+      <app-tab-cambio-password></app-tab-cambio-password>
+    </mat-tab>
+  </mat-tab-group>
+</div>
 
-      <div class="registro__title">
-        <h3>Cambiar contraseña:</h3>
-      </div>
-
-      <mat-form-field appearance="outline" >
-        <mat-label>Nueva password</mat-label>
-        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" >
-        <mat-label>Repite nueva password</mat-label>
-        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="confirmarPassword">
-      <mat-icon matSuffix (click)="hide2 = !hide2">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </mat-form-field>
-
-  
-      <button mat-raised-button > 
-        Modificar
-      </button>
-  
-    </form>
-  </div>

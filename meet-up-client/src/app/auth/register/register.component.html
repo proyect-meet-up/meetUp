@@ -22,6 +22,7 @@
       <input matInput placeholder="Email" formControlName="email">
       <mat-icon matSuffix>mail</mat-icon>
     </mat-form-field>
+    <small *ngIf="emailUsuarioExiste">USUARIO EXISTE</small>
 
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
@@ -34,10 +35,12 @@
       <input matInput placeholder="Repetir password" [type]="hide2 ? 'password' : 'text'" formControlName="confirmacionPassword">
       <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
+    <small *ngIf="passwordNoIguales">No son iguales las contraseñas</small>
 
-    <button mat-raised-button [disabled]="formularioRegistro.invalid"> 
+    <button mat-raised-button [disabled]="formularioRegistro.invalid">
       Sign Up
     </button>
+
 
   </form>
 </div>

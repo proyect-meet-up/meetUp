@@ -25,7 +25,7 @@ export class ReservaEventoComponent implements OnInit {
   ) {
     this.id = +this.route.snapshot.params["id"];
     this.evento = this.eventosService.obtenerEvento(this.id);
-    //this.usuario = new Usuario('Borja', 'Arana', 'borja@mail.com', '634584653')
+    this.usuario = new Usuario('Borja', 'Arana', 'borja@mail.com', '634584653')
 
   }
 

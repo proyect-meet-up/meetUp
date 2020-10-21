@@ -8,7 +8,7 @@
       <mat-label>Email</mat-label>
       <input matInput placeholder="Email" formControlName="email">
       <mat-icon matSuffix>mail</mat-icon>
-      <mat-error *ngIf="NoEsCampoValido('email')">
+      <mat-error *ngIf="noEsCampoValido('email')">
         {{ obtenerMensajeError('email') }}
       </mat-error>
     </mat-form-field>
@@ -17,12 +17,12 @@
       <mat-label>Password</mat-label>
       <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password">
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      <mat-error *ngIf="NoEsCampoValido('password')">
+      <mat-error *ngIf="noEsCampoValido('password')">
         {{ obtenerMensajeError('password') }}
       </mat-error>
     </mat-form-field>
 
-    <button mat-raised-button [disabled]="formularioLogin.invalid">
+    <button mat-raised-button >
       Log in
     </button>
 

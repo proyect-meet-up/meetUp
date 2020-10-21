@@ -10,13 +10,11 @@ import { ValidadoresService } from 'src/app/shared/services/validadores.service'
 export class LoginComponent implements OnInit {
   formularioLogin: FormGroup;
   hide: boolean = true;
-  isvalidEmail = /\S+@\S+\.\S+/;
 
   constructor(
     private fb: FormBuilder,
     private validacionesService: ValidadoresService
   ) {}
-
 
   ngOnInit(): void {
     this.crearFormularioLogin();
@@ -27,17 +25,10 @@ export class LoginComponent implements OnInit {
       {
         email: [
           "",
-          [this.validacionesService.comprobarValidacionEmail],
+          [Validators.required,this.validacionesService.comprobarValidacionEmail],
           this.validacionesService.existeUsuarioEmail,
         ],
-        password: ["", [Validators.required]],
-        password1: ["", [Validators.required]],
-      },
-      {
-        validators: this.validacionesService.passwordIguales(
-          "password",
-          "password1"
-        ),
+        password: ["", [Validators.required, Validators.minLength(6)]]
       }
     );
   }
@@ -46,7 +37,7 @@ export class LoginComponent implements OnInit {
     let mensaje;
     if (this.formularioLogin.get(campo).errors?.required) {
       mensaje = "Debes introducir un valor";
-    } else if (this.formularioLogin.get(campo).hasError("pattern")) {
+    } else if (this.formularioLogin.get(campo).hasError("mailNoValido")) {
       mensaje = "No es un email válido";
     } else if (this.formularioLogin.get(campo).hasError("minlength")) {
       const longitudMinima = this.formularioLogin.get(campo).errors?.minlength
@@ -57,7 +48,7 @@ export class LoginComponent implements OnInit {
     return mensaje;
   }
 
-  NoEsCampoValido(campo: string) {
+  noEsCampoValido(campo: string) {
     return (
       this.formularioLogin.get(campo).touched ||
       (this.formularioLogin.get(campo).dirty &&
@@ -70,6 +61,6 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    console.log(this.formularioLogin.value);
+    console.log(this.formularioLogin);
   }
 }

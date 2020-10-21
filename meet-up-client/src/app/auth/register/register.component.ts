@@ -62,6 +62,6 @@ export class RegisterComponent implements OnInit {
     //   return;
     // }
 
-    console.log(this.formularioRegistro.value);
+    console.log(this.formularioRegistro);
   }
 }

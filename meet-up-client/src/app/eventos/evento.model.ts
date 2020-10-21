@@ -101,4 +101,13 @@ export const eventos: Evento[] = [
     imagen: "https://source.unsplash.com/random/800x600",
     uid: Number((Math.random() * (200 - 1) + 1).toFixed(0)),
   },
+  {
+    titulo: "Construcción de cabañas y chozas con Çorganas",
+    descripcion:
+      "Laboris ex irure anim in et ipsum dolore dolore duis elit labore. Nulla mollit id esse culpa tempor dolore exercitation laborum. Eiusmod officia culpa exercitation ex incididunt laborum magna amet. Aute labore minim qui veniam dolore ipsum in officia esse non. Velit ullamco anim non velit officia eu fugiat ut duis commodo nulla Lorem esse duis. Nulla aliquip id nulla incididunt adipisicing dolor nostrud nisi qui Lorem amet consectetur in sunt. ",
+    direccion: "calle Pepa, 28",
+    tipo: "informática y programación",
+    imagen: "https://source.unsplash.com/random/800x600",
+    uid: Number((Math.random() * (200 - 1) + 1).toFixed(0)),
+  },
 ];

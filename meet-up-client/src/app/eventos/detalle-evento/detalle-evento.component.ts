@@ -1,5 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Subscription } from 'rxjs';
+import { skip } from 'rxjs/operators';
 import { Evento } from "../evento.model";
 import { EventoService } from "../evento.service";
 
@@ -8,12 +10,14 @@ import { EventoService } from "../evento.service";
   templateUrl: "./detalle-evento.component.html",
   styleUrls: ["./detalle-evento.component.scss"],
 })
-export class DetalleEventoComponent implements OnInit {
+export class DetalleEventoComponent implements OnInit, OnDestroy {
   evento: Evento;
+  eventosSuscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
-    private eventoService: EventoService
+    private eventoService: EventoService,
+    private router: Router
   ) {
     // Obtenemos el parametro id y lo convertimos en number.
     const id = Number(this.route.snapshot.params["id"]);
@@ -21,5 +25,19 @@ export class DetalleEventoComponent implements OnInit {
     this.evento = this.eventoService.obtenerEvento(id);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.eventosSuscription = this.eventoService.eventosBuscados$
+      .pipe(skip(1))
+      .subscribe(
+        () => {
+          this.router.navigate(['/']);
+        }
+      );
+  }
+
+  ngOnDestroy() {
+    this.eventosSuscription.unsubscribe();
+  }
+
+
 }

@@ -12,6 +12,7 @@ export class AppComponent {
   showFooter: boolean = true;
 
   constructor(private router: Router) {
+        console.log('Hola desde Github')
 
         this.router.events.subscribe((event: RouterEvent) => {
           if (event instanceof NavigationEnd) {

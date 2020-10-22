@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UpperLetterFisrtWordPipe } from '../pipes/upper-letter-fisrt-word.pipe';
 
 
 @NgModule({

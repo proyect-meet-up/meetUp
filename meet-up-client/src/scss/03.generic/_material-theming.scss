@@ -27,4 +27,15 @@ $meet-up-client-theme: mat-light-theme((color: (primary: $meet-up-client-primary
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
+
+$alternate-primary: mat-palette($mat-deep-purple);
+$alternate-accent:  mat-palette($mat-blue, A200, A100, A400);
+$alternate-theme:   mat-light-theme($alternate-primary, $alternate-accent);
+
+.custom-button-theme {
+  @include mat-button-theme($alternate-theme)
+}
+
 @include angular-material-theme($meet-up-client-theme);
+
+

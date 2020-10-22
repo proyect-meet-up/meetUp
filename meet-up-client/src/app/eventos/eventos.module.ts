@@ -16,6 +16,7 @@ import { ReservaEventoComponent } from './reserva-evento/reserva-evento.componen
 import { ListadoRegistradoComponent } from './listado-registrado/listado-registrado.component';
 import { ListadoEventosComponent } from './listado-eventos/listado-eventos.component';
 import { DetalleEventoRegistradoComponent } from './detalle-evento-registrado/detalle-evento-registrado.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -36,7 +37,9 @@ import { DetalleEventoRegistradoComponent } from './detalle-evento-registrado/de
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
 })
 export class EventosModule {}

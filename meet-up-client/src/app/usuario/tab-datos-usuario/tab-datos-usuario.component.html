@@ -1,27 +1,30 @@
 
-<form class="tab-usuario" [formGroup]="formularioDatosUsuario" (ngSubmit)="actualizarDatosUsuario()">
-  <mat-form-field appearance="outline">
-    <mat-label>Nombre</mat-label>
-    <input matInput placeholder="Nombre" formControlName="nombre">
-    <mat-icon matSuffix>face</mat-icon>
-  </mat-form-field>
+<form class="tab-usuario"
+      [formGroup]="formularioDatosUsuario"
+      (ngSubmit)="actualizarDatosUsuario()">
+  <div class="tab-usuario__wrapper">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput placeholder="Nombre" formControlName="nombre">
+      <mat-icon matSuffix>face</mat-icon>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Apellido</mat-label>
-    <input matInput placeholder="Apellido" formControlName="apellido">
-    <mat-icon matSuffix>person</mat-icon>
+    <mat-form-field appearance="outline">
+      <mat-label>Apellido</mat-label>
+      <input matInput placeholder="Apellido" formControlName="apellido">
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
 
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Email" formControlName="email">
+      <mat-icon matSuffix>mail</mat-icon>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Email</mat-label>
-    <input matInput placeholder="Email" formControlName="email">
-    <mat-icon matSuffix>mail</mat-icon>
-  </mat-form-field>
-
-  <button mat-raised-button>
-    <span #text>Modificar</span>
-  </button>
+    <button mat-raised-button>
+      <span #text>Modificar</span>
+    </button>
+  </div>
 </form>
 
 

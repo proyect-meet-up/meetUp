@@ -1,10 +1,22 @@
-  .tab-usuario {
+@use '../../../scss/01.settings/_settings.scss' as c;
+
+.tab-usuario {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   margin: 16px;
   padding: 16px;
   border-radius: 8px;
-  background-color: khaki;
+  background-color: c.$color-primary;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+
+  button.mat-raised-button {
+    align-self: center;
+  }
 }

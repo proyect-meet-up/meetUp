@@ -1,4 +1,5 @@
 @use '../../../scss/01.settings/_settings.scss' as c;
+@use '../../../scss/02.tools/_mixins.scss' as boton;
 
 .tab-usuario {
   display: flex;
@@ -18,5 +19,6 @@
 
   button.mat-raised-button {
     align-self: center;
+    @include boton.boton-max-width;
   }
 }

@@ -1,6 +1,6 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -11,31 +11,29 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$meet-up-client-primary: mat-palette($mat-indigo);
-$meet-up-client-accent: mat-palette($mat-pink, A200, A100, A400);
+$barum-client-primary: mat-palette($mat-teal);
+$barum-client-accent: mat-palette($mat-orange, A200, A100, A400);
+
 
 // The warn palette is optional (defaults to red).
-$meet-up-client-warn: mat-palette($mat-red);
+$barum-client-warn: mat-palette($mat-red, 800);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$meet-up-client-theme: mat-light-theme((color: (primary: $meet-up-client-primary,
-      accent: $meet-up-client-accent,
-      warn: $meet-up-client-warn,
-    )));
+$barum-client-theme: mat-light-theme(
+  (
+    color: (
+      primary: $barum-client-primary,
+      accent: $barum-client-accent,
+      warn: $barum-client-warn,
+    ),
+  )
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 
-$alternate-primary: mat-palette($mat-deep-purple);
-$alternate-accent:  mat-palette($mat-blue, A200, A100, A400);
-$alternate-theme:   mat-light-theme($alternate-primary, $alternate-accent);
-
-.custom-button-theme {
-  @include mat-button-theme($alternate-theme)
-}
-
-@include angular-material-theme($meet-up-client-theme);
+@include angular-material-theme($barum-client-theme);
 
 

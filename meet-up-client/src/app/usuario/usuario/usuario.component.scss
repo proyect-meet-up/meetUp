@@ -1,7 +1,12 @@
 .usuario {
     display: flex;
     flex-direction: column;
-  }
 
+}
+
+
+::ng-deep .mat-tab-label-content {
+    font-size: 2rem;
+}
 
 

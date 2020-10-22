@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { faThemeisle } from '@fortawesome/free-brands-svg-icons';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Usuario } from '../usuario.model';
 
 @Component({
   selector: "app-usuario",
   templateUrl: "./usuario.component.html",
-  styleUrls: ["./usuario.component.scss"],
+  styleUrls: ["./usuario.component.scss"]
 })
 export class UsuarioComponent implements OnInit {
   usuario: Usuario;
@@ -14,6 +12,6 @@ export class UsuarioComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.usuario = new Usuario('Borja', 'Arana', 'barana@mail.com')
+    this.usuario = new Usuario("Borja", "Arana", "barana@mail.com");
   }
 }

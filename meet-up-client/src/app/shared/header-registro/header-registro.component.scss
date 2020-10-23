@@ -1,0 +1,97 @@
+@use '../../../scss/01.settings/_settings' as color;
+
+.header-registro {
+  min-height: 70px;
+  background-color: color.$color-primary;
+  display: flex;
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    font-size: 1.8rem; // Equivale a 18px; 10px * 1.8 =
+  }
+
+  &__logo {
+    display: flex;
+    flex: 1;
+    cursor: pointer;
+    margin-left: 1.5rem;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: flex-end;
+    flex: 0.75;
+    cursor: pointer;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__links-items {
+    text-decoration: none;
+    color: slategrey;
+    font-size: 1.5rem;
+    margin-right: 20px;
+
+    &:hover,
+    &:focus {
+      color: green;
+    }
+  }
+
+  &__avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  &__links-items.m-l {
+    margin-left: 20px;
+  }
+
+  &__dropdown {
+    position: relative;
+  }
+
+  &__dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  &__dropdown-content .header-registro__dropdown-items {
+    color: slategrey;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+
+    a {
+      text-decoration: none;
+      flex: 1;
+    }
+  }
+
+  &__dropdown-content .header-registro__dropdown-items:hover {
+    background-color: #ddd;
+  }
+
+  &__dropdown:hover .header-registro__dropdown-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+
+
+
+
+
+
+
+}
+

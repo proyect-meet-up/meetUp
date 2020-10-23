@@ -1,3 +1,5 @@
+@use '../../../scss/02.tools/_mixins.scss' as boton;
+
 .reserva-form {
   display: flex;
 
@@ -8,6 +10,7 @@
 
     button.mat-raised-button {
       align-self: flex-start;
+      @include boton.boton-max-width;
     }
 
   }

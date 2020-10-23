@@ -48,3 +48,8 @@ ORDER: Base + typography > general layout + grid > page layout > components
     ; //1800
   }
 }
+
+@mixin boton-max-width {
+    min-width: 200px;
+    font-size: 1.8rem;
+}

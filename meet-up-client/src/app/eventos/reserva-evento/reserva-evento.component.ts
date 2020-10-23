@@ -45,6 +45,19 @@ export class ReservaEventoComponent implements OnInit {
       ],
       telefono: [ this.usuario ? this.usuario.telefono: ''],
     });
+
+    this.setDisableCamposFormulario(this.formularioReserva.controls);
+  }
+
+  setDisableCamposFormulario(...campos) {
+    let [propiedadesControls] = campos;
+
+    for (const control in propiedadesControls) {
+      if (!control.includes("telefono")) {
+        this.formularioReserva.get(control).disable();
+      }
+    }
+
   }
 
   reservarEvento() {

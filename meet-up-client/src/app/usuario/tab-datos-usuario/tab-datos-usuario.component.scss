@@ -1,0 +1,24 @@
+@use '../../../scss/01.settings/_settings.scss' as c;
+@use '../../../scss/02.tools/_mixins.scss' as boton;
+
+.tab-usuario {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: c.$color-primary;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+
+  button.mat-raised-button {
+    align-self: center;
+    @include boton.boton-max-width;
+  }
+}

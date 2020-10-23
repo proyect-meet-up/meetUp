@@ -1,0 +1,28 @@
+<div class="header-registro">
+  <nav class="header-registro__nav">
+    <span class="header-registro__logo" [routerLink]="['/']">
+      PRIVADO
+    </span>
+    <div class="header-registro__links">
+      <a class="header-registro__links-items ">Hola Pepito</a>
+      <a class="header-registro__links-items header-registro__dropdown">
+        <img class="header-registro__avatar" src="assets/usuarios-imagenes/usuario1.jpg" alt="usuario">
+        <div class="header-registro__dropdown-content">
+          <div class="header-registro__dropdown-items">
+            <a [routerLink]="['/usuario']">Editar perfil</a>
+            <mat-icon>create</mat-icon>
+          </div>
+          <div class="header-registro__dropdown-items">
+            <a [routerLink]="['/']">Cerrar sesión</a>
+            <mat-icon>close</mat-icon>
+          </div>
+        </div>
+      </a>
+      <button mat-button class="header-registro__links-items m-l">
+        <span>Mis datos</span>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+
+    </div>
+  </nav>
+</div>

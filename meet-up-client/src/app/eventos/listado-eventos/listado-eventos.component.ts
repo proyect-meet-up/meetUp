@@ -19,8 +19,9 @@ export class ListadoEventosComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.eventosSuscription = this.eventoService.eventosBuscados$.subscribe((datosActualizados: Evento[]) => {
       this.eventos = datosActualizados;
+      console.log('desde listado eventos', this.eventos)
     })
-    this.eventos = this.eventoService.obtenerEventos();
+    //this.eventos = this.eventoService.obtenerEventos();
   }
 
   ngOnDestroy() {

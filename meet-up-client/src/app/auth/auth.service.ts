@@ -13,10 +13,12 @@ export class AuthService {
 
 
   login(valor: boolean) {
+    console.log('Me estoy logueando...', valor)
     this.estaLogueadoSource.next(valor);
   }
 
-  logout(valor: boolean) {
+ logout (valor:boolean): void {
+    console.log("Estoy saliendo de la aplicación...", valor);
     this.estaLogueadoSource.next(valor);
   }
 

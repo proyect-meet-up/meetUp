@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faThemeisle } from '@fortawesome/free-brands-svg-icons';
-import { MensajesErroresService } from 'src/app/shared/servicios/mensajes-errores.service';
+import { MensajesErroresService } from 'src/app/shared/services/mensajes-errores.service';
 
 @Component({
   selector: 'app-usuario',

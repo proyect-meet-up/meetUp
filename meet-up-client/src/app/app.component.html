@@ -1,6 +1,6 @@
-<app-header></app-header>
-<app-header-registro></app-header-registro>
-<app-buscador *ngIf="showBuscador"></app-buscador>
+<app-header *ngIf="!estaLogueado"></app-header>
+<app-header-registro *ngIf="estaLogueado"></app-header-registro>
+<app-buscador *ngIf="mostrarBuscador"></app-buscador>
 <div class="o-container">
   <router-outlet></router-outlet>
 </div>

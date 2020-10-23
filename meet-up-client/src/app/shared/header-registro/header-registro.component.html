@@ -9,11 +9,11 @@
         <img class="header-registro__avatar" src="assets/usuarios-imagenes/usuario1.jpg" alt="usuario">
         <div class="header-registro__dropdown-content">
           <div class="header-registro__dropdown-items">
-            <a [routerLink]="['/usuario']">Editar perfil</a>
+            <a [routerLink]="['privado','usuario']">Editar perfil</a>
             <mat-icon>create</mat-icon>
           </div>
           <div class="header-registro__dropdown-items">
-            <a [routerLink]="['/']">Cerrar sesión</a>
+            <a [routerLink]="['/']" (click)="cerrarSesion()">Cerrar sesión</a>
             <mat-icon>close</mat-icon>
           </div>
         </div>

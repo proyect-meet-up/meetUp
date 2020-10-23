@@ -8,12 +8,18 @@
       <mat-label>Nombre</mat-label>
       <input matInput placeholder="Nombre"  formControlName="nombre">
       <mat-icon matSuffix>face</mat-icon>
+      <mat-error *ngIf="noEsCampoValido('nombre')">
+        {{ obtenerMensajeError('nombre') }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Apellido</mat-label>
       <input matInput placeholder="Apellido" formControlName="apellido">
       <mat-icon matSuffix>person</mat-icon>
+      <mat-error *ngIf="noEsCampoValido('apellido')">
+        {{ obtenerMensajeError('apellido') }}
+      </mat-error>
     </mat-form-field>
 
 
@@ -21,6 +27,9 @@
       <mat-label>Email</mat-label>
       <input matInput placeholder="Email" formControlName="email">
       <mat-icon matSuffix>mail</mat-icon>
+      <mat-error *ngIf="noEsCampoValido('email')">
+        {{ obtenerMensajeError('email') }}
+      </mat-error>
     </mat-form-field>
     <small *ngIf="emailUsuarioExiste">USUARIO EXISTE</small>
 

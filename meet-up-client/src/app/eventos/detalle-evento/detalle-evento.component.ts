@@ -19,9 +19,8 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
     private eventoService: EventoService,
     private router: Router
   ) {
-    // Obtenemos el parametro id y lo convertimos en number.
-    const id = Number(this.route.snapshot.params["id"]);
-    // Llamamos al servicio para obtener el evento
+    
+    const id = Number(this.route.snapshot.params["id"]);    
     this.evento = this.eventoService.obtenerEvento(id);
   }
 

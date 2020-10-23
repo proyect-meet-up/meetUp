@@ -24,6 +24,9 @@ export class LoginComponent implements OnInit, OnDestroy  {
 
   ngOnInit(): void {
     this.crearFormularioLogin();
+    this.logueadoSuscription = this.authService.estaLogueadoSource.subscribe((valor) => {
+      console.log("el valor es ahora: ", valor)
+    })
   }
 
   ngOnDestroy() {
@@ -72,9 +75,7 @@ export class LoginComponent implements OnInit, OnDestroy  {
     }
 
     this.authService.login(true);
-    this.logueadoSuscription = this.authService.estaLogueadoSource.subscribe((valor) => {
-      console.log("el valor es ahora: ", valor)
-    })
+ 
   
   }
 }

@@ -21,7 +21,7 @@ export class UsuarioComponent implements OnInit {
   constructor(private fb: FormBuilder, private mensajeErroresService: MensajesErroresService) { }
 
   ngOnInit(): void {
-   // this.usuario = new Usuario("Borja", "Arana", "barana@mail.com");
+    this.usuario = new Usuario("Borja", "Arana", "barana@mail.com");
   }
 
   obtenerMensajeError(campo: string): string {

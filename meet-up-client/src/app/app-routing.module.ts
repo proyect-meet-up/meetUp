@@ -23,7 +23,7 @@ const routes: Routes = [
       import('./auth/login/login.module').then((m) => m.LoginModule),
   },
   {
-    path: 'usuario',
+    path: 'privado/usuario',
     loadChildren: () =>
       import('./usuario/usuario.module').then((m) => m.UsuarioModule),
   },

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faThemeisle } from '@fortawesome/free-brands-svg-icons';
+import { MensajesErroresService } from 'src/app/shared/servicios/mensajes-errores.service';
 
 @Component({
   selector: 'app-usuario',
@@ -15,7 +16,7 @@ export class UsuarioComponent implements OnInit {
   hide: boolean = true;
   hide2: boolean = true;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private mensajeErroresService: MensajesErroresService) { }
 
   ngOnInit(): void {
 
@@ -30,7 +31,9 @@ export class UsuarioComponent implements OnInit {
   }
 
   obtenerMensajeError(campo: string): string {
-    let mensaje;
+
+    return this.mensajeErroresService.obtenerMensajeError(this.formularioUsuario, campo); 
+    /* let mensaje;
     if(this.formularioUsuario.get(campo).errors?.required ) {
       mensaje = 'Debes introducir un valor';
     } else if (this.formularioUsuario.get(campo).hasError('pattern')) {
@@ -40,12 +43,14 @@ export class UsuarioComponent implements OnInit {
       mensaje = `El campo debe tener un mínimo de ${longitudMinima} caracteres`
     }
 
-    return mensaje;
+    return mensaje; */
   }
 
   NoEsCampoValido(campo: string) {
-    return (this.formularioUsuario.get(campo).touched || this.formularioUsuario.get(campo).dirty && 
-      !this.formularioUsuario.get(campo).valid);
+
+    return this.mensajeErroresService.NoEsCampoValido(this.formularioUsuario, campo);
+   /*  return (this.formularioUsuario.get(campo).touched || this.formularioUsuario.get(campo).dirty && 
+      !this.formularioUsuario.get(campo).valid); */
   }
   
 

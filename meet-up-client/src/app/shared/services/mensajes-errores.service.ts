@@ -22,7 +22,7 @@ export class MensajesErroresService {
     return mensaje;
   }
 
-  NoEsCampoValido(formulario: FormGroup, campo: string) {
+  noEsCampoValido(formulario: FormGroup, campo: string) {
     return (formulario.get(campo).touched || formulario.get(campo).dirty && 
       !formulario.get(campo).valid);
   }

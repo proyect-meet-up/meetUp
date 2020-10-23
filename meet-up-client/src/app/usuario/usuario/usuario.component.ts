@@ -1,7 +1,6 @@
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MensajesErroresService } from 'src/app/shared/services/mensajes-errores.service';
 import { Usuario } from '../usuario.model';
 
 @Component({
@@ -18,22 +17,12 @@ export class UsuarioComponent implements OnInit {
   hide: boolean = true;
   hide2: boolean = true;
 
-  constructor(private fb: FormBuilder, private mensajeErroresService: MensajesErroresService) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.usuario = new Usuario("Borja", "Arana", "barana@mail.com");
   }
-
-  obtenerMensajeError(campo: string): string {
-
-    return this.mensajeErroresService.obtenerMensajeError(this.formularioUsuario, campo);    
-  }
-
-  NoEsCampoValido(campo: string) {
-
-    return this.mensajeErroresService.NoEsCampoValido(this.formularioUsuario, campo);
   
-  }
-  
+ 
 
 }

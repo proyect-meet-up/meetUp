@@ -1,23 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { ValidadoresService } from 'src/app/shared/services/validadores.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy  {
   formularioLogin: FormGroup;
   hide: boolean = true;
+  logueadoSuscription: Subscription;
+  estaLogueado: boolean;
 
   constructor(
     private fb: FormBuilder,
-    private validacionesService: ValidadoresService
+    private validacionesService: ValidadoresService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.crearFormularioLogin();
+  }
+
+  ngOnDestroy() {
+    this.logueadoSuscription.unsubscribe();
   }
 
   crearFormularioLogin() {
@@ -61,6 +71,10 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    console.log(this.formularioLogin);
+    this.authService.login(true);
+    this.logueadoSuscription = this.authService.estaLogueadoSource.subscribe((valor) => {
+      console.log("el valor es ahora: ", valor)
+    })
+  
   }
 }

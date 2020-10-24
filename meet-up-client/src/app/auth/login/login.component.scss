@@ -1,7 +1,18 @@
+@use '../../../scss/02.tools/_mixins.scss' as boton;
+
 .login {
-  background-color: antiquewhite;
-  display: flex;
-  flex-direction: column;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  &__wrapper {
+    min-width: 320px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 16px;
+  }
 
   &__title {
     align-self: center;
@@ -15,10 +26,10 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin: 0 40%;
 
     button.mat-raised-button {
       align-self: center;
+      @include boton.boton-max-width;
     }
 
   }

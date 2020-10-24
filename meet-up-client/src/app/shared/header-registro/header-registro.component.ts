@@ -1,6 +1,5 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
-import { MatButton } from '@angular/material/button';
-import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: "app-header-registro",
@@ -8,11 +7,13 @@ import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
   styleUrls: ["./header-registro.component.scss"],
 })
 export class HeaderRegistroComponent implements OnInit {
+  estaLogueado: boolean = false;
 
+  constructor(private authService: AuthService) {}
 
-  constructor(private render: Renderer2) {}
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-
+  cerrarSesion() {
+    this.authService.logout(this.estaLogueado);
   }
 }

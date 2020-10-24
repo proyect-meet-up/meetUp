@@ -1,8 +1,8 @@
-@use '../../../scss/01.settings/_settings' as color;
+@use '../../../scss/01.settings/_settings.scss' as variables;
 
 .header {
       min-height: 70px;
-      background-color: color.$color-primary;
+      background-color: variables.$color-primary;
       display: flex;
 
     &__nav {

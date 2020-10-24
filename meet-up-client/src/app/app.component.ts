@@ -1,42 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, RouterEvent } from "@angular/router";
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = "Barum";
-  showBuscador: boolean = true;
-  showFooter: boolean = true;
+  mostrarBuscador: boolean = true;
+  estaLogueado: boolean = false;
 
-  constructor(private router: Router) {
-        console.log('Hola desde Github')
-
+  constructor(private router: Router, private authService: AuthService) {
         this.router.events.subscribe((event: RouterEvent) => {
           if (event instanceof NavigationEnd) {
             if (
-              //event.url.includes('detalle') ||
               event.url.includes('login') ||
               event.url.includes('register')
             ) {
-              this.showBuscador = false;
+              this.mostrarBuscador = false;
             } else {
-              this.showBuscador = true;
+              this.mostrarBuscador = true;
             }
-
-            if (
-                  event.url.includes('reserva') || event.url.includes('detalle')
-            ) {
-              this.showFooter = false;
-            } else {
-              this.showFooter = true;
-            }
-
-
           }
         });
+  }
+
+  ngOnInit() {
+    this.authService.estaLogueado$.subscribe((data: boolean) => this.estaLogueado = data)
   }
 
 

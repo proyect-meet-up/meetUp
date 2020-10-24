@@ -1,5 +1,5 @@
-@use '../../../scss/01.settings/_settings.scss' as c;
-@use '../../../scss/02.tools/_mixins.scss' as boton;
+@use '../../../../scss/01.settings/_settings.scss' as c;
+@use '../../../../scss/02.tools/_mixins.scss' as boton;
 
 .tab-usuario {
   display: flex;
@@ -14,7 +14,7 @@
   &__wrapper {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 50%;
   }
 
   button.mat-raised-button {

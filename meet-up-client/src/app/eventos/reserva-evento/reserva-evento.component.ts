@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Evento } from '../evento.model';
 import { EventoService } from '../evento.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Usuario } from 'src/app/usuario/usuario.model';
+import { Usuario } from '../../privado/usuario/usuario.model';
 import { ValidadoresService } from 'src/app/shared/services/validadores.service';
 
 @Component({

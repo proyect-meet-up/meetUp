@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit  {
     // }
 
     this.authService.login(this.estaLogueado);
-    this.router.navigate(["/"]);
+    this.router.navigate(["privado"]);
 
   }
 }

@@ -23,9 +23,9 @@ const routes: Routes = [
       import('./auth/login/login.module').then((m) => m.LoginModule),
   },
   {
-    path: 'privado/usuario',
+    path: 'privado',
     loadChildren: () =>
-      import('./usuario/usuario.module').then((m) => m.UsuarioModule),
+      import('./privado/privado.module').then((m) => m.PrivadoModule),
   },
   {
     path: '**', component: PageNotFoundComponent

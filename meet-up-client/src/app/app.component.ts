@@ -17,7 +17,8 @@ export class AppComponent implements OnInit {
           if (event instanceof NavigationEnd) {
             if (
               event.url.includes('login') ||
-              event.url.includes('register')
+              event.url.includes('register') ||
+              event.url.includes('admin')
             ) {
               this.mostrarBuscador = false;
             } else {

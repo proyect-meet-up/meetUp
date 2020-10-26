@@ -1,12 +1,13 @@
 <div class="registro">
-  <div class="registro__title">
-    <h2>Registro</h2>
-  </div>
-  <form class="registro__form" [formGroup]="formularioRegistro" (ngSubmit)="registro()">
+  <div class="registro__wrapper mat-elevation-z4">
+    <div class="registro__title">
+      <h2>Registro</h2>
+    </div>
+    <form class="registro__form" [formGroup]="formularioRegistro" (ngSubmit)="registro()">
 
     <mat-form-field appearance="outline">
       <mat-label>Nombre</mat-label>
-      <input matInput placeholder="Nombre"  formControlName="nombre">
+      <input matInput placeholder="Nombre" formControlName="nombre">
       <mat-icon matSuffix>face</mat-icon>
       <mat-error *ngIf="noEsCampoValido('nombre')">
         {{ obtenerMensajeError('nombre') }}
@@ -41,15 +42,17 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Repetir password</mat-label>
-      <input matInput placeholder="Repetir password" [type]="hide2 ? 'password' : 'text'" formControlName="confirmacionPassword">
+      <input matInput placeholder="Repetir password" [type]="hide2 ? 'password' : 'text'"
+        formControlName="confirmacionPassword">
       <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
     <small *ngIf="passwordNoIguales">No son iguales las contraseñas</small>
 
-    <button mat-raised-button>
-      Sign Up
+    <button mat-raised-button color="primary">
+      Registro
     </button>
 
 
-  </form>
+    </form>
+  </div>
 </div>

@@ -16,13 +16,9 @@ export class BuscadorComponent implements OnInit{
   terminoBusqueda: string;
   eventos;
 
-  constructor( private eventosService: EventoService) {
-
-  }
-
+  constructor( private eventosService: EventoService) {}
 
   ngOnInit() {
-
     this.filtroInput
       .valueChanges
       .pipe(
@@ -30,7 +26,7 @@ export class BuscadorComponent implements OnInit{
         distinctUntilChanged()
       )
       .subscribe((terminoABuscar)=> {
-        if(terminoABuscar) {          
+        if(terminoABuscar) {
           this.obtenerEventoPorTerminoBuscado(terminoABuscar);
           if (this.eventos.length === 0) {
             console.log ("es igual a cero")
@@ -45,13 +41,10 @@ export class BuscadorComponent implements OnInit{
   obtenerEventoPorTerminoBuscado( termino: string) {
     this.eventos = [];
     this.eventos = this.eventosService.obtenerEventoDeBuscador(termino);
-    console.log("que es: ", this.eventos); 
-   
   }
 
   obtenerTodosLosEventos() {
     this.eventos = this.eventosService.obtenerEventos();
-    console.log("todos los eventos: ", this.eventos)
   }
 
 

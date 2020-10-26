@@ -9,6 +9,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 
+
 // Componentes
 import { CardEventoComponent } from './card-evento/card-evento.component';
 import { DetalleEventoComponent } from './detalle-evento/detalle-evento.component';
@@ -17,6 +18,9 @@ import { ListadoRegistradoComponent } from './listado-registrado/listado-registr
 import { ListadoEventosComponent } from './listado-eventos/listado-eventos.component';
 import { DetalleEventoRegistradoComponent } from './detalle-evento-registrado/detalle-evento-registrado.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NuevoEventoComponent } from './nuevo-evento/nuevo-evento.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -29,6 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ListadoRegistradoComponent,
     ListadoEventosComponent,
     DetalleEventoRegistradoComponent,
+    NuevoEventoComponent,
   ],
   imports: [
     CommonModule,
@@ -39,7 +44,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
+  exports: [
+    //NuevoEventoComponent
   ],
 })
 export class EventosModule {}

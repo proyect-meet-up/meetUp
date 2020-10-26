@@ -5,9 +5,11 @@ export class Evento {
     public direccion: string,
     public tipo: string,
     public uid: number,
-    public imagen?: string
-  ) //public fecha: string,
-  {}
+    public imagen?: string,
+    public precio?: number,
+    public fecha?: Date,
+    //public fecha?: string
+  ) {}
 }
 
 export const eventos: Evento[] = [

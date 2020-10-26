@@ -1,0 +1,16 @@
+::ng-deep nav.mat-tab-nav-bar.mat-tab-header {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  justify-content: center;
+
+  .mat-tab-link-container {
+    display: flex;
+    overflow: hidden;
+    z-index: 1;
+    border-radius: 30px;
+    flex-grow: 0;
+  }
+}
+

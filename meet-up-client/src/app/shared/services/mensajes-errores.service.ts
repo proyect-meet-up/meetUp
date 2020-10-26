@@ -9,6 +9,7 @@ export class MensajesErroresService {
   constructor() { }
 
   obtenerMensajeError(formulario: FormGroup, campo: string): string {
+    console.log(formulario.get(campo).errors);
     let mensaje;
     if(formulario.get(campo).errors?.required ) {
       mensaje = 'Debes introducir un valor';

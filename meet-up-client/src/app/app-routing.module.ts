@@ -28,6 +28,11 @@ const routes: Routes = [
       import('./privado/privado.module').then((m) => m.PrivadoModule),
   },
   {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then( m => m.AdminModule)
+  },
+  {
     path: '**', component: PageNotFoundComponent
   }
 ];

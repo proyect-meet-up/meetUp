@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
  /*  {
@@ -24,6 +25,7 @@ const routes: Routes = [
   },
   {
     path: 'privado',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./privado/privado.module').then((m) => m.PrivadoModule),
   },

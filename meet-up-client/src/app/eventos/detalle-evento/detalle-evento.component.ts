@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { Subscription } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import { Evento } from "../evento.model";
@@ -13,15 +13,16 @@ import { EventoService } from "../evento.service";
 export class DetalleEventoComponent implements OnInit, OnDestroy {
   evento: Evento;
   eventosSuscription: Subscription;
+  id: number;
 
   constructor(
     private route: ActivatedRoute,
     private eventoService: EventoService,
     private router: Router
   ) {
-    
-    const id = Number(this.route.snapshot.params["id"]);    
-    this.evento = this.eventoService.obtenerEvento(id);
+
+    /* const id = Number(this.route.snapshot.params["id"]);    
+    this.evento = this.eventoService.obtenerEvento(id); */
   }
 
   ngOnInit(): void {
@@ -30,6 +31,14 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
       .subscribe(
         () => {
           this.router.navigate(['/']);
+        }
+      );
+
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.id = +params['id'];
+          this.evento = this.eventoService.obtenerEvento(this.id);
         }
       );
   }

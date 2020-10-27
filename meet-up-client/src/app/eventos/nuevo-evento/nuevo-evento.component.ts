@@ -4,9 +4,9 @@ import { MensajesErroresService } from 'src/app/shared/services/mensajes-errores
 import { ValidadoresService } from 'src/app/shared/services/validadores.service';
 
 @Component({
-  selector: "app-nuevo-evento",
-  templateUrl: "./nuevo-evento.component.html",
-  styleUrls: ["./nuevo-evento.component.scss"],
+  selector: 'app-nuevo-evento',
+  templateUrl: './nuevo-evento.component.html',
+  styleUrls: ['./nuevo-evento.component.scss'],
 })
 export class NuevoEventoComponent implements OnInit {
   formularioNuevoEvento: FormGroup;
@@ -18,16 +18,16 @@ export class NuevoEventoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-   this.crearFormularioNuevoEvento();
+    this.crearFormularioNuevoEvento();
   }
 
   crearFormularioNuevoEvento() {
     this.formularioNuevoEvento = this.fb.group({
-      titulo: ["", Validators.required],
-      descripcion: ["", Validators.required],
+      titulo: ['', Validators.required],
+      descripcion: ['', Validators.required],
       precio: [0, Validators.required],
       fecha: [Date.now(), Validators.required],
-      direccion: ['', Validators.required]
+      direccion: ['', Validators.required],
     });
   }
 
@@ -46,6 +46,10 @@ export class NuevoEventoComponent implements OnInit {
   }
 
   crearNuevoEvento() {
-    console.log(this.formularioNuevoEvento.value)
+    console.log(this.formularioNuevoEvento.value);
+  }
+
+  nuevaDireccion(event) {
+    this.formularioNuevoEvento.get('direccion').setValue(event);
   }
 }

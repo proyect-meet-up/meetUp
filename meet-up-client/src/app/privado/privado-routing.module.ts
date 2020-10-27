@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DetalleEventoComponent } from '../eventos/detalle-evento/detalle-evento.component';
-import { ListadoEventosComponent } from '../eventos/listado-eventos/listado-eventos.component';
-import { ReservaEventoComponent } from '../eventos/reserva-evento/reserva-evento.component';
+import { NuevoEventoComponent } from '../eventos/nuevo-evento/nuevo-evento.component';
 
-const routes: Routes = [  
+const routes: Routes = [
   {
     path: "",
     loadChildren: () =>

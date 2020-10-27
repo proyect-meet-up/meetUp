@@ -8,6 +8,10 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ComponentsModule } from '../shared/componentes/components.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 // Componentes
@@ -17,10 +21,8 @@ import { ReservaEventoComponent } from './reserva-evento/reserva-evento.componen
 import { ListadoRegistradoComponent } from './listado-registrado/listado-registrado.component';
 import { ListadoEventosComponent } from './listado-eventos/listado-eventos.component';
 import { DetalleEventoRegistradoComponent } from './detalle-evento-registrado/detalle-evento-registrado.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NuevoEventoComponent } from './nuevo-evento/nuevo-evento.component';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+
 
 
 
@@ -47,6 +49,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    ComponentsModule
   ],
   exports: [
     //NuevoEventoComponent

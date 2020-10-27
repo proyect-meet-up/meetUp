@@ -20,7 +20,13 @@
   &__form--col-2 {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__direccion {
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 
   button.mat-raised-button {

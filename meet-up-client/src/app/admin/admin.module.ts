@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { ComponentsModule } from '../shared/components.module';
+import { ComponentsModule } from '../shared/componentes/components.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from "@angular/material/table";
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { AdminComponent } from './admin/admin.component';
 
@@ -24,7 +25,8 @@ import { ConfirmarEventosComponent } from './confirmar-eventos/confirmar-eventos
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule
+    MatTableModule,
+    MatCheckboxModule,
   ],
 })
 export class AdminModule {}

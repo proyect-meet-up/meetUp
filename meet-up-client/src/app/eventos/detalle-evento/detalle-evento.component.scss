@@ -1,5 +1,6 @@
 @import '../../../scss/02.tools/_mixins.scss';
 
+
 .detalle-evento {
   display: flex;
   flex-direction: column;
@@ -60,4 +61,6 @@
     @include boton-max-width;
   }
 
+
 }
+

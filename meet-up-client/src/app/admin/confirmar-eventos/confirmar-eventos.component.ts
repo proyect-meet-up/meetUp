@@ -32,13 +32,13 @@ export class ConfirmarEventosComponent implements OnInit {
   }
 
   checkboxLabel(row?: EventosReservados): string {
-    //console.log('Rows...', row)
+
     if (!row) {
       return `${this.estanSeleccionadosTodos() ? 'select' : 'deselect'} all`;
     }
 
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
-      row.nombre + 1
+      row.id + 1
     }`;
   }
 }

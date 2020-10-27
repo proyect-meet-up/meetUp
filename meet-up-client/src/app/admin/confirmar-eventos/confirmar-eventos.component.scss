@@ -1,0 +1,13 @@
+.mat-table {
+  margin: 3%;
+}
+
+.mat-cell, .mat-header-cell {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    min-height: inherit;
+}

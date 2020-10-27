@@ -1,2 +1,47 @@
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8 reservas">
 
-<div>Confirmar eventos</div>
+  <ng-container matColumnDef="nombre">
+    <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="titulo">
+    <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="fechaReserva">
+    <mat-header-cell *matHeaderCellDef> Día reserva </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.fechaReserva | date:'mediumDate'}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="detalle">
+    <mat-header-cell *matHeaderCellDef> Ver detalle </mat-header-cell>
+    <mat-cell *matCellDef="let element"> Editar </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="select">
+
+      <mat-header-cell mat-header-cell *matHeaderCellDef>
+        <mat-checkbox
+          (change)="$event ? masterToggle() : null"
+          [checked]="selection.hasValue() && estanSeleccionadosTodos()"
+          [indeterminate]="selection.hasValue() && !estanSeleccionadosTodos()"
+          [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell  mat-cell *matCellDef="let row">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)"
+          [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </mat-cell>
+
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>

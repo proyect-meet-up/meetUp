@@ -1,0 +1,39 @@
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+      </mat-panel-title>
+      <mat-panel-description>
+        Completa los campos de la dirección
+        <mat-icon>location_on</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <form class="direccion__form" [formGroup]="direccionFormulario" (ngSubmit)="nuevaDireccion()">
+      <div class="direccion__row">
+        <mat-form-field class="direccion__field" appearance="outline">
+          <mat-label>Nombre de la calle *</mat-label>
+          <input matInput placeholder="Calle" formControlName="calle">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Número *</mat-label>
+          <input matInput placeholder="Número" formControlName="numero">
+        </mat-form-field>
+      </div>
+      <div class="direccion__row">
+        <mat-form-field class="direccion__item" appearance="outline">
+          <mat-label>Código postal *</mat-label>
+          <input matInput placeholder="Código postal" formControlName="codigo">
+        </mat-form-field>
+        <mat-form-field class="direccion__item" appearance="outline">
+          <mat-label>Localidad</mat-label>
+          <input matInput placeholder="Localidad" formControlName="localidad">
+        </mat-form-field>
+        <mat-form-field class="direccion__item" appearance="outline">
+          <mat-label>Municipio</mat-label>
+          <input matInput placeholder="Municipio" formControlName="municipio">
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-expansion-panel>
+</mat-accordion>

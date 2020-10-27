@@ -15,7 +15,7 @@ export class TabGroupComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.activeLink = this.links[2];
+    this.activeLink = this.links[0];
   }
 
   reemplazarLinksATitutosTabs(link: string) {

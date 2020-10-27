@@ -38,7 +38,7 @@ export class ConfirmarEventosComponent implements OnInit {
     }
 
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
-      row.id + 1
+      row.id
     }`;
   }
 }

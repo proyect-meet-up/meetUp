@@ -9,7 +9,9 @@ export class MensajesErroresService {
   constructor() { }
 
   obtenerMensajeError(formulario: FormGroup, campo: string): string {
-    console.log(formulario.get(campo).errors);
+
+    let errorMail = formulario.get(campo).errors;
+        
     let mensaje;
     if(formulario.get(campo).errors?.required ) {
       mensaje = 'Debes introducir un valor';
@@ -18,7 +20,9 @@ export class MensajesErroresService {
     } else if (formulario.get(campo).hasError('minlength')) {
       const longitudMinima = formulario.get(campo).errors?.minlength.requiredLength;
       mensaje = `El campo debe tener un mínimo de ${longitudMinima} caracteres`
-    }
+    } else if (errorMail !== null) {
+      mensaje = `no es un email válido`
+    } 
 
     return mensaje;
   }

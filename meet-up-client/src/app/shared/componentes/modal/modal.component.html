@@ -1,13 +1,21 @@
 <div class="modal">
-  <h1 mat-dialog-title>
+  <h1 class="modal__title">
     Inicia sesión o registrate
   </h1>
-  <div mat-dialog-content>
+  <div class="modal__content">
     <p>Hola soy el título secundario</p>
   </div>
-  <div mat-dialog-actions >
-    <button mat-raised-button color="primary" [routerLink]="['login']" mat-dialog-close>Inicia sesión</button>
-    <button mat-raised-button color="primary" [routerLink]="['register']" mat-dialog-close>Registrate</button>
+  <div class="modal__actions">
+    <button
+      mat-raised-button color="primary"
+      [routerLink]="['login']"
+      mat-dialog-close>Inicia sesión
+    </button>
+    <button
+      mat-raised-button color="primary"
+      [routerLink]="['register']"
+      mat-dialog-close>Registrate
+    </button>
   </div>
 </div>
 

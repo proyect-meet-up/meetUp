@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListadoEventosComponent } from '../eventos/listado-eventos/listado-eventos.component';
-import { ListadoRegistradoComponent } from '../eventos/listado-registrado/listado-registrado.component';
 import { NuevoEventoComponent } from '../eventos/nuevo-evento/nuevo-evento.component';
 import { AdminComponent } from './admin/admin.component';
 import { ConfirmarEventosComponent } from './confirmar-eventos/confirmar-eventos.component';

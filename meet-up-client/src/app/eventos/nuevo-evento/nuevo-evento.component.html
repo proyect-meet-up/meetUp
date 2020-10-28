@@ -16,23 +16,20 @@
         </mat-error>
       </mat-form-field>
       <label>Dirección</label>
-       <mat-form-field appearance="outline">
-        <input matInput placeholder="direccion" formControlName="direccion">
-        <mat-error *ngIf="noEsCampoValido('direccion')">
-          {{ obtenerMensajeError('direccion') }}
-        </mat-error>
-      </mat-form-field>
+      <div class="nuevo-evento__direccion">
+        <app-direccion (nuevaDireccionEvent)="nuevaDireccion($event)"></app-direccion>
+      </div>
       <div class="nuevo-evento__form--col-2">
+        <label>Precio</label>
         <mat-form-field appearance="outline">
-         <mat-label>precio</mat-label>
          <input matInput placeholder="precio" formControlName="precio">
          <mat-error *ngIf="noEsCampoValido('precio')">
            {{ obtenerMensajeError('precio') }}
          </mat-error>
        </mat-form-field>
 
+       <label>Fecha</label>
        <mat-form-field color="primary" appearance="fill">
-         <mat-label>fecha</mat-label>
          <input matInput [matDatepicker]="calendario" formControlName="fecha">
          <mat-datepicker-toggle matSuffix [for]="calendario"></mat-datepicker-toggle>
          <mat-datepicker #calendario color="primary"></mat-datepicker>

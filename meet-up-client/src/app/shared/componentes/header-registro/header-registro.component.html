@@ -18,10 +18,15 @@
           </div>
         </div>
       </a>
-      <button mat-button class="header-registro__links-items m-l">
-        <span>Mis datos</span>
+      <button mat-button [matMenuTriggerFor]="menu" class="header-registro__links-items m-l">
+        <span>Mis gestiones</span>
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['privado', 'eventos']">Próximos</button>
+        <button mat-menu-item [routerLink]="['privado', 'eventos']">Históricos</button>
+        <button mat-menu-item [routerLink]="['privado', 'nuevo-evento']">Nuevo evento</button>
+      </mat-menu>
 
     </div>
   </nav>

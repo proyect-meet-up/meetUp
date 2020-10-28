@@ -1,4 +1,4 @@
-@use '../../../scss/01.settings/settings' as color;
+@use '../../../../scss/01.settings/settings' as color;
 
 .search {
   height: 80px;
@@ -40,6 +40,12 @@
     background: #fff;
     width: 50%;
     color: slategrey;
+  }
+
+  &__form {
+    display: flex;
+    align-items: center;
+
   }
 
 

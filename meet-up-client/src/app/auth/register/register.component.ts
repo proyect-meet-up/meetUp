@@ -26,12 +26,6 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  get emailUsuarioExiste() {
-    return (
-      this.formularioRegistro.get("email").invalid &&
-      this.formularioRegistro.get("email").touched
-    );
-  }
 
   ngOnInit(): void {
     this.crearFormularioRegistro();

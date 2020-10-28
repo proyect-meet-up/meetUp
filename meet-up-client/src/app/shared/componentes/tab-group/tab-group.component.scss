@@ -14,3 +14,14 @@
   }
 }
 
+::ng-deep .mat-tab-nav-bar.mat-background-primary .mat-tab-links {
+  background-color: rgba(85, 139, 47, 0.8);
+}
+
+::ng-deep .mat-tab-label, .mat-tab-link {
+    font-size: 1.8rem;
+}
+
+::ng-deep .mat-tab-label-active {
+ background-color: rgb(69, 111, 40);
+}

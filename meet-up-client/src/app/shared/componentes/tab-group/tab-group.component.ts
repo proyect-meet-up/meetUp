@@ -11,7 +11,6 @@ export class TabGroupComponent implements OnInit {
   activeLink: string;
   background: ThemePalette = "primary";
 
-
   constructor() {}
 
   ngOnInit(): void {

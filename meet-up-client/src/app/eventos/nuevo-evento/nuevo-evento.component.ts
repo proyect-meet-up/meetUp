@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Direccion } from 'src/app/privado/usuario/usuario.model';
 import { MensajesErroresService } from 'src/app/shared/services/mensajes-errores.service';
 import { ValidadoresService } from 'src/app/shared/services/validadores.service';
 
@@ -49,7 +50,7 @@ export class NuevoEventoComponent implements OnInit {
     console.log(this.formularioNuevoEvento.value);
   }
 
-  nuevaDireccion(event) {
+  nuevaDireccion(event: Direccion) {
     this.formularioNuevoEvento.get('direccion').setValue(event);
   }
 }

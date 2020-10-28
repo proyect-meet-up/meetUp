@@ -15,8 +15,7 @@ export class ConfirmarEventosComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-   // console.log('Select', this.selection.changed.subscribe( data => console.log(data)))
+  ngOnInit(): void {   
   }
 
   estanSeleccionadosTodos() {

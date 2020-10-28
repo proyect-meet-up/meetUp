@@ -5,6 +5,7 @@ import { BuscadorComponent } from './buscador/buscador.component';
 import { HeaderRegistroComponent } from './header-registro/header-registro.component';
 import { TabGroupComponent } from './tab-group/tab-group.component';
 import { DireccionComponent } from './direccion/direccion.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 // MÓDULOS
@@ -20,6 +21,8 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 @NgModule({
@@ -30,6 +33,7 @@ import { MatInputModule } from '@angular/material/input';
     HeaderRegistroComponent,
     TabGroupComponent,
     DireccionComponent,
+    ModalComponent,
   ],
   imports: [
     CommonModule,
@@ -42,7 +46,8 @@ import { MatInputModule } from '@angular/material/input';
     MatTabsModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
   exports: [
     HeaderComponent,
@@ -51,6 +56,8 @@ import { MatInputModule } from '@angular/material/input';
     HeaderRegistroComponent,
     TabGroupComponent,
     DireccionComponent,
+    ModalComponent,
   ],
+  entryComponents: [ModalComponent],
 })
 export class ComponentsModule {}

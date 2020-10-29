@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { fromEvent, Subscription } from 'rxjs';
-import { skip, takeUntil } from 'rxjs/operators';
+import { skip, takeUntil, takeWhile } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ModalComponent } from 'src/app/shared/componentes/modal/modal.component';
 import { Evento } from "../evento.model";
@@ -19,7 +19,7 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   eventosSuscription: Subscription;
   id: number;
   logueado = false;
-
+  meDestruyo: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,15 +35,16 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log(this.location.path(), this.location.isCurrentPathEqualTo(this.location.path()))
-
+    this.meDestruyo = true;
+    console.log('me destruyo...ngOnInit', this.meDestruyo);
 
     this.eventosSuscription = this.eventoService.eventosBuscados$
       .pipe(
-        skip(1)
+        skip(1),
+        takeWhile(() => this.meDestruyo)
       )
       .subscribe(() => {
-        this.router.navigate(['/'])
-
+        this.router.navigate(['/']);
       });
 
     this.route.params.subscribe((params: Params) => {
@@ -58,6 +59,8 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   }
 
   irReserva() {
+    this.meDestruyo = false;
+    console.log('me destruyo...', this.meDestruyo)
     if (this.logueado) {
       this.router.navigate(['privado', 'reserva-evento', this.evento.uid]);
     } else {
@@ -73,7 +76,7 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('Me destruyo');
+    console.log(`¿ Se destruye el detalle componente ?`)
     this.eventosSuscription.unsubscribe();
   }
 }

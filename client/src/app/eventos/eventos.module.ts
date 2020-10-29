@@ -12,6 +12,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ComponentsModule } from '../shared/componentes/components.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 // Componentes
@@ -49,7 +50,8 @@ import { NuevoEventoComponent } from './nuevo-evento/nuevo-evento.component';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ComponentsModule
+    ComponentsModule,
+    MatProgressBarModule,
   ],
   exports: [
     //NuevoEventoComponent

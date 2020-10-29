@@ -3,6 +3,29 @@
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
+}
 
+.mensaje-no-eventos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 4rem;
+  height: 50vh;
+  color: grey;
 
+  &__title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+button.mat-fab {
+  width: 80px;
+  height: 80px;
+}
+
+button.mat-fab:hover {
+  cursor: pointer;
 }

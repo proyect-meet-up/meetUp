@@ -19,29 +19,24 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   eventosSuscription: Subscription;
   id: number;
   logueado = false;
-  meDestruyo: boolean;
 
   constructor(
     private route: ActivatedRoute,
     private eventoService: EventoService,
     private router: Router,
     private authService: AuthService,
-    public dialog: MatDialog,
-    private location: Location
+    public dialog: MatDialog
   ) {
     /* const id = Number(this.route.snapshot.params["id"]);
     this.evento = this.eventoService.obtenerEvento(id); */
   }
 
   ngOnInit(): void {
-    console.log(this.location.path(), this.location.isCurrentPathEqualTo(this.location.path()))
-    this.meDestruyo = true;
-    console.log('me destruyo...ngOnInit', this.meDestruyo);
 
     this.eventosSuscription = this.eventoService.eventosBuscados$
       .pipe(
         skip(1),
-        takeWhile(() => this.meDestruyo)
+        // takeWhile(() => this.eventoService.clickReserva)
       )
       .subscribe(() => {
         this.router.navigate(['/']);
@@ -59,8 +54,8 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   }
 
   irReserva() {
-    this.meDestruyo = false;
-    console.log('me destruyo...', this.meDestruyo)
+    this.eventoService.clickReserva = false;
+
     if (this.logueado) {
       this.router.navigate(['privado', 'reserva-evento', this.evento.uid]);
     } else {

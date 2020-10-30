@@ -12,9 +12,11 @@ export class EventoService {
   eventosBuscadosSource = new BehaviorSubject<Evento[]>(this.cursos);
   eventosBuscados$ = this.eventosBuscadosSource.asObservable();
 
+  clickReserva: boolean = true;
+
   constructor() {}
 
-  obtenerEventos(): Evento[] {    
+  obtenerEventos(): Evento[] {
     this.eventosBuscadosSource.next(this.cursos);
     return this.cursos.slice();
   }
@@ -33,13 +35,13 @@ export class EventoService {
 
   obtenerEventoDeBuscador(busqueda: string) {
     let sinAcentos = this.quitarAcentos(busqueda);
-    let cursos = this.cursos.filter((curso) => this.quitarAcentos(curso.titulo.toLowerCase()).includes(sinAcentos.toLowerCase())); 
-    this.eventosBuscadosSource.next(cursos);          
-    return cursos;  
+    let cursos = this.cursos.filter((curso) => this.quitarAcentos(curso.titulo.toLowerCase()).includes(sinAcentos.toLowerCase()));
+    this.eventosBuscadosSource.next(cursos);
+    return cursos;
   }
 
   quitarAcentos(cadena){
     const acentos = {'á':'a','é':'e','í':'i','ó':'o','ú':'u','Á':'A','É':'E','Í':'I','Ó':'O','Ú':'U'};
-    return cadena.split('').map( letra => acentos[letra] || letra).join('').toString();	
+    return cadena.split('').map( letra => acentos[letra] || letra).join('').toString();
   }
 }

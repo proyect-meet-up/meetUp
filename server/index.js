@@ -7,17 +7,17 @@ const app = express();
 
 app.use(cors());
 
+// lectura y parseo del body
+// https://expressjs.com/es/api.html#express.json . Colocarlo antes de las rutas
+app.use(express.json());
+
 dbConexion();
 
-console.log(process.env)
+app.use('/api/usuarios', require('./routes/usuarios.routes'));
 
-app.get('/', (req, res) => {
-   // res.send("somos la pera");
-    res.json({
-        ok: true,
-        msg: "desde el json"
-    })
-})
+
+//console.log(process.env)
+
 
 app.listen(process.env.PORT, () => {
     console.log('Escuchando en el puerto' , process.env.PORT);

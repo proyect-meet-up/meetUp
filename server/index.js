@@ -15,6 +15,8 @@ dbConexion();
 
 app.use('/api/usuarios', require('./routes/usuarios.routes'));
 
+app.use('/api/localizacion', require('./routes/direccion.routes'));
+
 
 //console.log(process.env)
 

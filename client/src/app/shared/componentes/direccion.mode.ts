@@ -1,4 +1,15 @@
-import { stringify } from 'querystring';
+export interface Provincia {
+  provincia: string,
+  texto: string,
+  ccaa?: string,
+  codigo: string,
+  cod_ccaa?: string,
+  geo_point_2d?: number[],
+  geo_shape?: {
+    type: "MultiPolygon",
+    coordinates: number[]
+  }
+}
 
 export class Direccion {
 

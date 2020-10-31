@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { filter, map, pluck, tap } from 'rxjs/operators';
 
 import { Evento, eventos } from "./evento.model";
-import { Provincia } from '../shared/componentes/direccion.mode';
+import { ProvinciaResponse } from '../shared/componentes/direccion.model';
 
 @Injectable({
   providedIn: 'root',
@@ -76,10 +76,10 @@ export class EventoService {
       .toString();
   }
 
-  getProvincias(): Observable<Provincia[]> {
+  getProvincias(): Observable<ProvinciaResponse[]> {
     return this.http.get(this.url_back).pipe(
       pluck('body', 'records'),
-      map((el: Provincia[]) => el.map((e: Provincia) => e['fields']))
+      map((el: ProvinciaResponse[]) => el.map((e: ProvinciaResponse) => e['fields']))
     );
   }
 }

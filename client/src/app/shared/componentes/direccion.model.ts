@@ -1,4 +1,4 @@
-export interface Provincia {
+export interface ProvinciaResponse {
   provincia: string,
   texto: string,
   ccaa?: string,

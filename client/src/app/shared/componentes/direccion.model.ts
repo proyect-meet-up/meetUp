@@ -17,7 +17,7 @@ export class Direccion {
     public calle: string,
     public numero: number,
     public codigo: string,
-    public lcoalidad?: string,
-    public municipio?: string
+    public provincia?: string,
+    public municipio?: string,
   ) {}
 }

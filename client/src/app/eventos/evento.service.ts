@@ -1,10 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Subject } from 'rxjs';
+
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { filter, map, pluck, tap } from 'rxjs/operators';
 
 import { Evento, eventos } from "./evento.model";
+import { ProvinciaResponse } from '../shared/componentes/direccion.model';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class EventoService {
   cursos: Evento[] = eventos;
@@ -12,9 +16,15 @@ export class EventoService {
   eventosBuscadosSource = new BehaviorSubject<Evento[]>(this.cursos);
   eventosBuscados$ = this.eventosBuscadosSource.asObservable();
 
-  constructor() {}
+  clickReserva: boolean = true;
+  clickBoton = new Subject<boolean>();
+  clickBoton$ = this.clickBoton.asObservable();
 
-  obtenerEventos(): Evento[] {    
+  url_back = 'http://localhost:3000/api/localizacion/provincias';
+
+  constructor(private http: HttpClient) {}
+
+  obtenerEventos(): Evento[] {
     this.eventosBuscadosSource.next(this.cursos);
     return this.cursos.slice();
   }
@@ -31,15 +41,45 @@ export class EventoService {
     return evento;
   }
 
-  obtenerEventoDeBuscador(busqueda: string) {
+  obtenerEventoDeBuscador(busqueda: string): Evento[] {
     let sinAcentos = this.quitarAcentos(busqueda);
-    let cursos = this.cursos.filter((curso) => this.quitarAcentos(curso.titulo.toLowerCase()).includes(sinAcentos.toLowerCase())); 
-    this.eventosBuscadosSource.next(cursos);          
-    return cursos;  
+    let cursos = this.cursos.filter((curso) =>
+      this.quitarAcentos(curso.titulo.toLowerCase()).includes(
+        sinAcentos.toLowerCase()
+      )
+    );
+    this.eventosBuscadosSource.next(cursos);
+    return cursos;
   }
 
-  quitarAcentos(cadena){
-    const acentos = {'á':'a','é':'e','í':'i','ó':'o','ú':'u','Á':'A','É':'E','Í':'I','Ó':'O','Ú':'U'};
-    return cadena.split('').map( letra => acentos[letra] || letra).join('').toString();	
+  eventoClickBoton(value: boolean) {
+    this.clickBoton.next(value);
+  }
+
+  quitarAcentos(cadena) {
+    const acentos = {
+      á: 'a',
+      é: 'e',
+      í: 'i',
+      ó: 'o',
+      ú: 'u',
+      Á: 'A',
+      É: 'E',
+      Í: 'I',
+      Ó: 'O',
+      Ú: 'U',
+    };
+    return cadena
+      .split('')
+      .map((letra) => acentos[letra] || letra)
+      .join('')
+      .toString();
+  }
+
+  getProvincias(): Observable<ProvinciaResponse[]> {
+    return this.http.get(this.url_back).pipe(
+      pluck('body', 'records'),
+      map((el: ProvinciaResponse[]) => el.map((e: ProvinciaResponse) => e['fields']))
+    );
   }
 }

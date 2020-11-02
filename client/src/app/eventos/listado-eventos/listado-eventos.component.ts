@@ -1,9 +1,8 @@
-import { Component, OnChanges, OnDestroy, OnInit} from '@angular/core';
-import { Subscription, timer, interval } from 'rxjs';
-import { take, tap } from 'rxjs/operators';
-import { SubjectServicesService } from 'src/app/shared/services/subjectServices.service';
-import { Evento, eventos } from '../evento.model'
+import { Component, OnDestroy, OnInit} from '@angular/core';
+import { Subscription} from 'rxjs';
+import { Evento } from '../evento.model'
 import { EventoService } from '../evento.service';
+import { ProvinciaResponse } from '../../shared/componentes/direccion.model';
 
 @Component({
   selector: 'app-listado-eventos',
@@ -16,7 +15,7 @@ export class ListadoEventosComponent implements OnInit, OnDestroy {
   eventos: Evento[] = [];
   timer: number = 100;
 
-  constructor(private eventoService: EventoService, private eventoClick: SubjectServicesService) {}
+  constructor(private eventoService: EventoService) {}
 
   ngOnInit(): void {
     this.eventosSuscription = this.eventoService.eventosBuscados$.subscribe(
@@ -38,7 +37,7 @@ export class ListadoEventosComponent implements OnInit, OnDestroy {
   }
 
   eventoClickBoton() {
-    this.eventoClick.eventoClickBoton(true);
+    this.eventoService.eventoClickBoton(true);
   }
 
   descuentoTiempo(tiempo) {

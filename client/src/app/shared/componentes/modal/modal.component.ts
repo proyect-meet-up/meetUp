@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modal',
@@ -7,10 +7,11 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit{
-  constructor(@Inject(MAT_DIALOG_DATA) data) {}
+  constructor(@Inject(MAT_DIALOG_DATA) data, public dialogRef: MatDialogRef<any> ) {}
 
   ngOnInit(): void {
-
+    this.dialogRef.addPanelClass('o-modal')
   }
 
 }
+

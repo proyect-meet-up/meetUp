@@ -1,23 +1,44 @@
-.example-action-buttons {
-  padding-bottom: 20px;
-}
+@use '../../../../scss/02.tools/mixins' as mixins;
 
-.example-headers-align .mat-expansion-panel-header-title,
-.example-headers-align .mat-expansion-panel-header-description {
+.direccion .mat-expansion-panel-header-title,
+.direccion .mat-expansion-panel-header-description {
   flex-basis: 0;
 }
 
-.example-headers-align .mat-expansion-panel-header-description {
+.direccion .mat-expansion-panel-header-title {
+  @include mixins.respond(phone) {
+    display: flex;
+    flex-grow: 0;
+    margin-right: 16px;
+    font-size: 1.2rem;
+  }
+}
+
+.direccion .mat-expansion-panel-header-description {
   justify-content: space-between;
   align-items: center;
 }
 
-.example-headers-align .mat-form-field + .mat-form-field {
+.direccion .mat-form-field + .mat-form-field {
   margin-left: 8px;
+
+    @include mixins.respond(phone) {
+      margin-left: 0;
+  }
+}
+
+.direccion__form {
+  display: flex;
+    flex-direction: column;
 }
 
 .direccion__row {
   display: flex;
+
+  @include mixins.respond(phone) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .direccion__field {
   flex: 1;

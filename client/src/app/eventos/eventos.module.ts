@@ -23,6 +23,7 @@ import { ListadoRegistradoComponent } from './listado-registrado/listado-registr
 import { ListadoEventosComponent } from './listado-eventos/listado-eventos.component';
 import { DetalleEventoRegistradoComponent } from './detalle-evento-registrado/detalle-evento-registrado.component';
 import { NuevoEventoComponent } from './nuevo-evento/nuevo-evento.component';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 
 
@@ -51,10 +52,10 @@ import { NuevoEventoComponent } from './nuevo-evento/nuevo-evento.component';
     MatDatepickerModule,
     MatNativeDateModule,
     ComponentsModule,
-    MatProgressBarModule,
+    MatProgressBarModule
   ],
   exports: [
     //NuevoEventoComponent
-  ],
+  ]
 })
 export class EventosModule {}

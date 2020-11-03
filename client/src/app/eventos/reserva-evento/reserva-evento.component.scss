@@ -1,18 +1,31 @@
-@use '../../../scss/02.tools/_mixins.scss' as boton;
+@use '../../../scss/02.tools/_mixins.scss' as mixins;
 
 .reserva-form {
   display: flex;
+
+  @include mixins.respond(phone) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 
   &__left {
     display: flex;
     flex-direction: column;
     flex: 0.75;
 
-    button.mat-raised-button {
-      align-self: flex-start;
-      @include boton.boton-max-width;
+    @include mixins.respond(phone) {
+      margin-bottom: 15px;
+      margin-top: 20px;
     }
 
+    button.mat-raised-button {
+      align-self: flex-start;
+      @include mixins.boton-max-width;
+
+      @include mixins.respond(phone) {
+        align-self: center;
+      }
+    }
   }
 
   &__title {
@@ -32,6 +45,13 @@
     flex: 2;
     align-items: center;
     justify-content: center;
+
+    @include mixins.respond(phone) {
+      display: flex;
+      flex-direction: column;
+      flex: 2;
+      padding: 5px;
+    }
   }
 
   &__imagen {
@@ -39,7 +59,8 @@
   }
 
   &__location {
-
+    @include mixins.respond(phone) {
+      align-self: flex-start;
+    }
   }
 }
-

@@ -10,9 +10,36 @@
       <a class="header__links-items" [routerLink]="['login']">Login</a>
       <a class="header__links-items" [routerLink]="['register']">Register</a>
       <a class="header__links-items">Contactar</a>
+    </div>
+
+    <div class="header__responsive">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu-responsive">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <!-- <mat-icon>notifications_off</mat-icon> -->
+          <span>Qué es Barum</span>
+        </button>
+        <button mat-menu-item [routerLink]="['admin', 'confirmar-eventos']">
+          <!-- <mat-icon>dialpad</mat-icon> -->
+          <span>Admin</span>
+        </button>
+        <button mat-menu-item [routerLink]="['login']">
+          <!-- <mat-icon>voicemail</mat-icon> -->
+          <span>Login</span>
+        </button>
+        <button mat-menu-item [routerLink]="['register']">
+          <!-- <mat-icon>notifications_off</mat-icon> -->
+          <span>Register</span>
+        </button>
+        <button mat-menu-item>
+          <!-- <mat-icon>notifications_off</mat-icon> -->
+          <span>Contactar</span>
+        </button>
+      </mat-menu>
 
     </div>
   </nav>
 </div>
-
-

@@ -1,4 +1,6 @@
 @use '../../../../scss/01.settings/settings' as color;
+@use '../../../../scss/02.tools/mixins' as mixins;
+
 
 .search {
   height: 80px;
@@ -7,6 +9,11 @@
     display: flex;
     justify-content: center;
     margin-top: 3rem;
+
+    @include mixins.respond(phone) {
+      display: block;
+      margin-top: 10px;
+    }
   }
 
   &__item,

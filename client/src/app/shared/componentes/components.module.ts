@@ -21,7 +21,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 
 
@@ -49,7 +49,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   exports: [
     HeaderComponent,
@@ -61,5 +61,9 @@ import { MatSelectModule } from '@angular/material/select';
     ModalComponent,
   ],
   entryComponents: [ModalComponent],
+  providers: [
+    { provide: MatDialogRef,
+      useValue: {}
+    }],
 })
 export class ComponentsModule {}

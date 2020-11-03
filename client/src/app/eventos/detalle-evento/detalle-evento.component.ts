@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { fromEvent, Subscription } from 'rxjs';
 import { skip, takeUntil, takeWhile } from 'rxjs/operators';
@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { ModalComponent } from 'src/app/shared/componentes/modal/modal.component';
 import { Evento } from "../evento.model";
 import { EventoService } from "../evento.service";
-import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-detalle-evento',
@@ -65,8 +65,9 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   }
 
   abrirModalNoAutenticado() {
+
     this.dialog.open(ModalComponent, {
-      minWidth: '450px',
+      // minWidth: '450px',
     });
   }
 

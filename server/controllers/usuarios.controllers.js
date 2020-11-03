@@ -17,8 +17,7 @@ const getUsuarios = async (req, res) => {
 
 
 const crearUsuario = async (req, res) => {
-   // console.log(req.body);
-
+  
     const { nombre, email, password } = req.body;
 
     const errores = validationResult(req);

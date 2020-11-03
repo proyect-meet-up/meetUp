@@ -1,8 +1,14 @@
+@use '../../../scss/02.tools/mixins' as mixins;
+
 .eventos {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
+
+  @include mixins.respond(phone) {
+    padding: 16px;
+  }
 }
 
 .mensaje-no-eventos {
@@ -14,6 +20,10 @@
   height: 50vh;
   color: grey;
 
+  @include mixins.respond(phone) {
+    font-size: 2rem;
+  }
+
   &__title {
     display: flex;
     justify-content: center;
@@ -24,6 +34,14 @@
 button.mat-fab {
   width: 80px;
   height: 80px;
+
+  @include mixins.respond(phone) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+  }
 }
 
 button.mat-fab:hover {

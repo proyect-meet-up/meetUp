@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit  {
   formularioLogin: FormGroup;
   hide: boolean = true;
   estaLogueado: boolean = true;
+  esAdmin: boolean = true;
+
 
 
   constructor(
@@ -62,8 +64,16 @@ export class LoginComponent implements OnInit  {
     //   return;
     // }
 
-    this.authService.login(this.estaLogueado);
-    this.router.navigate(["privado"]);
+    if ( this.formularioLogin.get('password').value === 'admin') {
+      this.authService.isAdmin(this.esAdmin);
+      this.authService.login(this.estaLogueado);
+      this.router.navigate(['admin', 'confirmar-eventos'])
+    } else {
+      this.authService.login(this.estaLogueado);
+      this.router.navigate(["privado"]);
+    }
+
+
 
   }
 }

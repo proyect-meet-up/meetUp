@@ -6,6 +6,7 @@
   @include mixins.respond(phone) {
     display: flex;
     flex-direction: column-reverse;
+    padding: 16px;
   }
 
   &__left {

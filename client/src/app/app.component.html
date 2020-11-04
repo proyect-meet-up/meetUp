@@ -1,5 +1,6 @@
 <app-header *ngIf="!estaLogueado"></app-header>
-<app-header-registro *ngIf="estaLogueado"></app-header-registro>
+<app-header-registro *ngIf="estaLogueado && !admin"></app-header-registro>
+<app-header-admin *ngIf="(estaLogueado && admin)"></app-header-admin>
 <app-buscador *ngIf="mostrarBuscador"></app-buscador>
 <div class="o-container">
   <router-outlet></router-outlet>

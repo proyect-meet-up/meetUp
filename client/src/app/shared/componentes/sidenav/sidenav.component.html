@@ -1,0 +1,17 @@
+<mat-sidenav-container class="sidenav sidenav__container">
+  <mat-sidenav #sidenav mode="push" closed class="sidenav__side" [fixedInViewport]="true" [fixedTopGap]="60"
+    [fixedBottomGap]="60">
+
+    <mat-nav-list>
+      <a mat-list-item
+        [routerLink]="[link]"
+        *ngFor="let link of links" (click)="sidenav.toggle()"> {{reemplazarLinksATitutosTabs(link) | titlecase}}
+      </a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

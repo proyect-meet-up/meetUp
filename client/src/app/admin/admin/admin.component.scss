@@ -1,0 +1,15 @@
+@use '../../../scss/02.tools/mixins' as mixins;
+
+.admin-sidenav-responsive {
+  display: none;
+  @include mixins.respond(phone) {
+    display: flex;
+  }
+}
+
+.admin-tab-responsive {
+
+  @include mixins.respond(phone) {
+    display: none;
+  }
+}

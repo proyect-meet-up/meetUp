@@ -5,13 +5,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
- /*  {
+  /*  {
     path: '',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   }, */
   {
     path: '',
-    loadChildren: () => import('./eventos/eventos.module').then((m) => m.EventosModule)
+    loadChildren: () =>
+      import('./eventos/eventos.module').then((m) => m.EventosModule),
   },
   {
     path: 'register',
@@ -32,11 +33,12 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () =>
-      import('./admin/admin.module').then( m => m.AdminModule)
+      import('./admin/admin.module').then((m) => m.AdminModule),
   },
   {
-    path: '**', component: PageNotFoundComponent
-  }
+    path: '**',
+    component: PageNotFoundComponent,
+  },
 ];
 
 @NgModule({

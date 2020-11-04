@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   title = "Barum";
   mostrarBuscador: boolean = true;
   estaLogueado: boolean = false;
+  admin: boolean = false;
 
   constructor(private router: Router, private authService: AuthService) {
         this.router.events.subscribe((event: RouterEvent) => {
@@ -29,7 +30,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.estaLogueado$.subscribe((data: boolean) => this.estaLogueado = data)
+    this.authService.estaLogueado$.subscribe((data: boolean) => this.estaLogueado = data);
+    this.authService.esAdmin$.subscribe((data: boolean) => this.admin = data);
   }
 
 

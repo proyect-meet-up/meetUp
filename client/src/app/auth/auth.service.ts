@@ -11,15 +11,21 @@ export class AuthService {
   estaLogueadoSource = new BehaviorSubject<boolean>(false);
   estaLogueado$ = this.estaLogueadoSource.asObservable();
 
+  esAdmin = new BehaviorSubject(false);
+  esAdmin$ = this.esAdmin.asObservable();
+
 
   login(valor: boolean) {
-    console.log('Me estoy logueando...', valor)
     this.estaLogueadoSource.next(valor);
   }
 
+  isAdmin(valor: boolean) {
+    this.esAdmin.next(valor);
+  }
+
  logout (valor:boolean): void {
-    console.log("Estoy saliendo de la aplicación...", valor);
     this.estaLogueadoSource.next(valor);
+    this.esAdmin.next(valor);
   }
 
 }

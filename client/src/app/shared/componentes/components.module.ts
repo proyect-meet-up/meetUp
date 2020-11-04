@@ -6,6 +6,9 @@ import { HeaderRegistroComponent } from './header-registro/header-registro.compo
 import { TabGroupComponent } from './tab-group/tab-group.component';
 import { DireccionComponent } from './direccion/direccion.component';
 import { ModalComponent } from './modal/modal.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { HeaderAdminComponent } from './header-admin/header-admin.component';
+
 
 
 // MÓDULOS
@@ -23,6 +26,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 
 
@@ -35,6 +40,8 @@ import { MatSelectModule } from '@angular/material/select';
     TabGroupComponent,
     DireccionComponent,
     ModalComponent,
+    SidenavComponent,
+    HeaderAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +57,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatDialogModule,
     MatSelectModule,
+    MatSidenavModule,
+    MatListModule
   ],
   exports: [
     HeaderComponent,
@@ -59,11 +68,10 @@ import { MatSelectModule } from '@angular/material/select';
     TabGroupComponent,
     DireccionComponent,
     ModalComponent,
+    SidenavComponent,
+    HeaderAdminComponent
   ],
   entryComponents: [ModalComponent],
-  providers: [
-    { provide: MatDialogRef,
-      useValue: {}
-    }],
+  providers: [{ provide: MatDialogRef, useValue: {} }],
 })
 export class ComponentsModule {}

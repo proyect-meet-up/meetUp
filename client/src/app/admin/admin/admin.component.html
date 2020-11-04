@@ -1,2 +1,8 @@
+<div *ngIf="!isResponsive; else responsive">
+  <app-tab-group class="admin-tab-responsive" [links]='links'></app-tab-group>
+</div>
 
-<app-tab-group [links]='links'></app-tab-group>
+
+<ng-template #responsive>
+  <app-sidenav class="admin-sidenav-responsive" [links]='links'></app-sidenav>
+</ng-template>

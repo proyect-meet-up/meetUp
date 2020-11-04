@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-tab-group",
@@ -11,7 +12,7 @@ export class TabGroupComponent implements OnInit {
   activeLink: string;
   background: ThemePalette = "primary";
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.activeLink = this.links[0];

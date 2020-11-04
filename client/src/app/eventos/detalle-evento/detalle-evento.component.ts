@@ -67,7 +67,7 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   abrirModalNoAutenticado() {
 
     this.dialog.open(ModalComponent, {
-      // minWidth: '450px',
+
     });
   }
 

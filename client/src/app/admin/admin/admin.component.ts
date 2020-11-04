@@ -14,7 +14,6 @@ export class AdminComponent implements OnInit {
     this.breakpointObserver.observe('(max-width: 600px)')
       .subscribe( data => {
         this.isResponsive = data.matches;
-        console.log('isResponsive', this.isResponsive);
       })
   }
 

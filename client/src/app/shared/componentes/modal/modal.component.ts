@@ -7,10 +7,11 @@ import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit{
-  constructor(@Inject(MAT_DIALOG_DATA) data, public dialogRef: MatDialogRef<any> ) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data, public dialogRef: MatDialogRef<any> ) {}
 
   ngOnInit(): void {
     this.dialogRef.addPanelClass('o-modal')
+
   }
 
 }

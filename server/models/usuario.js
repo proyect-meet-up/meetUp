@@ -32,4 +32,12 @@ const UsuarioSchema = Schema({
     }
 });
 
+// Opcional, para personalizar la data que se envía como respuesta en el json. Extraemos el password del objeto
+UsuarioSchema.method('toJSON', function() {
+    const { __v, _id, password, ...object } = this.toObject();
+    object.uid = _id;
+    return object;
+})
+
+
 module.exports = model('Usuario', UsuarioSchema);

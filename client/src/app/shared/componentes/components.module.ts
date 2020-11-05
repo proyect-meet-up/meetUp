@@ -8,6 +8,8 @@ import { DireccionComponent } from './direccion/direccion.component';
 import { ModalComponent } from './modal/modal.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { HeaderAdminComponent } from './header-admin/header-admin.component';
+import { MenuTogglerComponent } from './menuToggler/menuToggler.component';
+
 
 
 
@@ -42,6 +44,7 @@ import { MatListModule } from '@angular/material/list';
     ModalComponent,
     SidenavComponent,
     HeaderAdminComponent,
+    MenuTogglerComponent
   ],
   imports: [
     CommonModule,
@@ -69,7 +72,8 @@ import { MatListModule } from '@angular/material/list';
     DireccionComponent,
     ModalComponent,
     SidenavComponent,
-    HeaderAdminComponent
+    HeaderAdminComponent,
+    MenuTogglerComponent
   ],
   entryComponents: [ModalComponent],
   providers: [{ provide: MatDialogRef, useValue: {} }],

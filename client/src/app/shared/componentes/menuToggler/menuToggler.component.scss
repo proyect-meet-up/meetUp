@@ -1,0 +1,30 @@
+$toggler-size: 20px !default;
+
+.wm-toggler {
+  display: inline-block;
+  position: relative;
+
+  width: $toggler-size;
+  height: $toggler-size;
+
+  // Applies the current text color to the toggler
+  .toggler-line { background-color: currentColor; }
+
+  // Style 'menu'
+  &[toggler-style='menu'] {
+
+    $element-size: 2px;
+
+    .toggler-line {
+      position: absolute;
+      height: $element-size;
+      width: $toggler-size;
+      border-radius: $element-size / 2;
+
+      &[top]    { top: $toggler-size / 10 - $element-size / 2;}
+      &[middle] { top: ($toggler-size - $element-size) / 2;}
+      &[bottom] { bottom: $toggler-size / 10 - $element-size / 2;}
+    }
+  }
+
+}

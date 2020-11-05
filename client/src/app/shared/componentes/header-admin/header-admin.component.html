@@ -1,20 +1,17 @@
 <div class="header-admin">
   <nav class="header-admin__nav">
-    <span class="header-admin__logo" [routerLink]="['admin', 'confirmar-eventos']">
-      Área Privada
-    </span>
+    <div class="header-admin__menu-toggler">
+      <app-menuToggler (click)="dispararEventoClick()" toggler-style="menu" [toggled]="toggle"></app-menuToggler>
+    </div>
+    <div class="header-admin__routerlink">
+        <span>{{titulo | uppercase}}</span>
+    </div>
     <div class="header-admin__links">
-      <a class="header-admin__links-items">Saludo ADMIN</a>
-      <a class="header-admin__links-items header-admin__dropdown">
+      <span class="header-admin__items">Saludo ADMIN</span>
+      <div class="header-admin__items">
         <img class="header-admin__avatar" src="assets/usuarios-imagenes/usuario1.jpg" alt="usuario">
-        <!-- <div class="header-admin__dropdown-content">
-          <div class="header-admin__dropdown-items">
-            <a [routerLink]="['/']" (click)="cerrarSesion()">Cerrar sesión</a>
-            <mat-icon>close</mat-icon>
-          </div>
-        </div> -->
-      </a>
-      <button mat-button [matMenuTriggerFor]="menu" class="header-admin__links-items m-l">
+      </div>
+      <button class="header-admin__items" mat-button [matMenuTriggerFor]="menu" >
         <span>Mis gestiones</span>
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
@@ -23,10 +20,8 @@
         <button mat-menu-item [routerLink]="['admin', 'nuevo-evento']">Crear evento</button>
         <button mat-menu-item [routerLink]="['admin', 'reservas']">Reservas</button>
         <button mat-menu-item [routerLink]="['admin', 'historial']">Historial</button>
-        <button mat-menu-item [routerLink]="['']" (click)="cerrarSesion()"> <mat-icon>close</mat-icon> Cerrar sesión </button>
-
+        <button mat-menu-item [routerLink]="['']" (click)="cerrarSesion()">Cerrar sesión</button>
       </mat-menu>
-
     </div>
   </nav>
 </div>

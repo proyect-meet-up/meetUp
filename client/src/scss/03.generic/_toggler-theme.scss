@@ -1,0 +1,15 @@
+@mixin wm-toggler-theme($theme) {
+
+  $foreground: map-get($theme, foreground);
+
+  .wm-toggler {
+
+    @each $color in ('primary', 'accent', 'warn') {
+
+      $palette: map-get($theme, #{$color});
+      &[color=#{$color}] {
+        .toggler-line { background-color: mat-color($palette); }
+      }
+    }
+  }
+}

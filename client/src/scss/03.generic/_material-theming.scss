@@ -31,6 +31,24 @@ $barum-client-theme: mat-light-theme(
   )
 );
 
+$otro-primary: mat-palette($mat-purple, 50);
+$otro-accent: mat-palette($mat-purple, 900);
+
+$otro-theme: mat-light-theme(
+  (
+    color:(
+      primary: $otro-accent,
+      accent: $otro-accent,
+      warm: $barum-client-warn
+    )
+  )
+);
+
+.other-theme {
+  @include angular-material-theme($otro-theme);
+}
+
+
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.

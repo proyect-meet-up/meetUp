@@ -1,0 +1,35 @@
+
+
+<div class="card-admin" *ngIf="evento">
+  <div class="card-admin__expansion card-admin__action" (click)="expandirPanel()">
+    <div class="card-admin__header">
+      <div class="card-admin__box card-admin__titulo">
+        <p>Titulo: {{evento.titulo}}</p>
+        <p>{{evento.fechaReserva | date:'mediumDate'}}</p>
+      </div>
+      <div class="card-admin__box card-admin__detalle">
+        <mat-checkbox
+         (click)="$event.stopPropagation()"
+         (change)="seleccionado ? !seleccionado : null; cambioEventoSeleccionado()"
+         [checked]="seleccionado">
+        </mat-checkbox>
+        <span>Creado por: {{evento.usuario}}</span>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div [ngClass]="expanded ? 'expanded': ''" class="card-admin__contenido" [@botonState]="state">
+      <div class="card-admin__box card-admin__descripcion">
+        <p>Descripción:</p>
+        <p>{{evento.descripcion}}</p>
+      </div>
+       <div class="card-admin__box card-admin__localizacion">
+        <p>Localización:</p>
+        <p>{{evento.direccion}}</p>
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,47 +1,40 @@
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8 reservas">
-
-  <ng-container matColumnDef="nombre">
-    <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="titulo">
-    <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="fechaReserva">
-    <mat-header-cell *matHeaderCellDef> Día reserva </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.fechaReserva | date:'mediumDate'}} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="detalle">
-    <mat-header-cell *matHeaderCellDef> Ver detalle </mat-header-cell>
-    <mat-cell *matCellDef="let element"> Editar </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="select">
-
-      <mat-header-cell mat-header-cell *matHeaderCellDef>
-        <mat-checkbox
+ <div class="confirmar-eventos__no-responsive">
+  <div class="confirmar-eventos__check">
+    <h3>Seleccionada todos</h3>
+    <mat-checkbox
           (change)="$event ? masterToggle() : null"
           [checked]="selection.hasValue() && estanSeleccionadosTodos()"
-          [indeterminate]="selection.hasValue() && !estanSeleccionadosTodos()"
-          [aria-label]="checkboxLabel()">
-        </mat-checkbox>
-      </mat-header-cell>
-      <mat-cell  mat-cell *matCellDef="let row">
-        <mat-checkbox
-          (click)="$event.stopPropagation()"
-          (change)="$event ? selection.toggle(row) : null"
-          [checked]="selection.isSelected(row)"
-          [aria-label]="checkboxLabel(row)">
-        </mat-checkbox>
-      </mat-cell>
+          [indeterminate]="selection.hasValue() && !estanSeleccionadosTodos()">
+    </mat-checkbox>
+  </div>
 
-  </ng-container>
+  <div class="confirmar-eventos__card">
+    <app-table-admin
+        [data]="dataSource"
+        (eventoSelection$)="obtenerEventoSeleccionado($event)">
+    </app-table-admin>
+  </div>
+</div>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-</mat-table>
+
+<div class="confirmar-eventos__responsive">
+  <div class="confirmar-eventos__check">
+    <h3>Seleccionada todos</h3>
+    <mat-checkbox
+          (change)="$event ? masterToggle() : null"
+          [checked]="selection.hasValue() && estanSeleccionadosTodos()"
+          [indeterminate]="selection.hasValue() && !estanSeleccionadosTodos()">
+    </mat-checkbox>
+  </div>
+
+  <div class="confirmar-eventos__card">
+    <app-card-admin
+        *ngFor="let evento of dataSource; let i = index"
+        [eventoData]="evento"
+        [index]="i"
+        (eventoSelection$)="obtenerEventoSeleccionado($event)">
+    </app-card-admin>
+  </div>
+</div>
+

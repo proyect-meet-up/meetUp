@@ -1,6 +1,6 @@
 import { trigger } from '@angular/animations';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AdminService } from '../../../admin/admin.service';
 import { Subscription } from 'rxjs';
@@ -14,14 +14,15 @@ export class HeaderAdminComponent implements OnInit , OnDestroy{
 
   toggle: boolean = false;
   subRouter: Subscription;
-  titulo: string = '';
+  titulo: string = 'Confirmar eventos';
 
   constructor(private authService: AuthService, private adminService : AdminService, private router: Router) {}
 
   ngOnInit(): void {
-    this.subRouter = this.router.events.subscribe( (data: NavigationEnd) => {
-      this.toggle = false;
 
+    this.subRouter = this.router.events.subscribe( (data: NavigationEnd) => {
+
+      this.toggle = false;
       if ( data instanceof RouterEvent) {
         if ( data instanceof NavigationEnd) {
           this.transformarUrlToTitulo(data.url)

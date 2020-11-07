@@ -1,3 +1,5 @@
+@use '../../../scss/02.tools/mixins' as mixins;
+
 .mat-table {
   margin: 3%;
 }
@@ -10,4 +12,33 @@
     overflow: hidden;
     word-wrap: break-word;
     min-height: inherit;
+}
+
+.confirmar-eventos__no-responsive{
+  display: flex;
+  flex-direction: column;
+  @include mixins.respond(phone) {
+    display: none;
+  }
+}
+
+.confirmar-eventos__responsive {
+  display: none;
+  @include mixins.respond(phone) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.confirmar-eventos__check {
+    display: flex;
+    padding: 6px;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.confirmar-eventos__card {
+
+
 }

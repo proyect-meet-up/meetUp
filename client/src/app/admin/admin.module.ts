@@ -8,15 +8,20 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from "@angular/material/table";
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 import { AdminComponent } from './admin/admin.component';
-
 import { ReservasComponent } from './reservas/reservas.component';
 import { ConfirmarEventosComponent } from './confirmar-eventos/confirmar-eventos.component';
+import { CardAdminComponent } from './card-admin/card-admin.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { TableAdminComponent } from './table-admin/table-admin.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, ConfirmarEventosComponent, ReservasComponent],
+  declarations: [AdminComponent, ConfirmarEventosComponent, ReservasComponent, CardAdminComponent, TableAdminComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -27,6 +32,9 @@ import { ConfirmarEventosComponent } from './confirmar-eventos/confirmar-eventos
     MatNativeDateModule,
     MatTableModule,
     MatCheckboxModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatDividerModule
   ],
 })
 export class AdminModule {}

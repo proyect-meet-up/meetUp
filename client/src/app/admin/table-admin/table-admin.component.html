@@ -1,0 +1,41 @@
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8 reservas">
+
+  <ng-container matColumnDef="usuario">
+    <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.usuario}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="titulo">
+    <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="fechaReserva">
+    <mat-header-cell *matHeaderCellDef> Día reserva </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.fechaReserva | date:'mediumDate'}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="detalle">
+    <mat-header-cell *matHeaderCellDef> Ver detalle </mat-header-cell>
+    <mat-cell *matCellDef="let element"> Editar </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="select">
+
+      <mat-header-cell mat-header-cell *matHeaderCellDef>
+
+      </mat-header-cell>
+      <mat-cell  mat-cell *matCellDef="let evento">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="evento.seleccionado ? !evento.seleccionado : null; cambioEventoSeleccionado(evento)"
+          [checked]="evento.seleccionado">
+        </mat-checkbox>
+      </mat-cell>
+
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>

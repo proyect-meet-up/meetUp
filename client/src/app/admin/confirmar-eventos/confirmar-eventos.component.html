@@ -1,40 +1,36 @@
- <div class="confirmar-eventos__no-responsive">
+<div class="confirmar-eventos__no-responsive">
   <div class="confirmar-eventos__check">
     <h3>Seleccionada todos</h3>
-    <mat-checkbox
-          (change)="$event ? masterToggle() : null"
-          [checked]="selection.hasValue() && estanSeleccionadosTodos()"
-          [indeterminate]="selection.hasValue() && !estanSeleccionadosTodos()">
-    </mat-checkbox>
+    <app-checkbox-admin
+      [data]="dataSource"
+      [selection]="selection">
+    </app-checkbox-admin>
   </div>
 
   <div class="confirmar-eventos__card">
     <app-table-admin
-        [data]="dataSource"
-        (eventoSelection$)="obtenerEventoSeleccionado($event)">
+      [data]="dataSource"
+      (eventoSelection$)="obtenerEventoSeleccionado($event)">
     </app-table-admin>
   </div>
 </div>
 
 
-
 <div class="confirmar-eventos__responsive">
   <div class="confirmar-eventos__check">
     <h3>Seleccionada todos</h3>
-    <mat-checkbox
-          (change)="$event ? masterToggle() : null"
-          [checked]="selection.hasValue() && estanSeleccionadosTodos()"
-          [indeterminate]="selection.hasValue() && !estanSeleccionadosTodos()">
-    </mat-checkbox>
+    <app-checkbox-admin
+      [data]="dataSource"
+      [selection]="selection">
+    </app-checkbox-admin>
   </div>
 
   <div class="confirmar-eventos__card">
     <app-card-admin
-        *ngFor="let evento of dataSource; let i = index"
-        [eventoData]="evento"
-        [index]="i"
-        (eventoSelection$)="obtenerEventoSeleccionado($event)">
+      *ngFor="let evento of dataSource; let i = index"
+      [eventoData]="evento"
+      [index]="i"
+      (eventoSelection$)="obtenerEventoSeleccionado($event)">
     </app-card-admin>
   </div>
 </div>
-

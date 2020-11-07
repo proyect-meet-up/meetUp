@@ -1,5 +1,3 @@
-
-
 <div class="card-admin" *ngIf="evento">
   <div class="card-admin__expansion card-admin__action" (click)="expandirPanel()">
     <div class="card-admin__header">
@@ -8,10 +6,8 @@
         <p>{{evento.fechaReserva | date:'mediumDate'}}</p>
       </div>
       <div class="card-admin__box card-admin__detalle">
-        <mat-checkbox
-         (click)="$event.stopPropagation()"
-         (change)="seleccionado ? !seleccionado : null; cambioEventoSeleccionado()"
-         [checked]="seleccionado">
+        <mat-checkbox (click)="$event.stopPropagation()"
+          (change)="seleccionado ? !seleccionado : null; cambioEventoSeleccionado()" [checked]="seleccionado">
         </mat-checkbox>
         <span>Creado por: {{evento.usuario}}</span>
       </div>
@@ -22,14 +18,10 @@
         <p>Descripción:</p>
         <p>{{evento.descripcion}}</p>
       </div>
-       <div class="card-admin__box card-admin__localizacion">
+      <div class="card-admin__box card-admin__localizacion">
         <p>Localización:</p>
         <p>{{evento.direccion}}</p>
       </div>
-
-
     </div>
-
   </div>
-
 </div>

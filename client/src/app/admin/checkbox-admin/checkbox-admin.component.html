@@ -1,0 +1,5 @@
+    <mat-checkbox
+          (change)="$event ? masterToggle() : null"
+          [checked]="selection.hasValue() && estanSeleccionadosTodos()"
+          [indeterminate]="selection.hasValue() && !estanSeleccionadosTodos()">
+    </mat-checkbox>

@@ -18,10 +18,11 @@ import { ConfirmarEventosComponent } from './confirmar-eventos/confirmar-eventos
 import { CardAdminComponent } from './card-admin/card-admin.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { TableAdminComponent } from './table-admin/table-admin.component';
+import { CheckboxAdminComponent } from './checkbox-admin/checkbox-admin.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, ConfirmarEventosComponent, ReservasComponent, CardAdminComponent, TableAdminComponent],
+  declarations: [AdminComponent, ConfirmarEventosComponent, ReservasComponent, CardAdminComponent, TableAdminComponent, CheckboxAdminComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

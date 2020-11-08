@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  URL = environment.URL;
+  headers = new HttpHeaders();
+  path: string = 'usuarios'
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   estaLogueadoSource = new BehaviorSubject<boolean>(false);
   estaLogueado$ = this.estaLogueadoSource.asObservable();
@@ -14,6 +20,21 @@ export class AuthService {
   esAdmin = new BehaviorSubject(false);
   esAdmin$ = this.esAdmin.asObservable();
 
+  crearUsuario(usuario) {
+    this.headers.set('Content-Type', 'application/json');
+    return this.http.post(`${this.URL}/${this.path}`,usuario, {headers: this.headers})
+      .pipe(
+        tap((data) => console.log(data))
+      )
+      .subscribe( respuesta => {
+        console.log(respuesta)
+      })
+  }
+
+  getUsuarios() {
+     this.headers.set('Content-Type', 'application/json');
+     return this.http.get(`${this.URL}/${this.path}`);
+  }
 
   login(valor: boolean) {
     this.estaLogueadoSource.next(valor);

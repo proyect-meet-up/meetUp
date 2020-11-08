@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MensajesErroresService } from 'src/app/shared/services/mensajes-errores.service';
 import { ValidadoresService } from 'src/app/shared/services/validadores.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: "app-register",
@@ -16,7 +17,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private validacionesService: ValidadoresService,
-    private mensajeErroresService: MensajesErroresService
+    private mensajeErroresService: MensajesErroresService,
+    private authService: AuthService
   ) {}
 
   get passwordNoIguales() {
@@ -57,19 +59,18 @@ export class RegisterComponent implements OnInit {
     // if (this.formularioRegistro.invalid) {
     //   return;
     // }
-
-    console.log(this.formularioRegistro);
+    this.authService.crearUsuario(this.formularioRegistro.value)
   }
 
   obtenerMensajeError(campo: string): string {
 
-    return this.mensajeErroresService.obtenerMensajeError(this.formularioRegistro, campo);    
+    return this.mensajeErroresService.obtenerMensajeError(this.formularioRegistro, campo);
   }
 
 
   noEsCampoValido(campo: string) {
 
     return this.mensajeErroresService.noEsCampoValido(this.formularioRegistro, campo);
-  
+
   }
 }

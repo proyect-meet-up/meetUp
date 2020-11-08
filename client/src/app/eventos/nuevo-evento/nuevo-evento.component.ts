@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Direccion } from 'src/app/privado/usuario/usuario.model';
 import { MensajesErroresService } from 'src/app/shared/services/mensajes-errores.service';
 import { ValidadoresService } from 'src/app/shared/services/validadores.service';
+import { Categoria } from '../categoria.model';
+import { EventoService } from '../evento.service';
 
 @Component({
   selector: 'app-nuevo-evento',
@@ -11,11 +13,13 @@ import { ValidadoresService } from 'src/app/shared/services/validadores.service'
 })
 export class NuevoEventoComponent implements OnInit {
   formularioNuevoEvento: FormGroup;
+  categorias: Categoria[] = [];
 
   constructor(
     private fb: FormBuilder,
     private validacionesService: ValidadoresService,
-    private mensajeErroresService: MensajesErroresService
+    private mensajeErroresService: MensajesErroresService,
+    private eventoService: EventoService
   ) {}
 
   ngOnInit(): void {
@@ -26,6 +30,7 @@ export class NuevoEventoComponent implements OnInit {
     this.formularioNuevoEvento = this.fb.group({
       titulo: ['', Validators.required],
       descripcion: ['', Validators.required],
+      tipo:[this.obtenerCategorias(), Validators.required],
       precio: [0, Validators.required],
       fecha: [Date.now(), Validators.required],
       direccion: ['', Validators.required],
@@ -52,5 +57,12 @@ export class NuevoEventoComponent implements OnInit {
 
   nuevaDireccion(event: Direccion) {
     this.formularioNuevoEvento.get('direccion').setValue(event);
+  }
+
+  obtenerCategorias() {
+    this.eventoService.getCategorias()
+      .subscribe( (data: Categoria) => {
+        this.categorias = data.categorias;
+      })
   }
 }

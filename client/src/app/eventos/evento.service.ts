@@ -6,6 +6,8 @@ import { filter, map, pluck, tap } from 'rxjs/operators';
 
 import { Evento, eventos } from "./evento.model";
 import { ProvinciaResponse } from '../shared/componentes/direccion.model';
+import { environment } from '../../environments/environment';
+import { Categoria } from './categoria.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +23,7 @@ export class EventoService {
   clickBoton$ = this.clickBoton.asObservable();
 
   url_back = 'http://localhost:3000/api/localizacion/provincias';
+  URL =  environment.URL;
 
   constructor(private http: HttpClient) {}
 
@@ -80,6 +83,12 @@ export class EventoService {
     return this.http.get(this.url_back).pipe(
       pluck('body', 'records'),
       map((el: ProvinciaResponse[]) => el.map((e: ProvinciaResponse) => e['fields']))
+    );
+  }
+
+  getCategorias(): Observable<Categoria> {
+    return this.http.get(`${this.URL}/categorias`).pipe(
+      pluck('categorias')
     );
   }
 }

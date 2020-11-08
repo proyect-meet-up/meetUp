@@ -13,6 +13,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ComponentsModule } from '../shared/componentes/components.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 
 // Componentes
@@ -23,7 +24,7 @@ import { ListadoRegistradoComponent } from './listado-registrado/listado-registr
 import { ListadoEventosComponent } from './listado-eventos/listado-eventos.component';
 import { DetalleEventoRegistradoComponent } from './detalle-evento-registrado/detalle-evento-registrado.component';
 import { NuevoEventoComponent } from './nuevo-evento/nuevo-evento.component';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+
 
 
 
@@ -52,7 +53,8 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     MatDatepickerModule,
     MatNativeDateModule,
     ComponentsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSelectModule
   ],
   exports: [
     //NuevoEventoComponent

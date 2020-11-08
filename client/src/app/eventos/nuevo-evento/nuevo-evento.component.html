@@ -2,19 +2,31 @@
   <div class="nuevo-evento__wrapper mat-elevation-z4">
     <form class="nuevo-evento__form" [formGroup]="formularioNuevoEvento" (ngSubmit)="crearNuevoEvento()">
       <label>Título</label>
-       <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline">
         <input matInput placeholder="Título" formControlName="titulo">
         <mat-error *ngIf="noEsCampoValido('titulo')">
           {{ obtenerMensajeError('titulo') }}
         </mat-error>
       </mat-form-field>
-       <label>Descripción</label>
-       <mat-form-field appearance="outline">
+      <label>Descripción</label>
+      <mat-form-field appearance="outline">
         <textarea matInput placeholder="Descripcion del evento" formControlName="descripcion"></textarea>
         <mat-error *ngIf="noEsCampoValido('descripcion')">
           {{ obtenerMensajeError('descripcion') }}
         </mat-error>
       </mat-form-field>
+
+      <label>Tipo de evento</label>
+      <mat-form-field appearance="outline">
+        <mat-select formControlName="tipo">
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let item of categorias" [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
       <label>Dirección</label>
       <div class="nuevo-evento__direccion">
         <app-direccion (nuevaDireccionEvent)="nuevaDireccion($event)"></app-direccion>
@@ -22,18 +34,18 @@
       <div class="nuevo-evento__form--col-2">
         <label>Precio</label>
         <mat-form-field appearance="outline">
-         <input matInput placeholder="precio" formControlName="precio">
-         <mat-error *ngIf="noEsCampoValido('precio')">
-           {{ obtenerMensajeError('precio') }}
-         </mat-error>
-       </mat-form-field>
+          <input matInput placeholder="precio" formControlName="precio">
+          <mat-error *ngIf="noEsCampoValido('precio')">
+            {{ obtenerMensajeError('precio') }}
+          </mat-error>
+        </mat-form-field>
 
-       <label>Fecha</label>
-       <mat-form-field color="primary" appearance="fill">
-         <input matInput [matDatepicker]="calendario" formControlName="fecha">
-         <mat-datepicker-toggle matSuffix [for]="calendario"></mat-datepicker-toggle>
-         <mat-datepicker #calendario color="primary"></mat-datepicker>
-       </mat-form-field>
+        <label>Fecha</label>
+        <mat-form-field color="primary" appearance="fill">
+          <input matInput [matDatepicker]="calendario" formControlName="fecha">
+          <mat-datepicker-toggle matSuffix [for]="calendario"></mat-datepicker-toggle>
+          <mat-datepicker #calendario color="primary"></mat-datepicker>
+        </mat-form-field>
       </div>
 
       <button mat-raised-button color="primary">Crear nuevo evento</button>

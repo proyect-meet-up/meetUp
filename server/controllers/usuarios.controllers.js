@@ -9,7 +9,6 @@ const getUsuarios = async (req, res) => {
 
     const usuarios = await Usuario.find({}, 'nombre email password' );
     // const usuarios = await Usuario.find(); devuelve toda la información del usuario
-
     res.json({
         ok: true,
         usuarios

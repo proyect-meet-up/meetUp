@@ -1,4 +1,3 @@
-const Direccion = require('../models/direccion');
 const fetch = require('node-fetch');
 let url = 'https://public.opendatasoft.com/api/records/1.0/search/?dataset=provincias-espanolas&q=&rows=52&sort=provincia';
 

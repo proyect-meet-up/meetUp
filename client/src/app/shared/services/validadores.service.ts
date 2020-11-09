@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ControlContainer, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, ControlContainer, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { map, pluck, tap } from 'rxjs/operators';
+import { AuthService } from 'src/app/auth/auth.service';
 
 
 @Injectable({
@@ -39,25 +41,24 @@ export class ValidadoresService {
   }
 
   // Ejemplo validación asíncrona
-
-  existeUsuarioEmail(control: FormControl): Promise<any> | Observable<any>{
-
-    // Que se dispare cuando el usuario interactua con el campo email
-    if( !control.value) {
-      return Promise.resolve(null);
+  exiteUsuarioEmail(emails, control) {
+    let resultado = emails.findIndex( e => e === control.value);
+    if ( resultado === -1 ) {
+      return true;
+    } else {
+      return false;
     }
-    return new Promise((resolve, reject) => {
-      // Aqui hacemos supuestamente la llamada HTTP.
+  }
 
-      setTimeout(() => {
-        if ( control.value === 'gonzalo@mail.com') {
-          resolve({
-            existeUsuarioEmail: true
-          })
-        } else {
-          resolve(true)
-        }
-      }, 3500);
-    })
+  static crearValidacion(service: AuthService): AsyncValidatorFn {
+    return ( control: AbstractControl ): Observable<ValidationErrors> => {
+      return service.getUsuarios().pipe(
+        pluck('usuarios'),
+        map((data: any) => data.map((e) => e.email)),
+        map(emails => this.prototype.exiteUsuarioEmail(emails, control)),
+        map((res: boolean) => (res ? null : { existeUsuarioEmail: true })),
+        tap(res => console.log(res))
+      );
+    }
   }
 }

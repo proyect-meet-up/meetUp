@@ -36,20 +36,20 @@ export class RegisterComponent implements OnInit {
   crearFormularioRegistro() {
     this.formularioRegistro = this.fb.group(
       {
-        nombre: ["", Validators.required],
-        apellido: ["", Validators.required],
+        nombre: ['', Validators.required],
+        apellido: ['', Validators.required],
         email: [
-          "",
+          '',
           [this.validacionesService.comprobarValidacionEmail],
-          this.validacionesService.existeUsuarioEmail,
+          ValidadoresService.crearValidacion(this.authService),
         ],
-        password: ["", [Validators.required, Validators.minLength(6)]],
-        confirmacionPassword: ["", Validators.required],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmacionPassword: ['', Validators.required],
       },
       {
         validators: this.validacionesService.passwordIguales(
-          "password",
-          "confirmacionPassword"
+          'password',
+          'confirmacionPassword'
         ),
       }
     );
@@ -63,14 +63,11 @@ export class RegisterComponent implements OnInit {
   }
 
   obtenerMensajeError(campo: string): string {
-
     return this.mensajeErroresService.obtenerMensajeError(this.formularioRegistro, campo);
   }
 
 
   noEsCampoValido(campo: string) {
-
     return this.mensajeErroresService.noEsCampoValido(this.formularioRegistro, campo);
-
   }
 }

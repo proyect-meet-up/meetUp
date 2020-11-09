@@ -31,20 +31,19 @@ export class LoginComponent implements OnInit  {
 
   ngOnInit(): void {
     this.crearFormularioLogin();
-
   }
 
   crearFormularioLogin() {
-    this.formularioLogin = this.fb.group(
-      {
-        email: [
-          "",
-          [Validators.required,this.validacionesService.comprobarValidacionEmail],
-          this.validacionesService.existeUsuarioEmail,
-        ],
-        password: ["", [Validators.required, Validators.minLength(6)]]
-      }
-    );
+    this.formularioLogin = this.fb.group({
+      email: [
+        '',
+        [
+          Validators.required,
+          this.validacionesService.comprobarValidacionEmail,
+        ]
+      ],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
   }
 
   obtenerMensajeError(campo: string): string {
@@ -58,6 +57,8 @@ export class LoginComponent implements OnInit  {
     return this.mensajeErroresService.noEsCampoValido(this.formularioLogin, campo);
 
   }
+
+
 
   login() {
     // if (this.formularioLogin.invalid) {

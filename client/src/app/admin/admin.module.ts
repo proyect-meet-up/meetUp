@@ -19,6 +19,7 @@ import { CardAdminComponent } from './card-admin/card-admin.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { TableAdminComponent } from './table-admin/table-admin.component';
 import { CheckboxAdminComponent } from './checkbox-admin/checkbox-admin.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { CheckboxAdminComponent } from './checkbox-admin/checkbox-admin.componen
     MatCheckboxModule,
     MatCardModule,
     MatExpansionModule,
-    MatDividerModule
+    MatDividerModule,
+    MatButtonModule
   ],
 })
 export class AdminModule {}

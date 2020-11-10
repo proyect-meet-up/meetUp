@@ -17,6 +17,9 @@
 
 
 <div class="confirmar-eventos__responsive">
+  <div *ngIf="eventos.length >= 1  || estaSeleccionadoTodos" class="confirmar-eventos__button">
+    <button mat-raised-button color="primary" (click)="confirmarEventos()">Confirmar</button>
+  </div>
   <div class="confirmar-eventos__check">
     <h3>Seleccionada todos</h3>
     <app-checkbox-admin

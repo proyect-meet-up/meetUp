@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, AsyncValidatorFn, ControlContainer, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, pluck, tap } from 'rxjs/operators';
-import { AuthService } from 'src/app/auth/auth.service';
-
+import { UsuarioService } from 'src/app/privado/usuario/usuario.service';
 
 @Injectable({
   providedIn: "root",
@@ -41,23 +40,12 @@ export class ValidadoresService {
   }
 
   // Ejemplo validación asíncrona
-  exiteUsuarioEmail(emails, control) {
-    let resultado = emails.findIndex( e => e === control.value);
-    if ( resultado === -1 ) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 
-  static crearValidacion(service: AuthService): AsyncValidatorFn {
+  crearValidacion(usuarioService: UsuarioService): AsyncValidatorFn {
     return ( control: AbstractControl ): Observable<ValidationErrors> => {
-      return service.getUsuarios().pipe(
-        pluck('usuarios'),
-        map((data: any) => data.map((e) => e.email)),
-        map(emails => this.prototype.exiteUsuarioEmail(emails, control)),
-        map((res: boolean) => (res ? null : { existeUsuarioEmail: true })),
-        tap(res => console.log(res))
+      return usuarioService.comprobacionExisteEmailUsuario(control.value).pipe(
+        pluck('ok'),
+        map((res: boolean) => (res ? null : { existeUsuarioEmail: true }))
       );
     }
   }

@@ -16,10 +16,10 @@ export class ConfirmarEventosComponent implements OnInit {
   sub: Subscription;
   estaSeleccionadoTodos: boolean = false;
 
-  constructor(private adminSerice: AdminService) {}
+  constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
-    this.sub = this.adminSerice.seleccionadoTodos$.subscribe((data) => {
+    this.sub = this.adminService.seleccionadoTodos$.subscribe((data) => {
       this.estaSeleccionadoTodos = data;
       if ( this.estaSeleccionadoTodos ) {
         this.eventos = [];

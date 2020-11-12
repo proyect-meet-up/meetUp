@@ -1,7 +1,7 @@
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { environment } from '@env/environment';
+
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,8 @@ export class UsuarioService {
   headers = new HttpHeaders();
   params = new HttpParams();
   path: string = 'usuarios';
-  URL = environment.URL;
+  URL = environment.URL
+
 
   constructor(private http: HttpClient) {
     this.headers.set('Content-Type', 'application/json');

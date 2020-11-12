@@ -14,7 +14,7 @@ export class MapaService {
   lng = -5.6723312;
 
   constructor() {
-    this.mapbox.accessToken = environment.mapBoxToken;
+    // this.mapbox.accessToken = environment.mapBoxToken;
   }
 
   crearMapa() {

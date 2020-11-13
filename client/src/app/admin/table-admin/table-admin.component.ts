@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AdminService } from '../admin.service';
 
@@ -20,7 +21,7 @@ export class TableAdminComponent implements OnInit {
   @Output() eventoSelection$: EventEmitter<any> = new EventEmitter();
   sub: Subscription;
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService, private router: Router) {}
 
   ngOnInit() {
     this.dataSource = this.dataSource.map((evento) => ({
@@ -29,14 +30,20 @@ export class TableAdminComponent implements OnInit {
     }));
 
     this.sub = this.adminService.seleccionadoTodos$.subscribe((data) => {
-      this.dataSource = this.dataSource.map( el => ({...el, 'seleccionado': data}))
+      this.dataSource = this.dataSource.map((el) => ({
+        ...el,
+        seleccionado: data,
+      }));
     });
-
   }
 
   cambioEventoSeleccionado(evento) {
     evento.seleccionado = !evento.seleccionado;
     this.eventoSelection$.emit(evento);
+  }
+
+  irDetalle(evento): void {
+    this.router.navigate(['admin', 'confirmar-eventos', `${evento.id}`], { state:  evento  });
   }
 }
 

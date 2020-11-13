@@ -5,7 +5,7 @@ import { mapbox } from './mapbox.environment';
 
 export const environment = {
   production: false,
-  URL: 'http://localhost:3000',
+  URL: 'http://localhost:3000/api',
   ...mapbox
 };
 

@@ -21,7 +21,6 @@ export class EventoService {
   clickReserva: boolean = true;
   clickBoton = new Subject<boolean>();
   clickBoton$ = this.clickBoton.asObservable();
-  url_back = 'http://localhost:3000/api/localizacion/provincias';
   URL = environment.URL;
 
   constructor(private http: HttpClient) {}
@@ -79,7 +78,7 @@ export class EventoService {
   }
 
   getProvincias(): Observable<ProvinciaResponse[]> {
-    return this.http.get(this.url_back).pipe(
+    return this.http.get(`${this.URL}/localizacion/provincias`).pipe(
       pluck('body', 'records'),
       map((el: ProvinciaResponse[]) =>
         el.map((e: ProvinciaResponse) => e['fields'])

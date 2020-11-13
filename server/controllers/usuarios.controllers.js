@@ -103,8 +103,42 @@ const actualizarUsuario = async (req, res) => {
 }
 
 
+const borrarUsuario = async (req, res) => {
+    
+    const uid = req.params.id;
+   
+    const usuarioDB = await Usuario.findById (uid);
+
+    if (!usuarioDB ) {
+        return res.status(404).json({
+            ok: false,
+            msg: 'Usuario no encontrado en la base de datos'
+        })
+    }
+
+    await Usuario.findByIdAndDelete(uid);
+
+    try {
+        res.json({
+            ok: true,
+            msg: 'usuario eliminado'
+        })
+
+    } catch(error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Error no se pudo borrar, error 500'
+        })
+        
+    }
+
+}
+
+
 module.exports = { 
     getUsuarios,
     crearUsuario,
-    actualizarUsuario
+    actualizarUsuario,
+    borrarUsuario
 }

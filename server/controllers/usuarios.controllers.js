@@ -12,7 +12,8 @@ const getUsuarios = async (req, res) => {
     // const usuarios = await Usuario.find(); devuelve toda la información del usuario
     res.json({
         ok: true,
-        usuarios
+        usuarios,
+        uid: req.uid
     })
 }
 

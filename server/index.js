@@ -19,6 +19,7 @@ app.use('/api/localizacion', require('./routes/direccion.routes'));
 
 app.use('/api/categorias', require('./routes/categorias.routes'));
 
+app.use('/api/login', require('./routes/auth.routes'));
 
 //console.log(process.env)
 

@@ -22,13 +22,8 @@ export class AuthService {
 
   crearUsuario(usuario) {
     this.headers.set('Content-Type', 'application/json');
-    return this.http.post(`${this.URL}/${this.path}`,usuario, {headers: this.headers})
-      .pipe(
-        tap((data) => console.log(data))
-      )
-      .subscribe( respuesta => {
-        console.log(respuesta)
-      })
+    return this.http.post(`${this.URL}/${this.path}`,usuario, {headers: this.headers});
+   
   }
 
   getUsuarios() {

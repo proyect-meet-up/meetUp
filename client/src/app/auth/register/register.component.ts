@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MensajesErroresService } from 'src/app/shared/services/mensajes-errores.service';
 import { ValidadoresService } from 'src/app/shared/services/validadores.service';
 import { AuthService } from '../auth.service';
+import { tap } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: "app-register",
@@ -58,8 +60,16 @@ export class RegisterComponent implements OnInit {
   registro() {
     // if (this.formularioRegistro.invalid) {
     //   return;
-    // }
+    // }    
     this.authService.crearUsuario(this.formularioRegistro.value)
+      .pipe(
+        tap((data) => console.log("la data del tap", data))
+      )
+      .subscribe( respuesta => {
+        console.log(respuesta)
+      }, (err) => {
+        Swal.fire('Error', err.error.msg, 'error');
+      })
   }
 
   obtenerMensajeError(campo: string): string {

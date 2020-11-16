@@ -64,8 +64,7 @@ export class LoginComponent implements OnInit  {
     // }
 
     this.authService.login(this.formularioLogin.value)
-      .subscribe( respuesta => {        
-        this.authService.login(this.estaLogueado);
+      .subscribe( () => {
         this.router.navigate(["privado"]);
       }, (err) => {
         Swal.fire('Error', err.error.msg, 'error');

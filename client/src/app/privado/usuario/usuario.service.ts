@@ -24,9 +24,6 @@ export class UsuarioService {
   crearUsuario(usuario) {
     return this.http
       .post(`${this.URL}/${this.path}`, usuario, { headers: this.headers })
-      .subscribe((respuesta) => {
-        console.log(respuesta);
-      });
   }
 
   comprobacionExisteEmailUsuario(email: string) {

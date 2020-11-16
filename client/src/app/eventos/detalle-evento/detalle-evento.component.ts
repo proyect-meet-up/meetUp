@@ -54,7 +54,6 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   }
 
   irReserva() {
-    this.eventoService.clickReserva = false;
 
     if (this.logueado) {
       this.router.navigate(['privado', 'reserva-evento', this.evento.uid]);
@@ -72,7 +71,6 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log(`¿ Se destruye el detalle componente ?`)
     this.eventosSuscription.unsubscribe();
   }
 }

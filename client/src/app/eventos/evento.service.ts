@@ -18,9 +18,10 @@ export class EventoService {
   eventosBuscadosSource = new BehaviorSubject<Evento[]>(this.cursos);
   eventosBuscados$ = this.eventosBuscadosSource.asObservable();
 
-  clickReserva: boolean = true;
+  // Control evento click del botón cuando se muestra el mensaje no hay resultados.
   clickBoton = new Subject<boolean>();
   clickBoton$ = this.clickBoton.asObservable();
+
   URL = environment.URL;
 
   constructor(private http: HttpClient) {}

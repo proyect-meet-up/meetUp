@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { ValidadoresService } from 'src/app/shared/services/validadores.service';
 import { AuthService } from '../auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: "app-login",
@@ -47,15 +48,12 @@ export class LoginComponent implements OnInit  {
   }
 
   obtenerMensajeError(campo: string): string {
-
     return this.mensajeErroresService.obtenerMensajeError(this.formularioLogin, campo);
   }
 
 
   noEsCampoValido(campo: string) {
-
     return this.mensajeErroresService.noEsCampoValido(this.formularioLogin, campo);
-
   }
 
 
@@ -64,6 +62,16 @@ export class LoginComponent implements OnInit  {
     // if (this.formularioLogin.invalid) {
     //   return;
     // }
+
+    this.authService.login(this.formularioLogin.value)
+      .subscribe( respuesta => {        
+        this.authService.login(this.estaLogueado);
+        this.router.navigate(["privado"]);
+      }, (err) => {
+        Swal.fire('Error', err.error.msg, 'error');
+      });
+
+
 
     if ( this.formularioLogin.get('password').value === 'admin') {
       this.authService.isAdmin(this.esAdmin);

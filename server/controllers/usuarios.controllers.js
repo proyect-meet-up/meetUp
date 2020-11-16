@@ -2,6 +2,7 @@
 const Usuario = require('../models/usuario');
 const bcrypt = require('bcryptjs');
 const usuario = require('../models/usuario');
+const { generarJWT } = require('../helpers/jwt');
 
 
 
@@ -67,10 +68,14 @@ const crearUsuario = async (req, res) => {
         usuario.password = bcrypt.hashSync(password, salt);
 
         await usuario.save();
+
+        // generar JWT TOKEN
+        const token = await generarJWT(usuario.id);
     
         res.json({
             ok: true,
-            usuario: usuario
+            usuario: usuario,
+            token
         });
 
     } catch(error) {
@@ -131,9 +136,43 @@ const actualizarUsuario = async (req, res) => {
 }
 
 
+const borrarUsuario = async (req, res) => {
+    
+    const uid = req.params.id;
+   
+    const usuarioDB = await Usuario.findById (uid);
+
+    if (!usuarioDB ) {
+        return res.status(404).json({
+            ok: false,
+            msg: 'Usuario no encontrado en la base de datos'
+        })
+    }
+
+    await Usuario.findByIdAndDelete(uid);
+
+    try {
+        res.json({
+            ok: true,
+            msg: 'usuario eliminado'
+        })
+
+    } catch(error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Error no se pudo borrar, error 500'
+        })
+        
+    }
+
+}
+
+
 module.exports = { 
     getUsuarios,
     crearUsuario,
     actualizarUsuario,
+    borrarUsuario,
     comprobacionEmailUsuario
 }

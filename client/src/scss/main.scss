@@ -21,8 +21,12 @@
 // COMPONENTS
 
 // SCOPES -- Librerias
+/* You can add global styles to this file, and also import other style files */
+
+@import "~mapbox-gl/dist/mapbox-gl.css";
 
 @import '08.scopes/_swal.scss';
+
 
 // @import '08.scopes/_sweetalert2.scss';
 // UTLITIES -- Capaciadad para anular un selector scss. Normalmente usamos !Important

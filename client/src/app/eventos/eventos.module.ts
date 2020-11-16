@@ -24,9 +24,7 @@ import { ListadoRegistradoComponent } from './listado-registrado/listado-registr
 import { ListadoEventosComponent } from './listado-eventos/listado-eventos.component';
 import { DetalleEventoRegistradoComponent } from './detalle-evento-registrado/detalle-evento-registrado.component';
 import { NuevoEventoComponent } from './nuevo-evento/nuevo-evento.component';
-
-
-
+import { MapaComponent } from '../shared/componentes/mapa/mapa.component';
 
 
 
@@ -38,7 +36,7 @@ import { NuevoEventoComponent } from './nuevo-evento/nuevo-evento.component';
     ListadoRegistradoComponent,
     ListadoEventosComponent,
     DetalleEventoRegistradoComponent,
-    NuevoEventoComponent,
+    NuevoEventoComponent
   ],
   imports: [
     CommonModule,

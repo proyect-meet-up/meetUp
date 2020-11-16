@@ -1,23 +1,22 @@
 export interface ProvinciaResponse {
-  provincia: string,
-  texto: string,
-  ccaa?: string,
-  codigo: string,
-  cod_ccaa?: string,
-  geo_point_2d?: number[],
+  provincia: string;
+  texto: string;
+  ccaa?: string;
+  codigo: string;
+  cod_ccaa?: string;
+  geo_point_2d?: number[];
   geo_shape?: {
-    type: "MultiPolygon",
-    coordinates: number[]
-  }
+    type: 'MultiPolygon';
+    coordinates: number[];
+  };
 }
 
 export class Direccion {
-
   constructor(
     public calle: string,
-    public numero: number,
+    public numero: number | string,
     public codigo: string,
-    public provincia?: string,
-    public municipio?: string,
+    public ciudad?: string,
+    public provincia?: string
   ) {}
 }

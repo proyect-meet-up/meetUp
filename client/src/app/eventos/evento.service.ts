@@ -6,7 +6,7 @@ import { filter, map, pluck, tap } from 'rxjs/operators';
 
 import { Evento, eventos } from "./evento.model";
 import { ProvinciaResponse } from '../shared/componentes/direccion.model';
-import { environment } from '../../environments/environment';
+import { environment } from '@env/environment';
 import { Categoria } from './categoria.model';
 
 @Injectable({
@@ -21,9 +21,8 @@ export class EventoService {
   clickReserva: boolean = true;
   clickBoton = new Subject<boolean>();
   clickBoton$ = this.clickBoton.asObservable();
-
   url_back = 'http://localhost:3000/api/localizacion/provincias';
-  URL =  environment.URL;
+  URL = environment.URL;
 
   constructor(private http: HttpClient) {}
 
@@ -82,13 +81,13 @@ export class EventoService {
   getProvincias(): Observable<ProvinciaResponse[]> {
     return this.http.get(this.url_back).pipe(
       pluck('body', 'records'),
-      map((el: ProvinciaResponse[]) => el.map((e: ProvinciaResponse) => e['fields']))
+      map((el: ProvinciaResponse[]) =>
+        el.map((e: ProvinciaResponse) => e['fields'])
+      )
     );
   }
 
   getCategorias(): Observable<Categoria> {
-    return this.http.get(`${this.URL}/categorias`).pipe(
-      pluck('categorias')
-    );
+    return this.http.get(`${this.URL}/categorias`).pipe(pluck('categorias'));
   }
 }

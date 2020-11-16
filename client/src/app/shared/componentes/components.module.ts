@@ -30,6 +30,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MapaComponent } from './mapa/mapa.component';
 
 
 
@@ -44,7 +45,8 @@ import { MatListModule } from '@angular/material/list';
     ModalComponent,
     SidenavComponent,
     HeaderAdminComponent,
-    MenuTogglerComponent
+    MenuTogglerComponent,
+    MapaComponent
   ],
   imports: [
     CommonModule,
@@ -73,7 +75,8 @@ import { MatListModule } from '@angular/material/list';
     ModalComponent,
     SidenavComponent,
     HeaderAdminComponent,
-    MenuTogglerComponent
+    MenuTogglerComponent,
+    MapaComponent
   ],
   entryComponents: [ModalComponent],
   providers: [{ provide: MatDialogRef, useValue: {} }],

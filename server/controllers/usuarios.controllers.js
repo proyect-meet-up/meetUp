@@ -17,8 +17,36 @@ const getUsuarios = async (req, res) => {
 }
 
 
+const comprobacionEmailUsuario = async (req, res) => {
+
+    const {email} = req.params; 
+    const existeEmail = await Usuario.findOne({email});
+
+    try {
+        if ( existeEmail ) {
+            return res.json({
+                ok: false,
+                msg: 'El correo ya existe'
+            })
+        }
+    
+        res.json({
+            ok: true,
+            msg: 'El correo no está registrado'
+        })
+
+    } catch {
+
+        res.status(500).json({
+            ok: false,
+            msg: 'Error, ni idea qué narices pasa'
+        })
+    }
+
+}
+
 const crearUsuario = async (req, res) => {
-  
+
     const { email, password } = req.body;
 
 
@@ -145,5 +173,6 @@ module.exports = {
     getUsuarios,
     crearUsuario,
     actualizarUsuario,
-    borrarUsuario
+    borrarUsuario,
+    comprobacionEmailUsuario
 }

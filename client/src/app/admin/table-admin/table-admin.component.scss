@@ -11,3 +11,12 @@
     word-wrap: break-word;
     min-height: inherit;
 }
+
+.table__detalle-icon {
+  cursor: pointer;
+}
+
+.table__detalle-icon:hover {
+  color: green;
+}
+

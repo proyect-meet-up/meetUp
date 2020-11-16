@@ -2,22 +2,24 @@
 
   <ng-container matColumnDef="usuario">
     <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.usuario}} </mat-cell>
+    <mat-cell *matCellDef="let evento"> {{evento.usuario}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="titulo">
     <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
+    <mat-cell *matCellDef="let evento"> {{evento.titulo}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="fechaReserva">
     <mat-header-cell *matHeaderCellDef> Día reserva </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.fechaReserva | date:'mediumDate'}} </mat-cell>
+    <mat-cell *matCellDef="let evento"> {{evento.fechaReserva | date:'mediumDate'}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="detalle">
     <mat-header-cell *matHeaderCellDef> Ver detalle </mat-header-cell>
-    <mat-cell *matCellDef="let element"> Editar </mat-cell>
+    <mat-cell *matCellDef="let evento">
+        <mat-icon class="table__detalle-icon" (click)="irDetalle(evento)">visibility</mat-icon>
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="select">

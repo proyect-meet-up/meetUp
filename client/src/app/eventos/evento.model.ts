@@ -3,8 +3,8 @@ export class Evento {
     public titulo: string,
     public descripcion: string,
     public direccion: string,
-    public tipo: string,
     public uid: number,
+    public tipo?: string,
     public imagen?: string,
     public precio?: number,
     public fecha?: Date

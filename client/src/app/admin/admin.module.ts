@@ -20,10 +20,18 @@ import { MatDividerModule } from '@angular/material/divider';
 import { TableAdminComponent } from './table-admin/table-admin.component';
 import { CheckboxAdminComponent } from './checkbox-admin/checkbox-admin.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
-  declarations: [AdminComponent, ConfirmarEventosComponent, ReservasComponent, CardAdminComponent, TableAdminComponent, CheckboxAdminComponent],
+  declarations: [
+    AdminComponent,
+    ConfirmarEventosComponent,
+    ReservasComponent,
+    CardAdminComponent,
+    TableAdminComponent,
+    CheckboxAdminComponent
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -37,7 +45,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatCardModule,
     MatExpansionModule,
     MatDividerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
 })
 export class AdminModule {}

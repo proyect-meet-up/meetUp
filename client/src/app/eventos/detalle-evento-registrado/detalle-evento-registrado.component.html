@@ -1,1 +1,59 @@
-<p>detalle-evento-registrado works!</p>
+<div class="detalle-evento-registrado">
+
+  <div class="detalle-evento-registrado__wrapper">
+
+    <div class="detalle-evento-registrado__cabecera">
+      <h3>Datos del evento</h3>
+    </div>
+    <div class="detalle-evento-registrado__usuario mat-elevation-z2">
+      <img class="detalle-evento-registrado__img mat-elevation-z6" src="assets/usuarios-imagenes/usuario1.jpg"
+        alt="usuario">
+      <span>Creado por: {{evento.usuario}}</span>
+    </div>
+
+    <form class="detalle-evento-registrado__form" [formGroup]="formularioActualizarEvento"
+      (ngSubmit)="actualizarEvento()">
+
+      <label>Titulo</label>
+      <mat-form-field appearance="fill">
+        <input matInput placeholder="Titulo" formControlName="titulo">
+      </mat-form-field>
+
+      <label>Descripción</label>
+      <mat-form-field appearance="fill">
+        <textarea matInput matTextareaAutosize="true" placeholder="Descripcion del evento"
+          formControlName="descripcion">
+        </textarea>
+      </mat-form-field>
+
+      <div class="detalle-evento-registrado__block">
+        <div class="detalle-evento-registrado__fecha">
+          <label>Fecha del evento</label>
+          <mat-form-field appearance="fill">
+            <input matInput [matDatepicker]="calendario" formControlName="fechaReserva">
+            <mat-datepicker-toggle matSuffix [for]="calendario"></mat-datepicker-toggle>
+            <mat-datepicker #calendario color="primary"></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="detalle-evento-registrado__lugar">
+          <label>Localización</label>
+          <span>{{evento.direccion}}</span>
+        </div>
+      </div>
+
+      <button class="detalle-evento-registrado__boton" mat-raised-button color="primary">
+        <span #text>Modificar</span>
+      </button>
+    </form>
+
+
+
+  </div>
+
+
+
+
+
+
+
+</div>

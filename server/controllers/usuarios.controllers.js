@@ -61,6 +61,7 @@ const crearUsuario = async (req, res) => {
             })
         }
 
+        // TODO No vamos a dejar que se reciba un rol
         const usuario = new Usuario(req.body);
 
         // encriptar contraseña

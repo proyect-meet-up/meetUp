@@ -37,8 +37,17 @@
         </div>
         <div class="detalle-evento-registrado__lugar">
           <label>Localización</label>
-          <span>{{evento.direccion}}</span>
+          <div class="detalle-evento-registrado__icon">
+            <span>{{evento.direccion}}</span>
+            <mat-icon *ngIf="!expanded, else mostrarBoton" (click)="expandirPanelDireccion()">edit</mat-icon>
+            <ng-template #mostrarBoton>
+              <button mat-stroked-button (click)="expandirPanelDireccion()">Actualizar</button>
+            </ng-template>
+          </div>
         </div>
+      </div>
+      <div [ngClass]="expanded ? 'expanded': ''" class="detalle-evento-registrado__direccion" [@botonState]="state">
+          <app-direccion class="width" [expanded]="true" (nuevaDireccionEvent)="direccionActualizada($event)"></app-direccion>
       </div>
 
       <button class="detalle-evento-registrado__boton" mat-raised-button color="primary">

@@ -11,9 +11,10 @@ const login = async(req, res = response) => {
     try {
 
         const usuarioDB = await Usuario.findOne({ email });
-        const { rol } = usuarioDB;
+        let { rol } = usuarioDB;
         let respuesta = false;
         rol === 'USUARIO' ? respuesta : respuesta = true;
+    
 
         if (!usuarioDB) {
             return res.status(404).json({
@@ -33,11 +34,20 @@ const login = async(req, res = response) => {
         // generar JWT TOKEN
         const token = await generarJWT(usuarioDB.id);
 
+         // usuarioDB devuelve un document de Mongo, lo pasamos a objeto para obtener sólo los campos y no el resto de información del documento
+         let  {  __v, ...usuario } = usuarioDB.toObject();  
+      
+         delete usuario.rol;  
+         delete usuario.password;       
 
+         console.log("el usuario: ", usuario);
+       
+   
         res.json({
             ok: true,
             token,
-            respuesta
+            respuesta,
+            usuario
              
         })
 

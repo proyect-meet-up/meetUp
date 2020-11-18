@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject} from 'rxjs';
 import { environment } from '../../environments/environment'
+import {tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -22,7 +23,14 @@ export class AuthService {
 
   login( formulario ) {
     this.estaLogueadoSource.next(true);
-   return this.http.post(`${this.URL}/login`, formulario);
+   return this.http.post(`${this.URL}/login`, formulario)
+      .pipe(
+        tap ( (resp: any) => {
+          localStorage.setItem('token', resp.token);
+          localStorage.setItem('usuario', JSON.stringify(resp.usuario));
+
+        })
+      )
   }
 
   isAdmin(valor: boolean) {
@@ -32,6 +40,8 @@ export class AuthService {
   logout (valor:boolean): void {
     this.estaLogueadoSource.next(valor);
     this.esAdmin.next(valor);
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
   }
 
 }

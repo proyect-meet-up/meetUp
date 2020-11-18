@@ -1,6 +1,7 @@
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
+import {tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -24,6 +25,11 @@ export class UsuarioService {
   crearUsuario(usuario) {
     return this.http
       .post(`${this.URL}/${this.path}`, usuario, { headers: this.headers })
+      .pipe(
+        tap ( (resp: any) => {
+          localStorage.setItem('token', resp.token)
+        })
+      )
   }
 
   comprobacionExisteEmailUsuario(email: string) {

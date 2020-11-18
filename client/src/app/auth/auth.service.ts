@@ -26,7 +26,9 @@ export class AuthService {
    return this.http.post(`${this.URL}/login`, formulario)
       .pipe(
         tap ( (resp: any) => {
-          localStorage.setItem('token', resp.token)
+          localStorage.setItem('token', resp.token);
+          localStorage.setItem('usuario', JSON.stringify(resp.usuario));
+
         })
       )
   }
@@ -39,6 +41,7 @@ export class AuthService {
     this.estaLogueadoSource.next(valor);
     this.esAdmin.next(valor);
     localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
   }
 
 }

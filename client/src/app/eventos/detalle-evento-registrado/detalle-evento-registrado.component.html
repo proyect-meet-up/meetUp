@@ -41,7 +41,7 @@
             <span>{{evento.direccion}}</span>
             <mat-icon *ngIf="!expanded, else mostrarBoton" (click)="expandirPanelDireccion()">edit</mat-icon>
             <ng-template #mostrarBoton>
-              <button mat-stroked-button (click)="expandirPanelDireccion()">Actualizar</button>
+              <mat-icon (click)="expandirPanelDireccion()">arrow_upward</mat-icon>
             </ng-template>
           </div>
         </div>
@@ -54,6 +54,8 @@
         <span #text>Modificar</span>
       </button>
     </form>
+
+
 
 
 

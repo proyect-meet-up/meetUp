@@ -9,6 +9,7 @@ import { ModalComponent } from './modal/modal.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { HeaderAdminComponent } from './header-admin/header-admin.component';
 import { MenuTogglerComponent } from './menuToggler/menuToggler.component';
+import { MapaComponent } from './mapa/mapa.component';
 
 
 
@@ -30,7 +31,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { MapaComponent } from './mapa/mapa.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 
 
@@ -46,7 +47,7 @@ import { MapaComponent } from './mapa/mapa.component';
     SidenavComponent,
     HeaderAdminComponent,
     MenuTogglerComponent,
-    MapaComponent
+    MapaComponent,
   ],
   imports: [
     CommonModule,
@@ -63,7 +64,7 @@ import { MapaComponent } from './mapa/mapa.component';
     MatDialogModule,
     MatSelectModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
   ],
   exports: [
     HeaderComponent,
@@ -76,9 +77,12 @@ import { MapaComponent } from './mapa/mapa.component';
     SidenavComponent,
     HeaderAdminComponent,
     MenuTogglerComponent,
-    MapaComponent
+    MapaComponent,
   ],
   entryComponents: [ModalComponent],
-  providers: [{ provide: MatDialogRef, useValue: {} }],
+  providers: [
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
+  ],
 })
 export class ComponentsModule {}

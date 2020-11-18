@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProvinciaResponse } from '../direccion.model';
 import { EventoService } from '../../../eventos/evento.service';
@@ -13,25 +13,27 @@ interface DataProvincia {
   templateUrl: './direccion.component.html',
   styleUrls: ['./direccion.component.scss'],
 })
-export class DireccionComponent implements OnInit {
+export class DireccionComponent implements OnInit, OnDestroy {
   direccionFormulario: FormGroup;
   @Output() nuevaDireccionEvent = new EventEmitter();
+  @Input('expanded') expanded : boolean;
+
   provincias: DataProvincia[];
   codigo: number;
 
   constructor(
     private fb: FormBuilder,
     private eventosServices: EventoService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-
     this.getProvincias();
 
     this.crearFormularioDireccion();
 
     if (this.direccionFormulario) {
       this.direccionFormulario.valueChanges.subscribe(() => {
+
         if (this.direccionFormulario.valid) {
           this.nuevaDireccion();
         }
@@ -47,19 +49,19 @@ export class DireccionComponent implements OnInit {
       numero: [null, Validators.required],
       provincia: ['', Validators.required],
       codigo: [this.codigo, Validators.required],
-      municipio: ['', Validators.required],
+      localidad: [''],
     });
   }
 
   getProvincias() {
-     this.eventosServices
-       .getProvincias()
-       .subscribe((resonseData: ProvinciaResponse[]) => {
-         this.provincias = resonseData.map(({ provincia, codigo }) => ({
-           provincia,
-           codigo,
-         }));
-       });
+    this.eventosServices
+      .getProvincias()
+      .subscribe((resonseData: ProvinciaResponse[]) => {
+        this.provincias = resonseData.map(({ provincia, codigo }) => ({
+          provincia,
+          codigo,
+        }));
+      });
   }
 
   obtenerCodigoDesdeProvincias() {
@@ -73,7 +75,7 @@ export class DireccionComponent implements OnInit {
     let [{ codigo }] = data;
     this.codigo = +codigo;
 
-    this.direccionFormulario.get('codigo').patchValue(this.codigo)
+    this.direccionFormulario.get('codigo').patchValue(this.codigo);
   }
 
   actualizarCampoCodigoPostal() {
@@ -84,6 +86,10 @@ export class DireccionComponent implements OnInit {
 
   nuevaDireccion() {
     this.nuevaDireccionEvent.emit(this.direccionFormulario.value);
+  }
+
+  ngOnDestroy() {
+    this.expanded = false;
   }
 }
 

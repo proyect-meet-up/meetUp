@@ -1,5 +1,5 @@
 <mat-accordion class="direccion" multi>
-  <mat-expansion-panel>
+  <mat-expansion-panel [expanded]="expanded">
     <mat-expansion-panel-header>
       <mat-panel-title>
       </mat-panel-title>
@@ -21,6 +21,13 @@
         </mat-form-field>
       </div>
       <div class="direccion__row">
+
+        <mat-form-field class="direccion__item" appearance="outline">
+          <mat-label>Localidad</mat-label>
+          <input matInput placeholder="Municipio" formControlName="localidad">
+        </mat-form-field>
+
+
         <mat-form-field appearance="outline">
           <mat-label>Provincia</mat-label>
           <mat-select formControlName="provincia" >
@@ -31,14 +38,11 @@
           </mat-select>
         </mat-form-field>
 
+
         <mat-form-field class="direccion__item" appearance="outline">
           <mat-label>Código postal *</mat-label>
           <input matInput placeholder="Código postal" formControlName="codigo">
         </mat-form-field>
-        <!-- <mat-form-field class="direccion__item" appearance="outline">
-          <mat-label>Municipio</mat-label>
-          <input matInput placeholder="Municipio" formControlName="municipio">
-        </mat-form-field> -->
       </div>
     </form>
   </mat-expansion-panel>

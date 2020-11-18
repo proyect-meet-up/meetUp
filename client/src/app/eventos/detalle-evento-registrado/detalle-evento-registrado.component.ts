@@ -2,14 +2,18 @@ import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@ang
 import { NavigationExtras, Router } from '@angular/router';
 import { Evento } from '../evento.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { botonState } from '@shared/componentes/animations/botonState.animation';
 
 @Component({
   selector: 'app-detalle-evento-registrado',
   templateUrl: './detalle-evento-registrado.component.html',
   styleUrls: ['./detalle-evento-registrado.component.scss'],
+  animations: [botonState],
 })
 export class DetalleEventoRegistradoComponent implements OnInit {
+  state: string = 'inactivo';
+  expanded: boolean = false;
+
   evento: any;
   formularioActualizarEvento: FormGroup;
   @ViewChild('text', { static: true }) formularioBoton: ElementRef;
@@ -20,7 +24,6 @@ export class DetalleEventoRegistradoComponent implements OnInit {
     private render: Renderer2
   ) {
     this.evento = this.router.getCurrentNavigation().extras.state;
-    console.log(this.evento);
   }
 
   ngOnInit(): void {
@@ -34,7 +37,7 @@ export class DetalleEventoRegistradoComponent implements OnInit {
       'textContent',
       'Actualizar datos'
     );
-    console.log(this.formularioActualizarEvento.value)
+    console.log(this.formularioActualizarEvento.value);
   }
 
   crearFormulario() {
@@ -62,5 +65,15 @@ export class DetalleEventoRegistradoComponent implements OnInit {
         this.formularioActualizarEvento.get(control).disable();
       }
     }
+  }
+
+  expandirPanelDireccion() {
+    this.state = this.state === 'activo' ? 'inactivo' : 'activo';
+    this.expanded = !this.expanded;
+  }
+
+  direccionActualizada($event) {
+    let { calle, numero, provincia, codigo, localidad } = $event;
+    this.evento.direccion = `${calle} ${numero} ${localidad} ${codigo}`
   }
 }

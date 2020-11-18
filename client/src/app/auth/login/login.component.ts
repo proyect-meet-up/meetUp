@@ -7,20 +7,20 @@ import { ValidadoresService } from 'src/app/shared/services/validadores.service'
 import { AuthService } from '../auth.service';
 import Swal from 'sweetalert2';
 
+interface LoginRespuesta {
+  ok: boolean;
+  respuesta: boolean;
+  token: string;
+}
+
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
-
-
-export class LoginComponent implements OnInit  {
+export class LoginComponent implements OnInit {
   formularioLogin: FormGroup;
   hide: boolean = true;
-  estaLogueado: boolean = true;
-  esAdmin: boolean = true;
-
-
 
   constructor(
     private fb: FormBuilder,
@@ -41,48 +41,45 @@ export class LoginComponent implements OnInit  {
         [
           Validators.required,
           this.validacionesService.comprobarValidacionEmail,
-        ]
+        ],
       ],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
   obtenerMensajeError(campo: string): string {
-    return this.mensajeErroresService.obtenerMensajeError(this.formularioLogin, campo);
+    return this.mensajeErroresService.obtenerMensajeError(
+      this.formularioLogin,
+      campo
+    );
   }
-
 
   noEsCampoValido(campo: string) {
-    return this.mensajeErroresService.noEsCampoValido(this.formularioLogin, campo);
+    return this.mensajeErroresService.noEsCampoValido(
+      this.formularioLogin,
+      campo
+    );
   }
-
-
 
   login() {
     // if (this.formularioLogin.invalid) {
     //   return;
     // }
 
-    this.authService.login(this.formularioLogin.value)
-      .subscribe( respuesta => {        
-        this.authService.login(this.estaLogueado);
-        this.router.navigate(["privado"]);
-      }, (err) => {
+    this.authService.login(this.formularioLogin.value).subscribe(
+      (data: LoginRespuesta) => {
+        this.authService.login(true);
+
+        if (data.respuesta == false) {
+          this.router.navigate(['privado']);
+        } else {
+          this.authService.isAdmin(true);
+          this.router.navigate(['admin', 'confirmar-eventos']);
+        }
+      },
+      (err) => {
         Swal.fire('Error', err.error.msg, 'error');
-      });
-
-
-
-    if ( this.formularioLogin.get('password').value === 'admin') {
-      this.authService.isAdmin(this.esAdmin);
-      this.authService.login(this.estaLogueado);
-      this.router.navigate(['admin', 'confirmar-eventos'])
-    } else {
-      this.authService.login(this.estaLogueado);
-      this.router.navigate(["privado"]);
-    }
-
-
-
+      }
+    );
   }
 }

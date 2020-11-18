@@ -1,11 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Usuario } from 'src/app/privado/usuario/usuario.model';
 import { UsuarioService } from 'src/app/privado/usuario/usuario.service';
 import { MensajesErroresService } from 'src/app/shared/services/mensajes-errores.service';
 import { ValidadoresService } from 'src/app/shared/services/validadores.service';
-import { AuthService } from '../auth.service';
-import { tap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { AuthService } from '../auth.service';
+
+interface RegistroRespuesta {
+  ok: boolean,
+  token: string,
+  usuario: Usuario
+}
 
 @Component({
   selector: "app-register",
@@ -21,7 +28,9 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private validacionesService: ValidadoresService,
     private mensajeErroresService: MensajesErroresService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   get passwordNoIguales() {
@@ -61,13 +70,11 @@ export class RegisterComponent implements OnInit {
   registro() {
     // if (this.formularioRegistro.invalid) {
     //   return;
-    // }    
+    // }
     this.usuarioService.crearUsuario(this.formularioRegistro.value)
-      .pipe(
-        tap((data) => console.log("la data del tap", data))
-      )
-      .subscribe( respuesta => {
-        console.log(respuesta)
+      .subscribe( (res: RegistroRespuesta) => {
+         this.authService.estaLogueadoSource.next(true);
+          this.router.navigate(['privado']);
       }, (err) => {
         Swal.fire('Error', err.error.msg, 'error');
       })

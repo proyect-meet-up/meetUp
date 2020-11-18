@@ -16,7 +16,7 @@ export class Usuario {
         public nombre: string,
         public apellido: string,
         public email: string,
-        public role?: string,
+        public rol?: string,
         public password?:string, // nuevo
         public imagen?: string, // nuevo
         public telefono?: string,

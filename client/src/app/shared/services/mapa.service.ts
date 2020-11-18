@@ -48,7 +48,7 @@ export class MapaService {
   geocalizacion(localizacion: string) {
     let params = new HttpParams();
     params = params.append('country', this.country);
-    params = params.append('access_token', this.mapbox.accessToken);
+    // params = params.append('access_token', this.mapbox.accessToken);
 
     return this.http.get(
       `${this.urlMapbox}/mapbox.places/${localizacion}${this.json}`,

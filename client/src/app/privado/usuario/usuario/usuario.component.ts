@@ -1,5 +1,6 @@
 
 import { Component, OnInit} from '@angular/core';
+import { Subscription } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Usuario } from '../usuario.model';
@@ -12,6 +13,7 @@ import { UsuarioService } from '../usuario.service';
 })
 export class UsuarioComponent implements OnInit {
   usuario: Usuario;
+  sub: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -19,7 +21,8 @@ export class UsuarioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.usuario = JSON.parse(localStorage.getItem('usuario'));
+    this.sub = this.authService.usuario$.subscribe( (data: Usuario ) => this.usuario = data );
+    // this.usuario = JSON.parse(localStorage.getItem('usuario'));
   }
 
   actualizarUsuario(usuarioActualizado: Usuario) {
@@ -27,7 +30,12 @@ export class UsuarioComponent implements OnInit {
       .actualizarUsuario(usuarioActualizado, this.usuario._id)
       .subscribe((respuestaUsuario: any) =>  {
         let { usuarioActualizado } = respuestaUsuario;
-        localStorage.setItem('usuario', JSON.stringify(usuarioActualizado));
+        this.authService.usuarioSubject.next(usuarioActualizado);
+        // localStorage.setItem('usuario', JSON.stringify(usuarioActualizado));
       });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

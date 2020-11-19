@@ -118,12 +118,13 @@ const actualizarUsuario = async (req, res) => {
             }
         }        
         
-        campos.email = email;
-        const usuarioActualizado = await Usuario.findByIdAndUpdate( uid, campos, {new: true} );
-
+        const usuarioActualizadoDB = await Usuario.findByIdAndUpdate( uid, campos, {new: true} );
+        const { rol, __v, ...usuarioActualizado} = usuarioActualizadoDB.toObject();
+        delete usuarioActualizado.password;
+        
         res.json({
             ok: true,
-            usuario: usuarioActualizado
+            usuarioActualizado
         })
 
     } catch (error) {

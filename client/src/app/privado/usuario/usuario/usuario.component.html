@@ -1,7 +1,7 @@
 <div class="usuario">
   <mat-tab-group mat-stretch-tabs class="mat-elevation-z4">
     <mat-tab label="Datos del usuario">
-      <app-tab-datos-usuario [datosUsuario]="usuario"></app-tab-datos-usuario>
+      <app-tab-datos-usuario [datosUsuario]="usuario" (updateUsuario)="actualizarUsuario($event)"></app-tab-datos-usuario>
     </mat-tab>
     <mat-tab label="Cambiar contraseña">
       <app-tab-cambio-password></app-tab-cambio-password>

@@ -1,6 +1,9 @@
 
 import { Component, OnInit} from '@angular/core';
+import { skip } from 'rxjs/operators';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Usuario } from '../usuario.model';
+import { UsuarioService } from '../usuario.service';
 
 @Component({
   selector: 'app-usuario',
@@ -11,15 +14,20 @@ export class UsuarioComponent implements OnInit {
   usuario: Usuario;
 
   constructor(
-
+    private authService: AuthService,
+    private usuarioService: UsuarioService
   ) {}
 
   ngOnInit(): void {
-    this.usuario = new Usuario('Borja', 'Arana', 'barana@mail.com');
+    this.usuario = JSON.parse(localStorage.getItem('usuario'));
   }
 
-  actualizarUsuario(event) {
-    console.log('Evento', event)
-
+  actualizarUsuario(usuarioActualizado: Usuario) {
+    this.usuarioService
+      .actualizarUsuario(usuarioActualizado, this.usuario._id)
+      .subscribe((respuestaUsuario: any) =>  {
+        let { usuarioActualizado } = respuestaUsuario;
+        localStorage.setItem('usuario', JSON.stringify(usuarioActualizado));
+      });
   }
 }

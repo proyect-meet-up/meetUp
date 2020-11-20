@@ -30,8 +30,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.estaLogueado$.subscribe((data: boolean) => this.estaLogueado = data);
-    this.authService.esAdmin$.subscribe((data: boolean) => this.admin = data);
+    this.authService.estaLogueado$.subscribe((data: boolean) => {
+      this.estaLogueado = data;
+    });
+    this.authService.esAdmin$.subscribe((data: boolean) => {
+      this.admin = data;
+    });
   }
 
 

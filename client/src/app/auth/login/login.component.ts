@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.formularioLogin.value).subscribe(
       (data: LoginRespuesta) => {
-        this.authService.login(true);
+        this.authService.estaLogueadoSource.next(true);
 
         if (data.respuesta == false) {
           this.router.navigate(['privado']);

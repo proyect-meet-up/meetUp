@@ -118,12 +118,16 @@ const actualizarUsuario = async (req, res) => {
             }
         }        
         
-        campos.email = email;
-        const usuarioActualizado = await Usuario.findByIdAndUpdate( uid, campos, {new: true} );
-
+        // NOTA: Al usar la query findByIdAndUpdate, la librería monggose nos pide añadirle como opción useFindAndModify: false para resolver la advercentia de depreciación
+        // Link: https://stackoverflow.com/questions/52572852/deprecationwarning-collection-findandmodify-is-deprecated-use-findoneandupdate
+        
+        const usuarioActualizadoDB = await Usuario.findByIdAndUpdate( uid, campos, {new: true, useFindAndModify: false} );
+        const { rol, __v, ...usuarioActualizado} = usuarioActualizadoDB.toObject();
+        delete usuarioActualizado.password;
+        
         res.json({
             ok: true,
-            usuario: usuarioActualizado
+            usuarioActualizado
         })
 
     } catch (error) {

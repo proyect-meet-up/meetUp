@@ -2,6 +2,7 @@ import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import {tap } from 'rxjs/operators';
+import { Usuario } from './usuario.model';
 
 
 @Injectable({
@@ -30,6 +31,12 @@ export class UsuarioService {
           localStorage.setItem('token', resp.token)
         })
       )
+  }
+
+  actualizarUsuario(usuario: Usuario, id: string) {
+    return this.http.put(`${this.URL}/${this.path}/${id}`, usuario, {
+      headers: this.headers,
+    });
   }
 
   comprobacionExisteEmailUsuario(email: string) {

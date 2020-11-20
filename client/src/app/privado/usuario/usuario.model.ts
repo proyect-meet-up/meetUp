@@ -13,9 +13,10 @@ export class Direccion {
 export class Usuario {
 
     constructor(
-        public nombre: string,
-        public apellido: string,
-        public email: string,
+      public nombre: string,
+      public apellido: string,
+      public email: string,
+      public _id?: string,
         public rol?: string,
         public password?:string, // nuevo
         public imagen?: string, // nuevo

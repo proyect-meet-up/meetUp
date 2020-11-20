@@ -74,7 +74,15 @@ export class RegisterComponent implements OnInit {
     this.usuarioService.crearUsuario(this.formularioRegistro.value)
       .subscribe( (res: RegistroRespuesta) => {
          this.authService.estaLogueadoSource.next(true);
-          this.router.navigate(['privado']);
+         this.router.navigate(['privado']);
+         let { rol , ...usuario} = res.usuario;
+
+         // Desde la BBDD nos llega el uid. Camnbaimos la propiedad por _id para que se pueda editar perfil usuario.
+         usuario['_id'] = usuario['uid'];
+         delete usuario['uid'];
+
+         this.authService.usuarioSubject.next(usuario)
+
       }, (err) => {
         Swal.fire('Error', err.error.msg, 'error');
       })

@@ -4,19 +4,9 @@
       Área Privada
     </span>
     <div class="header-registro__links">
-      <a class="header-registro__links-items">Saludo usuario</a>
+      <a *ngIf="usuario" class="header-registro__links-items">Saludo {{ usuario.nombre }}</a>
       <a class="header-registro__links-items header-registro__dropdown">
         <img class="header-registro__avatar" src="assets/usuarios-imagenes/usuario1.jpg" alt="usuario">
-        <div class="header-registro__dropdown-content">
-          <div class="header-registro__dropdown-items">
-            <a [routerLink]="['privado','perfil']">Editar perfil</a>
-            <mat-icon>create</mat-icon>
-          </div>
-          <div class="header-registro__dropdown-items">
-            <a [routerLink]="['/']" (click)="cerrarSesion()">Cerrar sesión</a>
-            <mat-icon>close</mat-icon>
-          </div>
-        </div>
       </a>
       <button mat-button [matMenuTriggerFor]="menu" class="header-registro__links-items m-l">
         <span>Mis gestiones</span>
@@ -26,6 +16,8 @@
         <button mat-menu-item [routerLink]="['privado', 'eventos']">Próximos</button>
         <button mat-menu-item [routerLink]="['privado', 'eventos']">Históricos</button>
         <button mat-menu-item [routerLink]="['privado', 'nuevo-evento']">Nuevo evento</button>
+         <button mat-menu-item [routerLink]="['privado','perfil']">Editar perfil</button>
+        <button mat-menu-item [routerLink]="['/']" (click)="cerrarSesion()">Cerrar sesión</button>
       </mat-menu>
 
     </div>

@@ -27,6 +27,7 @@ router.post('/',
     [
         validarJWT,
         check('titulo', 'el título es obligatorio').not().isEmpty(),
+        check('categoria', 'el id de la categoría debe ser un id válido').isMongoId(),
         validarCampos
     ], 
     crearEvento);

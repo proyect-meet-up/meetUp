@@ -35,11 +35,13 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.eventosSuscription = this.eventoService.eventosBuscados$
+    this.eventosSuscription = this.eventoService.keyUpBuscador$
       .pipe(
         skip(1),
+        tap( data => console.log(data))
       )
       .subscribe(() => {
+        console.log('Detalle componente se sucribea cambios en el buscador')
         this.router.navigate(['/']);
       });
 

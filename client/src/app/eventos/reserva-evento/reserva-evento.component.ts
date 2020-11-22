@@ -5,6 +5,8 @@ import { EventoService } from '../evento.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from '../../privado/usuario/usuario.model';
 import { ValidadoresService } from 'src/app/shared/services/validadores.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-reserva-evento",
@@ -16,16 +18,18 @@ export class ReservaEventoComponent implements OnInit {
   id: number;
   formularioReserva: FormGroup;
   usuario: Usuario;
+  sub: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private eventosService: EventoService,
     private fb: FormBuilder,
-    private valdacionesService: ValidadoresService
+    private valdacionesService: ValidadoresService,
+    private authService: AuthService
   ) {
     this.id = +this.route.snapshot.params["id"];
     this.evento = this.eventosService.obtenerEvento(this.id);
-    this.usuario = new Usuario('Borja', 'Arana', 'borja@mail.com', '634584653')
+    this.sub = this.authService.usuario$.subscribe( (data: Usuario) => this.usuario = data);
 
   }
 
@@ -62,5 +66,9 @@ export class ReservaEventoComponent implements OnInit {
 
   reservarEvento() {
     console.log('Desde Formulario RESERVA', this.formularioReserva.value)
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

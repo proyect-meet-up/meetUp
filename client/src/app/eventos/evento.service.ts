@@ -91,7 +91,7 @@ export class EventoService {
     );
   }
 
-  getCategorias(): Observable<Categoria> {
+  getCategorias(): Observable<Categoria[]> {
     return this.http.get(`${this.URL}/categorias`).pipe(pluck('categorias'));
   }
 }

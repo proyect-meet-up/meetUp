@@ -21,7 +21,7 @@
         <mat-select formControlName="tipo">
           <mat-option>--</mat-option>
           <mat-option *ngFor="let item of categorias" [value]="item">
-            {{item}}
+            {{item.categoria}}
           </mat-option>
         </mat-select>
       </mat-form-field>

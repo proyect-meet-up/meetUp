@@ -52,8 +52,27 @@ export class NuevoEventoComponent implements OnInit {
   }
 
   crearNuevoEvento() {
-    console.log(this.formularioNuevoEvento.value);
+  
+    let tipo = this.formularioNuevoEvento.get('tipo').value;
+    let usuario = JSON.parse(localStorage.getItem('usuario'));
+    
+    let evento = {
+      titulo: this.formularioNuevoEvento.get('titulo').value,
+      descripcion: this.formularioNuevoEvento.get('descripcion').value,
+      categoria: tipo._id,
+      precio: this.formularioNuevoEvento.get('precio').value,
+      fecha: this.formularioNuevoEvento.get('fecha').value,
+      direccion: this.formularioNuevoEvento.get('direccion').value,
+      uid: usuario._id    
   }
+
+  this.eventoService.crearEvento(evento).subscribe( data => {
+    console.log(data)
+  },(error) => {
+    console.log("el error es: ", error)
+  })
+  
+}
 
   nuevaDireccion(event: Direccion) {
     this.formularioNuevoEvento.get('direccion').setValue(event);

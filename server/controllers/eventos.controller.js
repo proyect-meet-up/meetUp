@@ -20,23 +20,28 @@ const getEventos = async (req, res = response) => {
 
 const crearEvento = async (req, res = response) => {
     
-    const uid = req.uid;     
-       
-    const evento = new Evento({
-        usuario: uid,           
-        ...req.body
-    });       
-       
-
+    const uid = req.uid; 
+           
+    
     try {
-
-       
+        // https://masteringjs.io/tutorials/mongoose/create
+        const nuevaDireccion = await Direccion.create(req.body.direccion);
+        
+        let {direccion, ...rest} = req.body;
+           
+        const evento = new Evento({
+            usuario: uid,  
+            direccion: nuevaDireccion._id,         
+            ...rest
+        });       
+        
         const eventoDB = await evento.save();
 
         res.json ({
             ok: true,
             evento: eventoDB
         })    
+   
 
     } catch (error) {
         res.status(500).json({

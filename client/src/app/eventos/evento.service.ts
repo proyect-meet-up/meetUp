@@ -94,4 +94,8 @@ export class EventoService {
   getCategorias(): Observable<Categoria[]> {
     return this.http.get(`${this.URL}/categorias`).pipe(pluck('categorias'));
   }
+
+  crearEvento( formEvento: Evento) {
+    return this.http.post(`${this.URL}/eventos`, formEvento);
+  }
 }

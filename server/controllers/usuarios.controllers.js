@@ -9,9 +9,7 @@ const { generarJWT } = require('../helpers/jwt');
 const getUsuarios = async (req, res) => {    
 
     const desde = Number(req.query.desde) || 0;
-    console.log(desde);
-
-
+  
 
     // const usuarios = await Usuario.find(); devuelve toda la información del usuario
  /*    const usuarios = await Usuario

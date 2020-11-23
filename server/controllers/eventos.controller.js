@@ -1,6 +1,8 @@
 const { response } = require('express');
+const mongoose  = require('mongoose');
 
 const Evento = require('../models/evento');
+const Direccion = require('../models/direccion');
 
 
 
@@ -8,7 +10,7 @@ const getEventos = async (req, res = response) => {
 
     const eventos =  await Evento.find()
                                 .populate('usuario', 'nombre email')
-                                .populate('categoria', 'categorias')
+                                .populate('categoria', 'categoria')
                                 
     res.json ({
         ok: true,
@@ -18,16 +20,17 @@ const getEventos = async (req, res = response) => {
 
 const crearEvento = async (req, res = response) => {
     
-    const uid = req.uid;
-    
+    const uid = req.uid;     
+       
     const evento = new Evento({
-        usuario: uid,
+        usuario: uid,           
         ...req.body
-    });
-    
+    });       
+       
 
     try {
 
+       
         const eventoDB = await evento.save();
 
         res.json ({

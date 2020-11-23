@@ -12,7 +12,7 @@ const EventoSchema = Schema({
         type: String
     },
     direccion: {
-        //required: true,
+      //  required: true,
         type: Schema.Types.ObjectId,
         ref: 'Direccion'
     },

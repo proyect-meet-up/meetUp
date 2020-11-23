@@ -23,6 +23,10 @@ app.use('/api/categorias', require('./routes/categorias.routes'));
 
 app.use('/api/login', require('./routes/auth.routes'));
 
+app.use('/api/todo', require('./routes/busquedas.routes'));
+
+
+
 //console.log(process.env)
 
 

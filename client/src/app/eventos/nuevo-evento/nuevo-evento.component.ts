@@ -61,8 +61,8 @@ export class NuevoEventoComponent implements OnInit {
 
   obtenerCategorias() {
     this.eventoService.getCategorias()
-      .subscribe( (data: Categoria) => {
-        this.categorias = data.categorias;
+      .subscribe( (data: Categoria[]) => {
+        this.categorias = data;
       })
   }
 }

@@ -18,6 +18,9 @@ export class EventoService {
   eventosBuscadosSource = new BehaviorSubject<Evento[]>(this.cursos);
   eventosBuscados$ = this.eventosBuscadosSource.asObservable();
 
+  keyUpBuscador = new BehaviorSubject<boolean>(false);
+  keyUpBuscador$ = this.keyUpBuscador.asObservable();
+
   // Control evento click del botón cuando se muestra el mensaje no hay resultados.
   clickBoton = new Subject<boolean>();
   clickBoton$ = this.clickBoton.asObservable();
@@ -51,6 +54,7 @@ export class EventoService {
       )
     );
     this.eventosBuscadosSource.next(cursos);
+    this.keyUpBuscador.next(true);
     return cursos;
   }
 
@@ -87,7 +91,7 @@ export class EventoService {
     );
   }
 
-  getCategorias(): Observable<Categoria> {
+  getCategorias(): Observable<Categoria[]> {
     return this.http.get(`${this.URL}/categorias`).pipe(pluck('categorias'));
   }
 }

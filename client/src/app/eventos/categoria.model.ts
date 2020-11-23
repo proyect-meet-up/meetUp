@@ -1,4 +1,4 @@
 export class Categoria {
-    categorias: [];
-    tgas: [];
+    _id: string;
+    categoria: string;
 }

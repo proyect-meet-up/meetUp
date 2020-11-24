@@ -68,9 +68,7 @@ export class RegisterComponent implements OnInit {
   }
 
   registro() {
-    // if (this.formularioRegistro.invalid) {
-    //   return;
-    // }
+
     this.usuarioService.crearUsuario(this.formularioRegistro.value)
       .subscribe( (res: RegistroRespuesta) => {
          this.authService.estaLogueadoSource.next(true);
@@ -82,9 +80,6 @@ export class RegisterComponent implements OnInit {
          delete usuario['uid'];
 
          this.authService.usuarioSubject.next(usuario)
-
-      }, (err) => {
-        Swal.fire('Error', err.error.msg, 'error');
       })
   }
 

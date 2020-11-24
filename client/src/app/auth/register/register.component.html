@@ -32,7 +32,7 @@
         {{ obtenerMensajeError('email') }}
       </mat-error>
     </mat-form-field>
-    
+
 
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
@@ -45,10 +45,10 @@
       <input matInput placeholder="Repetir password" [type]="hide2 ? 'password' : 'text'"
         formControlName="confirmacionPassword">
       <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="passwordNoIguales">No son iguales las contraseñas</mat-error>
     </mat-form-field>
-    <small *ngIf="passwordNoIguales">No son iguales las contraseñas</small>
 
-    <button mat-raised-button color="primary">
+    <button mat-raised-button color="primary" [disabled]="!formularioRegistro.valid">
       Registro
     </button>
 

@@ -4,8 +4,6 @@
 
 */
 
-
-
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
@@ -21,10 +19,10 @@ const  {
 
 const router = Router();
 
-router.get('/', getEventos);
-
-router.post('/',
-    [
+router
+    .route('/')
+    .get(getEventos)
+    .post([
         validarJWT,
         check('titulo', 'el título es obligatorio').not().isEmpty(),
         check('categoria', 'el id de la categoría debe ser un id válido').isMongoId(),
@@ -32,14 +30,10 @@ router.post('/',
     ], 
     crearEvento);
 
-router.put('/:id', 
-    [
-       
-    ], 
-    actualizarEvento);
-
-router.delete('/:id',    
-    borrarEvento);
+router
+    .route('/:id')
+    .put(actualizarEvento)
+    .delete(borrarEvento);
 
 
  module.exports = router;

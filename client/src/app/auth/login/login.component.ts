@@ -5,8 +5,7 @@ import { NavigationEnd, Router } from '@angular/router';
 
 import { ValidadoresService } from 'src/app/shared/services/validadores.service';
 import { AuthService } from '../auth.service';
-import Swal from 'sweetalert2';
-import { filter, take, takeUntil } from 'rxjs/operators';
+
 import { Subscription } from 'rxjs';
 import { UrlService } from '@shared/componentes/services/url.service';
 
@@ -77,9 +76,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login() {
-    // if (this.formularioLogin.invalid) {
-    //   return;
-    // }
+
 
     this.authService.login(this.formularioLogin.value).subscribe(
       (data: LoginRespuesta) => {
@@ -97,10 +94,6 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.authService.isAdmin(true);
           this.router.navigate(['admin', 'confirmar-eventos']);
         }
-      },
-      (err) => {
-        console.log(err)
-        // Swal.fire('Error', err.error.msg, 'error');
       }
     );
   }

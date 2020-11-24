@@ -83,7 +83,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.authService.login(this.formularioLogin.value).subscribe(
       (data: LoginRespuesta) => {
-        this.authService.estaLogueadoSource.next(true);
 
         if (data.respuesta == false) {
           if ( this.urlPrevio.length === 0 ) {
@@ -100,7 +99,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
       },
       (err) => {
-        Swal.fire('Error', err.error.msg, 'error');
+        console.log(err)
+        // Swal.fire('Error', err.error.msg, 'error');
       }
     );
   }

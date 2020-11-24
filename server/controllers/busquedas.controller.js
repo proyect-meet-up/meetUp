@@ -3,6 +3,7 @@ const {response} = require('express');
 
 const Usuario = require('../models/usuario');
 const Evento = require('../models/evento');
+const Categoria = require('../models/categoria');
 
 const getbusquedasCompletas = async (req, res = response) => {
 
@@ -25,7 +26,40 @@ const getbusquedasCompletas = async (req, res = response) => {
 
 }
 
+const getDocumentosColeccion = async (req, res = response) => {
+
+    const tabla = req.params.tabla;
+    const busqueda = req.params.busqueda;
+    const regex = new RegExp(busqueda, 'i');
+    let data = [];
+
+    switch ( tabla ) {
+        case 'eventos':
+             data = await Evento.find({titulo: regex});
+            
+        break;
+
+        case 'categorias':
+             data = await Categoria.find({categoria: regex});
+           
+        break;
+
+        default: 
+           return  res.status(400).json({
+                ok: false,
+                msg: 'La tabla debe ser eventos o categorias'
+            })        
+
+    }
+
+    res.json({
+        ok: true,
+        resultados: data
+    })
+
+}
 
 module.exports = {
-    getbusquedasCompletas
+    getbusquedasCompletas,
+    getDocumentosColeccion
 }

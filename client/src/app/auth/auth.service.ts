@@ -12,10 +12,10 @@ import { Usuario } from 'src/app/privado/usuario/usuario.model';
 export class AuthService {
   URL = environment.URL;
 
-  usuarioSubject = new BehaviorSubject<Usuario>(null);
+  usuarioSubject = new BehaviorSubject<Usuario>(JSON.parse(localStorage.getItem('usuario')) || null);
   usuario$ = this.usuarioSubject.asObservable();
 
-  estaLogueadoSource = new BehaviorSubject<boolean>(false);
+  estaLogueadoSource = new BehaviorSubject<boolean>(localStorage.getItem('token') != null);
   estaLogueado$ = this.estaLogueadoSource.asObservable();
 
   esAdmin = new BehaviorSubject(false);

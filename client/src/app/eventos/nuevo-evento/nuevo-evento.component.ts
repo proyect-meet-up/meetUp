@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Direccion } from 'src/app/privado/usuario/usuario.model';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Direccion, Usuario } from 'src/app/privado/usuario/usuario.model';
 import { MensajesErroresService } from 'src/app/shared/services/mensajes-errores.service';
 import { ValidadoresService } from 'src/app/shared/services/validadores.service';
 import { Categoria } from '../categoria.model';
@@ -14,16 +16,22 @@ import { EventoService } from '../evento.service';
 export class NuevoEventoComponent implements OnInit {
   formularioNuevoEvento: FormGroup;
   categorias: Categoria[] = [];
+  usuario: Usuario;
+  sub: Subscription;
 
   constructor(
     private fb: FormBuilder,
     private validacionesService: ValidadoresService,
     private mensajeErroresService: MensajesErroresService,
-    private eventoService: EventoService
+    private eventoService: EventoService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.crearFormularioNuevoEvento();
+    this.sub = this.authService.usuario$.subscribe( data => this.usuario = data);
+    // let saludo = this.authService.token;
+    // console.log(saludo)
   }
 
   crearFormularioNuevoEvento() {
@@ -52,26 +60,21 @@ export class NuevoEventoComponent implements OnInit {
   }
 
   crearNuevoEvento() {
-  
-    let tipo = this.formularioNuevoEvento.get('tipo').value;
-    let usuario = JSON.parse(localStorage.getItem('usuario'));
-    
-    let evento = {
-      titulo: this.formularioNuevoEvento.get('titulo').value,
-      descripcion: this.formularioNuevoEvento.get('descripcion').value,
-      categoria: tipo._id,
-      precio: this.formularioNuevoEvento.get('precio').value,
-      fecha: this.formularioNuevoEvento.get('fecha').value,
-      direccion: this.formularioNuevoEvento.get('direccion').value,
-      uid: usuario._id    
-  }
 
-  this.eventoService.crearEvento(evento).subscribe( data => {
-    console.log(data)
-  },(error) => {
-    console.log("el error es: ", error)
-  })
-  
+    let { tipo , ...rest } = this.formularioNuevoEvento.value;
+
+    const evento = {
+      ...rest,
+      categoria: tipo['_id'],
+      uid: this.usuario._id
+    }
+
+    this.eventoService.crearEvento(evento).subscribe( data => {
+      console.log(data)
+    },(error) => {
+      console.log("el error es: ", error)
+    })
+
 }
 
   nuevaDireccion(event: Direccion) {
@@ -83,5 +86,9 @@ export class NuevoEventoComponent implements OnInit {
       .subscribe( (data: Categoria[]) => {
         this.categorias = data;
       })
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

@@ -36,6 +36,8 @@ const EventoSchema = Schema({
         type: [ String ]
     }
     
+},{
+    timestamps: true
 });
 
 // Opcional, para personalizar la data que se envía como respuesta en el json. Extraemos el password del objeto

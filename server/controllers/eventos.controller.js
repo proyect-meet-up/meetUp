@@ -35,7 +35,7 @@ const crearEvento = async (req, res = response) => {
 
         const eventoDB = await evento.save();
 
-        res.staus(201).json({
+        res.status(201).json({
             ok: true,
             evento: eventoDB
         });

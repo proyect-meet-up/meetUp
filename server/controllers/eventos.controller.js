@@ -9,6 +9,7 @@ const getEventos = async (req, res = response) => {
 
     res.json({
         ok: true,
+        total: eventos.length,
         eventos
     });
 };
@@ -30,7 +31,7 @@ const crearEvento = async (req, res = response) => {
 
         const eventoDB = await evento.save();
 
-        res.json({
+        res.staus(201).json({
             ok: true,
             evento: eventoDB
         });
@@ -43,7 +44,7 @@ const crearEvento = async (req, res = response) => {
 };
 
 const actualizarEvento = (req, res = response) => {
-    res.json({
+    res.status(200).json({
         ok: true,
         msg: 'actualizarEvento'
     });

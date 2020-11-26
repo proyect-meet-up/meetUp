@@ -12,6 +12,7 @@ const { validarJWT } = require('../middlewares/validar-jwt');
 
 const  {
     getEventos,
+    getEvento,
     crearEvento,
     actualizarEvento,
     borrarEvento
@@ -32,6 +33,7 @@ router
 
 router
     .route('/:id')
+    .get(getEvento)
     .put(actualizarEvento)
     .delete(borrarEvento);
 

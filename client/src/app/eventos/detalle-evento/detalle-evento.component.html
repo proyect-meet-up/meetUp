@@ -1,4 +1,4 @@
-<div class="detalle-evento">
+<div class="detalle-evento" *ngIf="evento">
   <div class="detalle-evento__title">
     {{evento.titulo | uppercase}}
   </div>
@@ -15,7 +15,7 @@
       </div>
       <div class="detalle-evento__location">
         <h5>Dirección:</h5>
-        <address>{{evento.direccion}}</address>
+        <address>{{evento.direccion.calle}} {{evento.direccion.numero}} {{evento.direccion.provincia}} {{evento.direccion.codigoPostal}}</address>
       </div>
       <app-mapa class="detalle-evento__mapa" [direccion]="evento.direccion"></app-mapa>
     </div>

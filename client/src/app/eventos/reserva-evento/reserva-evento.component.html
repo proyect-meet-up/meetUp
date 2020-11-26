@@ -5,19 +5,19 @@
     </div>
     <form class="reserva-form__form" [formGroup]="formularioReserva" (ngSubmit)="reservarEvento()">
       <mat-form-field appearance="fill">
-        <mat-label>{{usuario?.nombre}}</mat-label>
+        <mat-label>Nombre</mat-label>
         <input matInput placeholder="Nombre" formControlName="nombre">
         <mat-icon matSuffix>face</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>{{usuario?.apellido}}</mat-label>
+        <mat-label>Apellido</mat-label>
         <input matInput placeholder="Apellido" formControlName="apellido">
         <mat-icon matSuffix>person</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>{{usuario?.email}}</mat-label>
+        <mat-label>Email</mat-label>
         <input matInput placeholder="E-mail" formControlName="email">
         <mat-icon matSuffix>mail</mat-icon>
       </mat-form-field>
@@ -27,7 +27,7 @@
         <input matInput placeholder="Teléfono" formControlName="telefono">
         <mat-icon matSuffix>phone</mat-icon>
       </mat-form-field>
-      <button mat-raised-button color="primary">Reservar</button>
+      <button mat-raised-button color="primary" [disabled]="!formularioReserva.valid">Reservar</button>
     </form>
   </div>
   <div class="reserva-form__right">
@@ -39,9 +39,8 @@
     </div>
     <div class="reserva-form__location">
       <div class="reserva-form__direction">
-        <p>La Granola</p>
-        <p>{{evento.direccion}}</p>
-        <p>Código postal</p>
+        <p>Calle: {{evento.direccion.calle}}</p>
+        <p>Provincia: {{evento.direccion.provincia}}</p>
       </div>
     </div>
   </div>

@@ -18,7 +18,7 @@ import { EventoService } from "../evento.service";
 export class DetalleEventoComponent implements OnInit, OnDestroy {
   evento: Evento;
   eventosSuscription: Subscription;
-  id: number;
+  id: string;
   logueado = false;
 
 
@@ -37,18 +37,19 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.eventosSuscription = this.eventoService.keyUpBuscador$
       .pipe(
-        skip(1),
-        tap( data => console.log(data))
+        skip(1)
       )
       .subscribe(() => {
-        console.log('Detalle componente se sucribea cambios en el buscador')
         this.router.navigate(['/']);
       });
 
 
     this.route.params.subscribe((params: Params) => {
-      this.id = +params['id'];
-      this.evento = this.eventoService.obtenerEvento(this.id);
+      this.id = params['id'];
+      this.eventoService.obtenerEvento(this.id)
+        .subscribe( (evento: Evento) =>{
+           this.evento = evento
+          })
     });
 
     this.authService.estaLogueado$.subscribe((valor) => {
@@ -60,7 +61,7 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
     this.urlService.setPreviousUrl(this.router.url);
 
     if (this.logueado) {
-      this.router.navigate(['privado', 'reserva-evento', this.evento.uid]);
+      this.router.navigate(['privado', 'reserva-evento', this.evento._id]);
     } else {
       this.abrirModalNoAutenticado();
     }

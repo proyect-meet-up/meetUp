@@ -1,4 +1,4 @@
-<div class="card mat-elevation-z3" *ngIf="curso" [routerLink]="['detalle-evento', curso.uid]">
+<div class="card mat-elevation-z3" *ngIf="curso" [routerLink]="['detalle-evento', curso._id]">
   <div class="card__container-imagen">
     <img class="card__imagen" [src]="curso.imagen" alt="{{curso.imagen}}">
   </div>
@@ -6,9 +6,12 @@
     <div class="card__title">
       {{curso.titulo | upperLetterFisrtWord}}
     </div>
+    <div>
+      {{ curso.fecha | formatoFecha: 'LL' }}
+    </div>
     <div class="card__location">
       <i class="material-icons cards__icons">location_on</i>
-      <p>{{curso.direccion}}</p>
+      <p>{{curso.direccion.provincia}}</p>
     </div>
   </div>
 </div>

@@ -25,8 +25,11 @@ export class MapaComponent implements OnInit, AfterViewInit {
   }
 
   geolocalizarDireccion() {
+    let { calle, numero, provincia, codigo } = this.direccion;
+    let direccion = `${calle} ${numero} ${provincia} ${codigo}`;
+
     this.mapaService
-      .geocalizacion(this.direccion)
+      .geocalizacion(direccion)
       .pipe(pluck('features'))
       .subscribe((data: Feature) => {
         this.inicializacionMapa(data[0]);

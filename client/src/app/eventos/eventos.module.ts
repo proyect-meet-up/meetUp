@@ -1,5 +1,5 @@
 // Módulos
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PipesModule } from '../pipes/pipes.module';
 
@@ -24,7 +24,7 @@ import { ListadoRegistradoComponent } from './listado-registrado/listado-registr
 import { ListadoEventosComponent } from './listado-eventos/listado-eventos.component';
 import { DetalleEventoRegistradoComponent } from './detalle-evento-registrado/detalle-evento-registrado.component';
 import { NuevoEventoComponent } from './nuevo-evento/nuevo-evento.component';
-import { MapaComponent } from '../shared/componentes/mapa/mapa.component';
+import { NoResultadosEventosComponent } from './no-resultados-eventos/no-resultados-eventos.component';
 
 
 
@@ -36,7 +36,8 @@ import { MapaComponent } from '../shared/componentes/mapa/mapa.component';
     ListadoRegistradoComponent,
     ListadoEventosComponent,
     DetalleEventoRegistradoComponent,
-    NuevoEventoComponent
+    NuevoEventoComponent,
+    NoResultadosEventosComponent,
   ],
   imports: [
     CommonModule,
@@ -52,7 +53,7 @@ import { MapaComponent } from '../shared/componentes/mapa/mapa.component';
     MatNativeDateModule,
     ComponentsModule,
     MatProgressBarModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   exports: [
     //NuevoEventoComponent

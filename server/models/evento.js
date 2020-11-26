@@ -34,6 +34,10 @@ const EventoSchema = Schema({
     }, 
     tags: {
         type: [ String ]
+    },
+    imagen: {
+        type: String,
+        default: 'https://source.unsplash.com/random/800x600'
     }
     
 },{

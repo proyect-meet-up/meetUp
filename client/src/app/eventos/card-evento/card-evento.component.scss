@@ -25,9 +25,14 @@
     position: absolute;
     top: 30px;
     left: 30px;
-    background-color: bisque;
     padding: 5px 10px;
     border-radius: 15px;
+    color: white;
+    font-weight: bold;
+  }
+
+  &__categoria--color {
+    background-color: #a96572;
   }
 
   &__container-texto {
@@ -45,8 +50,10 @@
     flex: 1;
   }
 
-  &__fecha {
-    font-size: 1.4rem;
+  &__container-location {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &__location {
@@ -56,8 +63,15 @@
     p {
       font-size: 1.5rem;
       padding: 10px;
+      color: #799351;
+      font-weight: bold;
     }
   }
+
+  &__fecha {
+    font-size: 1.4rem;
+  }
+
 
   &__icons {
     font-family: "Material Icons";
@@ -72,7 +86,7 @@
     word-wrap: normal;
     direction: ltr;
     -webkit-font-smoothing: antialiased;
-    color: yellow;
-    background-color: yellowgreen;
+
   }
+
 }

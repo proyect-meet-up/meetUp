@@ -7,7 +7,7 @@ const Direccion = require('../models/direccion');
 const getEventos = async (req, res = response) => {
 	const eventos = await Evento.find()
 		.populate('usuario', 'nombre email')
-		.populate('categoria', 'categoria')
+		.populate('categoria', 'categoria color')
 		.populate('direccion', 'calle numero provincia codigo');
 
 	res.json({

@@ -15,7 +15,8 @@ const  {
     getEvento,
     crearEvento,
     actualizarEvento,
-    borrarEvento
+    borrarEvento,
+    misEventos
 } = require('../controllers/eventos.controller')
 
 const router = Router();
@@ -30,12 +31,17 @@ router
         validarCampos
     ], 
     crearEvento);
+    
+router
+    .route('/usuario')
+    .get(validarJWT, misEventos)
 
 router
     .route('/:id')
     .get(getEvento)
     .put(actualizarEvento)
     .delete(borrarEvento);
+
 
 
  module.exports = router;

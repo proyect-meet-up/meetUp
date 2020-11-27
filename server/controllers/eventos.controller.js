@@ -27,6 +27,19 @@ const getEvento = async (req, res = response) => {
 	});
 };
 
+const misEventos = async ( req, res = response) => {
+
+	const misEventos = await Evento.find({usuario: req.uid});
+
+	res.status(200).json({
+		ok: true,
+		total: misEventos.length,
+		eventos: misEventos
+	})
+
+
+}
+
 const crearEvento = async (req, res = response) => {
 	const uid = req.uid;
 
@@ -75,5 +88,6 @@ module.exports = {
 	getEvento,
 	crearEvento,
 	actualizarEvento,
-	borrarEvento
+	borrarEvento,
+	misEventos
 };

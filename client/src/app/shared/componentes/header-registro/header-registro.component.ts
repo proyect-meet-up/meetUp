@@ -2,6 +2,8 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef, AfterViewInit, Inp
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Evento } from 'src/app/eventos/evento.model';
+import { EventoService } from 'src/app/eventos/evento.service';
 import { Usuario } from 'src/app/privado/usuario/usuario.model';
 
 
@@ -13,13 +15,25 @@ import { Usuario } from 'src/app/privado/usuario/usuario.model';
 export class HeaderRegistroComponent implements OnInit {
   usuario: Usuario;
   sub: Subscription;
+  total: number;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private eventosService: EventoService
   ) {}
 
   ngOnInit(): void {
-   this.sub = this.authService.usuario$.subscribe( (data: Usuario) => this.usuario = data );
+   this.sub = this.authService.usuario$.subscribe( (data: Usuario) => {
+     this.usuario = data
+    });
+
+  this.eventosService
+    .getEventosDelUsuario('total')
+    .subscribe((total: number) => {
+      this.total = total;
+      console.log(this.total)
+    });
+
   }
 
   cerrarSesion() {

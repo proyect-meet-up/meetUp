@@ -3,8 +3,11 @@
     <span class="header-registro__logo" [routerLink]="['privado']">
       Área Privada
     </span>
+    <div *ngIf="total > 0">
+      <span [routerLink]="['privado', 'eventos', 'usuario']">Mis eventos</span>
+    </div>
     <div class="header-registro__links">
-      <a *ngIf="usuario" class="header-registro__links-items">Saludo {{ usuario.nombre }}</a>
+      <a *ngIf="usuario" class="header-registro__links-items">Bienvenido {{ usuario.nombre }}</a>
       <a class="header-registro__links-items header-registro__dropdown">
         <img class="header-registro__avatar" src="assets/usuarios-imagenes/usuario1.jpg" alt="usuario">
       </a>
@@ -13,6 +16,7 @@
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
+        <button *ngIf="total > 0" mat-menu-item [routerLink]="['privado', 'eventos', 'usuario']">Mis eventos ...</button>
         <button mat-menu-item [routerLink]="['privado', 'eventos']">Próximos</button>
         <button mat-menu-item [routerLink]="['privado', 'eventos']">Históricos</button>
         <button mat-menu-item [routerLink]="['privado', 'nuevo-evento']">Nuevo evento</button>

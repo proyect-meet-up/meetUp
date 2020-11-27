@@ -6,20 +6,20 @@ html {
   height: 100%;
 }
 html {
-  @include breakpoints.respond(big-desktop) {
-    background-color: color.$color-primary-lighter;
-  }
+  // @include breakpoints.respond(big-desktop) {
+  //   background-color: color.$color-primary-lighter;
+  // }
 
-  @include breakpoints.respond(tab-port) {
-     background-color: color.$color-primary-lighter;
-  }
+  // @include breakpoints.respond(tab-port) {
+  //    background-color: color.$color-primary-lighter;
+  // }
 
-  @include breakpoints.respond(tab-land) {
-     background-color: color.$color-primary-lighter;
-  }
+  // @include breakpoints.respond(tab-land) {
+  //    background-color: color.$color-primary-lighter;
+  // }
 
-  @include breakpoints.respond(phone) {
-     background-color: color.$color-primary-lighter;
-  }
+  // @include breakpoints.respond(phone) {
+  //    background-color: color.$color-primary-lighter;
+  // }
 
 }

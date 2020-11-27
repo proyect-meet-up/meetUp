@@ -18,8 +18,10 @@ const getEventos = async (req, res = response) => {
 };
 
 const getEvento = async (req, res = response) => {
-	const evento = await Evento.findById(req.params.id)
-				.populate('direccion', 'calle numero localidad provincia codigo')
+	const evento = await Evento.findById(req.params.id).populate(
+		'direccion',
+		'calle numero localidad provincia codigo'
+	);
 
 	res.json({
 		ok: true,
@@ -27,18 +29,17 @@ const getEvento = async (req, res = response) => {
 	});
 };
 
-const misEventos = async ( req, res = response) => {
-
-	const misEventos = await Evento.find({usuario: req.uid});
+const getEventosDelUsuario = async (req, res = response) => {
+	const eventos = await Evento.find({ usuario: req.uid });
+	const total = await Evento.find({ usuario: req.uid }).countDocuments();
+	
 
 	res.status(200).json({
 		ok: true,
-		total: misEventos.length,
-		eventos: misEventos
-	})
-
-
-}
+		total,
+		eventos
+	});
+};
 
 const crearEvento = async (req, res = response) => {
 	const uid = req.uid;
@@ -89,5 +90,5 @@ module.exports = {
 	crearEvento,
 	actualizarEvento,
 	borrarEvento,
-	misEventos
+	getEventosDelUsuario
 };

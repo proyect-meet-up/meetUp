@@ -16,7 +16,7 @@ const  {
     crearEvento,
     actualizarEvento,
     borrarEvento,
-    misEventos
+    getEventosDelUsuario
 } = require('../controllers/eventos.controller')
 
 const router = Router();
@@ -34,7 +34,7 @@ router
     
 router
     .route('/usuario')
-    .get(validarJWT, misEventos)
+    .get(validarJWT, getEventosDelUsuario)
 
 router
     .route('/:id')

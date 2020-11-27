@@ -48,7 +48,6 @@ export class EventoService {
   }
 
   obtenerEvento(id: string): Observable<Evento> {
-
     return this.http.get(`${this.URL}/eventos/${id}`)
       .pipe( pluck('evento'))
   }
@@ -69,6 +68,13 @@ export class EventoService {
     this.clickBoton.next(value);
   }
 
+  getEventosDelUsuario(param: string): Observable<any> {
+
+    return this.http.get<any>(`${this.URL}/eventos/usuario`)
+      .pipe(
+        pluck(`${param}`)
+      );
+  }
 
   getProvincias(): Observable<ProvinciaResponse[]> {
     return this.http.get(`${this.URL}/localizacion/provincias`).pipe(

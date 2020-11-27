@@ -1,19 +1,23 @@
-import { HttpClient } from '@angular/common/http';
+
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { filter, map, pluck, tap } from 'rxjs/operators';
 
-import { Evento, eventos } from "./evento.model";
+import { Evento } from "./evento.model";
 import { ProvinciaResponse } from '../shared/componentes/direccion.model';
 import { environment } from '@env/environment';
 import { Categoria } from './categoria.model';
+
+import { quitarAcentos } from '../shared/helpers/helpers';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventoService {
-  cursos: Evento[] = eventos;
+  cursos: Evento[] = [];
 
   eventosBuscadosSource = new BehaviorSubject<Evento[]>(this.cursos);
   eventosBuscados$ = this.eventosBuscadosSource.asObservable();
@@ -27,29 +31,32 @@ export class EventoService {
 
   URL = environment.URL;
 
-  constructor(private http: HttpClient) {}
-
-  obtenerEventos(): Evento[] {
-    this.eventosBuscadosSource.next(this.cursos);
-    return this.cursos.slice();
+  constructor(private http: HttpClient) {
+    this.obtenerTodosEventos();
   }
 
-  obtenerEvento(id: number): Evento {
-    let curso = this.cursos.filter((curso) => curso.uid === id);
-    let [evento] = curso;
+  obtenerTodosEventos(): Subscription {
+    return this.http
+      .get<Evento[]>(`${this.URL}/eventos`)
+      .pipe(
+        pluck('eventos'),
+        tap((eventos: Evento[]) => this.eventosBuscadosSource.next(eventos))
+      )
+      .subscribe((eventos: Evento[]) => {
+        this.cursos = [...eventos];
+      });
+  }
 
-    // TODO retornar el evento vacio
-    if (!evento) {
-      return;
-    }
+  obtenerEvento(id: string): Observable<Evento> {
 
-    return evento;
+    return this.http.get(`${this.URL}/eventos/${id}`)
+      .pipe( pluck('evento'))
   }
 
   obtenerEventoDeBuscador(busqueda: string): Evento[] {
-    let sinAcentos = this.quitarAcentos(busqueda);
+    let sinAcentos = quitarAcentos(busqueda);
     let cursos = this.cursos.filter((curso) =>
-      this.quitarAcentos(curso.titulo.toLowerCase()).includes(
+      quitarAcentos(curso.titulo.toLowerCase()).includes(
         sinAcentos.toLowerCase()
       )
     );
@@ -62,25 +69,6 @@ export class EventoService {
     this.clickBoton.next(value);
   }
 
-  quitarAcentos(cadena) {
-    const acentos = {
-      á: 'a',
-      é: 'e',
-      í: 'i',
-      ó: 'o',
-      ú: 'u',
-      Á: 'A',
-      É: 'E',
-      Í: 'I',
-      Ó: 'O',
-      Ú: 'U',
-    };
-    return cadena
-      .split('')
-      .map((letra) => acentos[letra] || letra)
-      .join('')
-      .toString();
-  }
 
   getProvincias(): Observable<ProvinciaResponse[]> {
     return this.http.get(`${this.URL}/localizacion/provincias`).pipe(
@@ -95,7 +83,7 @@ export class EventoService {
     return this.http.get(`${this.URL}/categorias`).pipe(pluck('categorias'));
   }
 
-  crearEvento( formEvento: Evento) {
+  crearEvento(formEvento: Evento) {
     return this.http.post(`${this.URL}/eventos`, formEvento);
   }
 }

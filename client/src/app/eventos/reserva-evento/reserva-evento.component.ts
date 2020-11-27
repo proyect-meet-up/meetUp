@@ -9,13 +9,13 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "app-reserva-evento",
-  templateUrl: "./reserva-evento.component.html",
-  styleUrls: ["./reserva-evento.component.scss"],
+  selector: 'app-reserva-evento',
+  templateUrl: './reserva-evento.component.html',
+  styleUrls: ['./reserva-evento.component.scss'],
 })
 export class ReservaEventoComponent implements OnInit {
   evento: Evento;
-  id: number;
+  id: string;
   formularioReserva: FormGroup;
   usuario: Usuario;
   sub: Subscription;
@@ -27,27 +27,31 @@ export class ReservaEventoComponent implements OnInit {
     private valdacionesService: ValidadoresService,
     private authService: AuthService
   ) {
-    this.id = +this.route.snapshot.params["id"];
-    this.evento = this.eventosService.obtenerEvento(this.id);
-    this.sub = this.authService.usuario$.subscribe( (data: Usuario) => this.usuario = data);
-
+    this.id = this.route.snapshot.params['id'];
+    this.eventosService.obtenerEvento(this.id).subscribe((data: Evento) => {
+      this.evento = data;
+    });
+    this.sub = this.authService.usuario$.subscribe(
+      (data: Usuario) => (this.usuario = data)
+    );
   }
 
   ngOnInit(): void {
-    if( this.evento ) {
-      this.crearFormularioReserva();
-    }
+    this.crearFormularioReserva();
   }
 
   crearFormularioReserva() {
     this.formularioReserva = this.fb.group({
-      nombre: [ this.usuario ? this.usuario.nombre : '', [Validators.required]],
-      apellido: [ this.usuario ? this.usuario.apellido : '', [Validators.required]],
+      nombre: [this.usuario ? this.usuario.nombre : '', [Validators.required]],
+      apellido: [
+        this.usuario ? this.usuario.apellido : '',
+        [Validators.required],
+      ],
       email: [
-        this.usuario ? this.usuario.email: '',
+        this.usuario ? this.usuario.email : '',
         [Validators.required, this.valdacionesService.comprobarValidacionEmail],
       ],
-      telefono: [ this.usuario ? this.usuario.telefono: ''],
+      telefono: [this.usuario ? this.usuario.telefono : '', [ Validators.required ]],
     });
 
     this.setDisableCamposFormulario(this.formularioReserva.controls);
@@ -57,15 +61,16 @@ export class ReservaEventoComponent implements OnInit {
     let [propiedadesControls] = campos;
 
     for (const control in propiedadesControls) {
-      if (!control.includes("telefono")) {
+      if (!control.includes('telefono')) {
         this.formularioReserva.get(control).disable();
       }
     }
-
   }
 
   reservarEvento() {
-    console.log('Desde Formulario RESERVA', this.formularioReserva.value)
+    console.log('Desde Formulario RESERVA', this.formularioReserva.value);
+
+
   }
 
   ngOnDestroy() {

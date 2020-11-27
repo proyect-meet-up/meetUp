@@ -11,24 +11,29 @@ import { Usuario } from 'src/app/privado/usuario/usuario.model';
 })
 export class AuthService {
   URL = environment.URL;
-  usuarioSubject = new BehaviorSubject<Usuario>(null);
+
+  usuarioSubject = new BehaviorSubject<Usuario>(JSON.parse(localStorage.getItem('usuario')) || null);
   usuario$ = this.usuarioSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
-
-  estaLogueadoSource = new BehaviorSubject<boolean>(false);
+  estaLogueadoSource = new BehaviorSubject<boolean>(localStorage.getItem('token') != null);
   estaLogueado$ = this.estaLogueadoSource.asObservable();
 
   esAdmin = new BehaviorSubject(false);
   esAdmin$ = this.esAdmin.asObservable();
 
+
+  constructor(private http: HttpClient) {}
+
+
   login(formulario) {
 
-    return this.http.post(`${this.URL}/login`, formulario).pipe(
+    return this.http.post(`${this.URL}/login`, formulario)
+    .pipe(
       tap((resp: any) => {
         localStorage.setItem('token', resp.token);
         localStorage.setItem('usuario', JSON.stringify(resp.usuario));
         this.usuarioSubject.next(resp.usuario);
+        this.estaLogueadoSource.next(true);
       })
     );
   }

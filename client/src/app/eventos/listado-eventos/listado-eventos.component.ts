@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit} from '@angular/core';
-import { Subscription} from 'rxjs';
+import { Observable, Subscription} from 'rxjs';
 import { Evento } from '../evento.model'
 import { EventoService } from '../evento.service';
 import { ProvinciaResponse } from '../../shared/componentes/direccion.model';
@@ -11,24 +11,15 @@ import { ProvinciaResponse } from '../../shared/componentes/direccion.model';
 })
 export class ListadoEventosComponent implements OnInit, OnDestroy {
   eventosSuscription: Subscription;
-  eventos: Evento[] = [];
+  eventos: Observable<Evento[]>;
 
   constructor(private eventoService: EventoService) {}
 
   ngOnInit(): void {
-    this.eventosSuscription = this.eventoService.eventosBuscados$.subscribe(
-      (datosActualizados: Evento[]) => {
-        this.eventos = datosActualizados;
-      }
-    );
+    this.eventos = this.eventoService.eventosBuscados$;
   }
-
-  eventoClickBoton() {
-    this.eventoService.eventoClickBoton(true);
-  }
-
 
   ngOnDestroy() {
-    this.eventosSuscription.unsubscribe();
+
   }
 }

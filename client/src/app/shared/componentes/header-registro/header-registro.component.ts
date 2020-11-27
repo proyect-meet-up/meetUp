@@ -11,7 +11,6 @@ import { Usuario } from 'src/app/privado/usuario/usuario.model';
   styleUrls: ['./header-registro.component.scss'],
 })
 export class HeaderRegistroComponent implements OnInit {
-  estaLogueado: boolean = false;
   usuario: Usuario;
   sub: Subscription;
 
@@ -24,7 +23,7 @@ export class HeaderRegistroComponent implements OnInit {
   }
 
   cerrarSesion() {
-    this.authService.logout(this.estaLogueado);
+    this.authService.logout(false);
     this.sub.unsubscribe();
 
   }

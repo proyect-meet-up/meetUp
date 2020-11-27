@@ -34,8 +34,14 @@ const EventoSchema = Schema({
     }, 
     tags: {
         type: [ String ]
+    },
+    imagen: {
+        type: String,
+        default: 'https://source.unsplash.com/random/800x600'
     }
     
+},{
+    timestamps: true
 });
 
 // Opcional, para personalizar la data que se envía como respuesta en el json. Extraemos el password del objeto

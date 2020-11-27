@@ -31,7 +31,6 @@ export class BuscadorComponent implements OnInit, OnDestroy {
         debounceTime(500),
         distinctUntilChanged())
       .subscribe((terminoABuscar) => {
-        console.log('Buscador se subscribe...')
         if (terminoABuscar) {
           this.obtenerEventoPorTerminoBuscado(terminoABuscar);
           if (this.eventos.length === 0) {
@@ -56,11 +55,10 @@ export class BuscadorComponent implements OnInit, OnDestroy {
   }
 
   obtenerTodosLosEventos() {
-    this.eventos = this.eventosService.obtenerEventos();
+    this.eventos = this.eventosService.obtenerTodosEventos();
   }
 
   ngOnDestroy() {
-    console.log('Buscador se destruye')
     this.sub.unsubscribe();
   }
 }

@@ -30,7 +30,10 @@ const getEvento = async (req, res = response) => {
 };
 
 const getEventosDelUsuario = async (req, res = response) => {
-	const eventos = await Evento.find({ usuario: req.uid });
+	const eventos = await Evento.find({ usuario: req.uid })
+		.populate('usuario', 'nombre email')
+		.populate('categoria', 'categoria color')
+		.populate('direccion', 'calle numero provincia codigo');
 	const total = await Evento.find({ usuario: req.uid }).countDocuments();
 	
 

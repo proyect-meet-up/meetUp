@@ -1,0 +1,7 @@
+<div class="eventos">
+  <app-card-evento
+    *ngFor="let evento of eventos ; let i = index"
+    [curso]="evento"
+    [index]="i">
+  </app-card-evento>
+</div>

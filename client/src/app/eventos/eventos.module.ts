@@ -25,6 +25,7 @@ import { ListadoEventosComponent } from './listado-eventos/listado-eventos.compo
 import { DetalleEventoRegistradoComponent } from './detalle-evento-registrado/detalle-evento-registrado.component';
 import { NuevoEventoComponent } from './nuevo-evento/nuevo-evento.component';
 import { NoResultadosEventosComponent } from './no-resultados-eventos/no-resultados-eventos.component';
+import { EventosDelUsuarioComponent } from './eventos-del-usuario/eventos-del-usuario.component';
 
 
 
@@ -38,6 +39,7 @@ import { NoResultadosEventosComponent } from './no-resultados-eventos/no-resulta
     DetalleEventoRegistradoComponent,
     NuevoEventoComponent,
     NoResultadosEventosComponent,
+    EventosDelUsuarioComponent
   ],
   imports: [
     CommonModule,

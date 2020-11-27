@@ -22,7 +22,6 @@ export class UsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.sub = this.authService.usuario$.subscribe( (data: Usuario ) => this.usuario = data );
-    // this.usuario = JSON.parse(localStorage.getItem('usuario'));
   }
 
   actualizarUsuario(usuarioActualizado: Usuario) {
@@ -31,7 +30,6 @@ export class UsuarioComponent implements OnInit {
       .subscribe((respuestaUsuario: any) =>  {
         let { usuarioActualizado } = respuestaUsuario;
         this.authService.usuarioSubject.next(usuarioActualizado);
-        // localStorage.setItem('usuario', JSON.stringify(usuarioActualizado));
       });
   }
 

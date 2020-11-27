@@ -8,6 +8,7 @@ import { ReservaEventoComponent } from './reserva-evento/reserva-evento.componen
 import { DetalleEventoRegistradoComponent } from './detalle-evento-registrado/detalle-evento-registrado.component';
 import { ListadoRegistradoComponent } from './listado-registrado/listado-registrado.component';
 import { NuevoEventoComponent } from './nuevo-evento/nuevo-evento.component';
+import { EventosDelUsuarioComponent } from './eventos-del-usuario/eventos-del-usuario.component';
 
 const routes: Routes = [
   { path: '', component: ListadoEventosComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'reserva-evento/:id', component: ReservaEventoComponent},
   { path: 'detalle-evento/:id/registrado', component: DetalleEventoRegistradoComponent},
   { path: 'eventos', component: ListadoRegistradoComponent},
-  { path: 'nuevo-evento', component: NuevoEventoComponent}
+  { path: 'nuevo-evento', component: NuevoEventoComponent},
+  { path: 'eventos/usuario' , component: EventosDelUsuarioComponent}
 
 ];
 

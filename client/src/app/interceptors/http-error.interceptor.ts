@@ -9,12 +9,15 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { SnackbarService } from '@shared/componentes/services/snackbar.service';
 
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(
+    private snackbarService: SnackbarService
+  ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
@@ -32,10 +35,11 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             if ( error.status === 401) {
               errorMsg = `${error.error.message}`;
             } else {
-              Swal.fire({
-                icon: 'error',
-                text: errorMsg,
-              })
+              this.snackbarService.mostrar( errorMsg , 'error')
+              // Swal.fire({
+              //   icon: 'error',
+              //   text: errorMsg,
+              // })
             }
 ;
           }

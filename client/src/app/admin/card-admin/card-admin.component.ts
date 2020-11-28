@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter, OnDestroy } from '@angu
 import { EventosReservados} from '../reservas.model';
 import { Subscription } from 'rxjs';
 import { AdminService } from '../admin.service';
-import { botonState } from 'src/app/shared/animations/botonState.animation';
+import { botonState } from '@shared/componentes/animations/animation';
 
 @Component({
   selector: 'app-card-admin',

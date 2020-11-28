@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@ang
 import { NavigationExtras, Router } from '@angular/router';
 import { Evento } from '../evento.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { botonState } from '@shared/componentes/animations/botonState.animation';
+import { botonState } from '@shared/componentes/animations/animation';
 
 @Component({
   selector: 'app-detalle-evento-registrado',

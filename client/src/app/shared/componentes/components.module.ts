@@ -32,6 +32,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 
 
 
@@ -48,6 +49,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     HeaderAdminComponent,
     MenuTogglerComponent,
     MapaComponent,
+    SnackbarComponent
   ],
   imports: [
     CommonModule,
@@ -78,6 +80,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     HeaderAdminComponent,
     MenuTogglerComponent,
     MapaComponent,
+    SnackbarComponent
   ],
   entryComponents: [ModalComponent],
   providers: [

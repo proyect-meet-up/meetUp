@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProvinciaResponse } from '../direccion.model';
 import { EventoService } from '../../../eventos/evento.service';
+import { SnackbarService } from '../../services/snackbar.service';
 
 interface DataProvincia {
   provincia: string,
@@ -33,10 +34,7 @@ export class DireccionComponent implements OnInit, OnDestroy {
 
     if (this.direccionFormulario) {
       this.direccionFormulario.valueChanges.subscribe(() => {
-
-        if (this.direccionFormulario.valid) {
           this.nuevaDireccion();
-        }
       });
     }
 
@@ -85,7 +83,7 @@ export class DireccionComponent implements OnInit, OnDestroy {
   }
 
   nuevaDireccion() {
-    this.nuevaDireccionEvent.emit(this.direccionFormulario.value);
+      this.nuevaDireccionEvent.emit(this.direccionFormulario);
   }
 
   ngOnDestroy() {

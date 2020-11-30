@@ -26,6 +26,7 @@ import { DetalleEventoRegistradoComponent } from './detalle-evento-registrado/de
 import { NuevoEventoComponent } from './nuevo-evento/nuevo-evento.component';
 import { NoResultadosEventosComponent } from './no-resultados-eventos/no-resultados-eventos.component';
 import { EventosDelUsuarioComponent } from './eventos-del-usuario/eventos-del-usuario.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 
@@ -56,6 +57,7 @@ import { EventosDelUsuarioComponent } from './eventos-del-usuario/eventos-del-us
     ComponentsModule,
     MatProgressBarModule,
     MatSelectModule,
+    MatCheckboxModule
   ],
   exports: [
     //NuevoEventoComponent

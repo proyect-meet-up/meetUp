@@ -92,4 +92,9 @@ export class EventoService {
   crearEvento(formEvento: Evento) {
     return this.http.post(`${this.URL}/eventos`, formEvento);
   }
+
+  actualizarEvento(idEvento: string, eventoParaActualizar) {
+    return this.http.put(`${this.URL}/eventos/${idEvento}`, eventoParaActualizar);
+
+  }
 }

@@ -1,7 +1,7 @@
 <div class="nuevo-evento">
   <div class="nuevo-evento__wrapper mat-elevation-z4">
     <div class="nuevo-evento__checkbox">
-      <mat-checkbox [(ngModel)]="checked" (ngModelChange)="observandoCambioCheck()">¿ Tiene precio este evento ?</mat-checkbox>
+      <mat-checkbox [(ngModel)]="checked" (ngModelChange)="cambioValidaciones()">¿ Tiene precio este evento ?</mat-checkbox>
     </div>
     <form class="nuevo-evento__form" [formGroup]="formularioNuevoEvento" (ngSubmit)="crearNuevoEvento()">
       <label>Título</label>

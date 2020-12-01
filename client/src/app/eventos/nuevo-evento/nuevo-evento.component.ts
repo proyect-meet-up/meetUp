@@ -79,10 +79,8 @@ export class NuevoEventoComponent implements OnInit {
 
     this.eventoService.crearEvento(evento).subscribe(() => {
       this.snackbarService.mostrar(`Enhorabuena ${this.usuario.nombre} acabas de crear un nuevo evento`);
-      this.eventoService.obtenerTodosEventos();
-      setTimeout(() => {
-        this.router.navigate(['privado'])
-      }, 4000);
+      this.router.navigate(['privado', 'eventos', 'usuario'])
+
     });
   }
 
@@ -104,9 +102,6 @@ export class NuevoEventoComponent implements OnInit {
     });
   }
 
-  observandoCambioCheck() {
-    this.cambioValidaciones();
-  }
 
   cambioValidaciones() {
     if (this.valorPrecioChecked) {

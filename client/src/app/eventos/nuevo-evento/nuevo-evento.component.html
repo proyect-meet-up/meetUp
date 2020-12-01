@@ -1,5 +1,8 @@
 <div class="nuevo-evento">
   <div class="nuevo-evento__wrapper mat-elevation-z4">
+    <div class="nuevo-evento__checkbox">
+      <mat-checkbox [(ngModel)]="checked" (ngModelChange)="cambioValidaciones()">¿ Tiene precio este evento ?</mat-checkbox>
+    </div>
     <form class="nuevo-evento__form" [formGroup]="formularioNuevoEvento" (ngSubmit)="crearNuevoEvento()">
       <label>Título</label>
       <mat-form-field appearance="outline">
@@ -32,23 +35,32 @@
         <app-direccion (nuevaDireccionEvent)="nuevaDireccion($event)"></app-direccion>
       </div>
       <div class="nuevo-evento__form--col-2">
-        <label>Precio</label>
-        <mat-form-field appearance="outline">
-          <input matInput placeholder="precio" formControlName="precio">
-          <mat-error *ngIf="noEsCampoValido('precio')">
-            {{ obtenerMensajeError('precio') }}
-          </mat-error>
-        </mat-form-field>
+        <div *ngIf="checked" class="nuevo-evento__precio">
+          <label>Precio</label>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="precio" formControlName="precio">
+            <mat-error *ngIf="noEsCampoValido('precio')">
+              {{ obtenerMensajeError('precio') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-        <label>Fecha</label>
-        <mat-form-field color="primary" appearance="fill">
-          <input matInput [matDatepicker]="calendario" formControlName="fecha">
-          <mat-datepicker-toggle matSuffix [for]="calendario"></mat-datepicker-toggle>
-          <mat-datepicker #calendario color="primary"></mat-datepicker>
-        </mat-form-field>
+        <div class="nuevo-evento__calendario">
+          <label>Fecha</label>
+          <mat-form-field color="primary" appearance="fill">
+            <input
+              matInput
+              [min]="hoy"
+             [matDatepicker]="calendario"
+              formControlName="fecha"
+              readonly>
+            <mat-datepicker-toggle matSuffix [for]="calendario"></mat-datepicker-toggle>
+            <mat-datepicker #calendario color="primary"></mat-datepicker>
+          </mat-form-field>
+        </div>
       </div>
 
-      <button mat-raised-button color="primary">Crear nuevo evento</button>
+      <button mat-raised-button color="primary" [disabled]="!formularioNuevoEvento.valid">Crear nuevo evento</button>
 
     </form>
   </div>

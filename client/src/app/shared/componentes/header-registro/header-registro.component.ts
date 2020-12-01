@@ -31,7 +31,6 @@ export class HeaderRegistroComponent implements OnInit {
     .getEventosDelUsuario('total')
     .subscribe((total: number) => {
       this.total = total;
-      console.log(this.total)
     });
 
   }

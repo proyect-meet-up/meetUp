@@ -1,3 +1,5 @@
+import { FormatoFechaPipe } from 'src/app/pipes/formatoFecha.pipe';
+
 export const quitarAcentos = (cadena) => {
   const acentos = {
     á: 'a',

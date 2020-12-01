@@ -38,6 +38,13 @@ const EventoSchema = Schema({
     imagen: {
         type: String,
         default: 'https://source.unsplash.com/random/800x600'
+    },
+    reservas: {
+        type: [{ type : Schema.Types.ObjectId, ref: 'Usuario' }]          
+    },
+    confirmar: {
+        type: Boolean,
+        default: false,
     }
     
 },{

@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { Evento } from '../eventos/evento.model';
+import { pluck } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +15,14 @@ export class AdminService {
   seleccionadoTodos = new Subject<boolean>();
   seleccionadoTodos$ = this.seleccionadoTodos.asObservable();
 
-  constructor() {}
+  url =  environment.URL;
+
+  eventosSubject = new BehaviorSubject<Evento[]>([]);
+  eventosSubject$ = this.eventosSubject.asObservable();
+
+  constructor(
+    private http: HttpClient
+  ) {}
 
   listenEventoMenuIconClick(valor: boolean) {
     this.menuIconClick.next(valor);
@@ -19,5 +30,13 @@ export class AdminService {
 
   listenEventoSeleccionadoTodos(valor: boolean) {
     this.seleccionadoTodos.next(valor);
+  }
+
+  obtenerTodosEventos(): Observable<Evento[]> {
+    return this.http.get<Evento[]>(`${this.url}/eventos`)
+      .pipe(
+        pluck('eventos')
+      )
+
   }
 }

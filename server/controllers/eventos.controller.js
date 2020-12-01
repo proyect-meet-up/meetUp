@@ -18,10 +18,9 @@ const getEventos = async (req, res = response) => {
 };
 
 const getEvento = async (req, res = response) => {
-	const evento = await Evento.findById(req.params.id).populate(
-		'direccion',
-		'calle numero localidad provincia codigo'
-	);
+	const evento = await Evento.findById(req.params.id)
+	.populate( 'direccion','calle numero localidad provincia codigo')
+	.populate( 'usuario', 'nombre')
 
 	res.json({
 		ok: true,
@@ -35,7 +34,6 @@ const getEventosDelUsuario = async (req, res = response) => {
 		.populate('categoria', 'categoria color')
 		.populate('direccion', 'calle numero provincia codigo');
 	const total = await Evento.find({ usuario: req.uid }).countDocuments();
-	
 
 	res.status(200).json({
 		ok: true,
@@ -74,34 +72,30 @@ const crearEvento = async (req, res = response) => {
 };
 
 const actualizarEvento = async (req, res = response) => {
-    
-    const idEvento = req.params.id;
-    let datos = req.body;
+	const idEvento = req.params.id;
+	let datos = req.body;
 
+	try {
+		const evento = await Evento.findById({ _id: idEvento });
 
-    try {
-         const evento = await Evento.findById({_id: idEvento});                                          
-        
-    
-         const direccionNueva = await Direccion.findByIdAndUpdate(evento.direccion._id, datos.direccion, {new: true});
-         datos.direccion = evento.direccion._id;  
-         const eventoActualizado = await Evento.findByIdAndUpdate(mongoose.Types.ObjectId(idEvento), datos, {new: true}); 
-     
+		const direccionNueva = await Direccion.findByIdAndUpdate(evento.direccion._id, datos.direccion, { new: true });
+		datos.direccion = evento.direccion._id;
+		const eventoActualizado = await Evento.findByIdAndUpdate(mongoose.Types.ObjectId(idEvento), datos, {
+			new: true
+		});
 
-        res.json ({
-            ok: true,  
-            datosAnteriores: direccionNueva,                
-            eventoActualizado
-        })
-
-    } catch(error) {
-        res.status(500).json({
-            ok: false,
-            msg: "Error de servidor, ni idea de lo que pasa"
-        })
-    }
-
-}
+		res.json({
+			ok: true,
+			datosAnteriores: direccionNueva,
+			eventoActualizado
+		});
+	} catch (error) {
+		res.status(500).json({
+			ok: false,
+			msg: 'Error de servidor, ni idea de lo que pasa'
+		});
+	}
+};
 
 const borrarEvento = (req, res = response) => {
 	res.json({

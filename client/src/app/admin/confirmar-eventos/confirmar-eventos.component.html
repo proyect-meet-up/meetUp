@@ -1,8 +1,8 @@
 <div class="confirmar-eventos__no-responsive">
 
-  <button mat-button   class="boton" (click)="confirmarEventos()">Confirmar</button>
 
   <div class="confirmar-eventos__check">
+    <button *ngIf="eventosSeleccionados.length >= 1  || estaSeleccionadoTodos" mat-button class="boton" (click)="confirmarEventos()">Confirmar</button>
     <h3>Seleccionada todos</h3>
     <app-checkbox-admin
       [data]="dataSource"
@@ -20,7 +20,7 @@
 
 
 <div class="confirmar-eventos__responsive">
-  <div *ngIf="eventos.length >= 1  || estaSeleccionadoTodos" class="confirmar-eventos__button">
+  <div *ngIf="eventosSeleccionados.length >= 1  || estaSeleccionadoTodos" class="confirmar-eventos__button">
     <button mat-raised-button color="primary" (click)="confirmarEventos()">Confirmar</button>
   </div>
   <div class="confirmar-eventos__check">

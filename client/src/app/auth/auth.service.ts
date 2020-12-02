@@ -12,26 +12,27 @@ import { Usuario } from 'src/app/privado/usuario/usuario.model';
 export class AuthService {
   URL = environment.URL;
 
-  usuarioSubject = new BehaviorSubject<Usuario>(JSON.parse(localStorage.getItem('usuario')) || null);
+  usuarioSubject = new BehaviorSubject<Usuario>(
+    JSON.parse(localStorage.getItem('usuario')) || null
+  );
   usuario$ = this.usuarioSubject.asObservable();
 
-  estaLogueadoSource = new BehaviorSubject<boolean>(localStorage.getItem('token') != null);
+  estaLogueadoSource = new BehaviorSubject<boolean>(
+    localStorage.getItem('token') != null
+  );
   estaLogueado$ = this.estaLogueadoSource.asObservable();
 
-  esAdmin = new BehaviorSubject(false);
+  esAdmin = new BehaviorSubject(localStorage.getItem('panel') != null);
   esAdmin$ = this.esAdmin.asObservable();
-
 
   constructor(private http: HttpClient) {}
 
-
   login(formulario) {
-
-    return this.http.post(`${this.URL}/login`, formulario)
-    .pipe(
+    return this.http.post(`${this.URL}/login`, formulario).pipe(
       tap((resp: any) => {
         localStorage.setItem('token', resp.token);
         localStorage.setItem('usuario', JSON.stringify(resp.usuario));
+        localStorage.setItem('panel', resp.respuesta);
         this.usuarioSubject.next(resp.usuario);
         this.estaLogueadoSource.next(true);
       })
@@ -47,5 +48,6 @@ export class AuthService {
     this.esAdmin.next(valor);
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
+    localStorage.removeItem('panel');
   }
 }

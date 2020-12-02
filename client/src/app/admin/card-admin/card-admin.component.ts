@@ -8,29 +8,28 @@ import { Evento } from '../../eventos/evento.model';
   selector: 'app-card-admin',
   templateUrl: './card-admin.component.html',
   styleUrls: ['./card-admin.component.scss'],
-  animations: [ botonState],
+  animations: [botonState],
 })
-export class CardAdminComponent implements OnInit , OnDestroy{
+export class CardAdminComponent implements OnInit, OnDestroy {
   state: string = 'inactivo';
   expanded: boolean = false;
 
   @Input('eventoData') evento: Evento;
   @Input('index') indexEvento: number;
 
-
   seleccionado: boolean = false;
   sub: Subscription;
 
   @Output() eventoSelection$: EventEmitter<Evento> = new EventEmitter();
 
-  constructor(private adminService: AdminService) {
-
-  }
+  constructor(private adminService: AdminService) {}
 
   ngOnInit() {
-    this.sub = this.adminService.seleccionadoTodos$.subscribe( (data: boolean) => {
-      this.seleccionado = data;
-    })
+    this.sub = this.adminService.seleccionadoTodos$.subscribe(
+      (data: boolean) => {
+        this.seleccionado = data;
+      }
+    );
   }
 
   expandirPanel() {

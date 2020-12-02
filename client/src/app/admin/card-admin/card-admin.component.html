@@ -9,7 +9,7 @@
         <mat-checkbox (click)="$event.stopPropagation()"
           (change)="seleccionado ? !seleccionado : null; cambioEventoSeleccionado()" [checked]="seleccionado">
         </mat-checkbox>
-        <span>Creado por: {{evento.usuario}}</span>
+        <span>Creado por: {{evento.usuario.nombre}}</span>
       </div>
     </div>
     <mat-divider></mat-divider>
@@ -20,7 +20,7 @@
       </div>
       <div class="card-admin__box card-admin__localizacion">
         <p>Localización:</p>
-        <p>{{evento.direccion}}</p>
+        <p>{{evento.direccion.calle}},{{evento.direccion.numero}} {{evento.direccion.codigo}} {{evento.direccion.provincia}}</p>
       </div>
     </div>
   </div>

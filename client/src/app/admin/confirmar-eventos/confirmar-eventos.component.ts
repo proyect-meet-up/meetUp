@@ -11,25 +11,21 @@ import { AdminService } from '../admin.service';
   styleUrls: ['./confirmar-eventos.component.scss'],
 })
 export class ConfirmarEventosComponent implements OnInit {
-  eventos = [];
+  eventosSeleccionados = [];
   dataSource: Evento[];
   selection = new SelectionModel<Evento>(true);
   sub: Subscription;
   estaSeleccionadoTodos: boolean = false;
 
-  constructor(
-    private adminService: AdminService
-
-    ) {}
+  constructor( private adminService: AdminService ) {}
 
   ngOnInit(): void {
     this.sub = this.adminService.seleccionadoTodos$.subscribe((data) => {
       this.estaSeleccionadoTodos = data;
       if ( this.estaSeleccionadoTodos ) {
-        this.eventos = [];
-        this.eventos = this.dataSource;
+        this.eventosSeleccionados = [...this.dataSource];
       } else {
-        this.eventos = [];
+        this.eventosSeleccionados = [];
       }
     });
 
@@ -45,27 +41,30 @@ export class ConfirmarEventosComponent implements OnInit {
   }
 
   obtenerEventoSeleccionado(evento: Evento) {
-    if (this.eventos.length === 0) {
-      this.eventos.push(evento);
+
+    if (this.eventosSeleccionados.length === 0) {
+      this.eventosSeleccionados.push(evento);
     } else {
       this.comprobarExistenciaEventoEnEventos(evento);
     }
+
     this.selection.toggle(evento);
   }
 
   comprobarExistenciaEventoEnEventos(evento) {
-    let index = this.eventos.findIndex((el) => el.id === evento.id);
+
+    let index = this.eventosSeleccionados.findIndex((el) => el._id === evento._id);
 
     if (index === -1) {
-      this.eventos.push(evento);
+      this.eventosSeleccionados.push(evento);
     } else {
-      this.eventos.splice(index, 1);
+      this.eventosSeleccionados.splice(index, 1);
     }
   }
 
   confirmarEventos() {
     // TODO Aqui enviamos al servidor aquellos eventos confirmados por el administrador
-    console.log('Eventos que enviamos como confirmados a la API', this.eventos)
+    console.log('Eventos que enviamos como confirmados a la API', this.eventosSeleccionados)
   }
 
   ngOnDestroy() {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Evento } from 'src/app/eventos/evento.model';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: "app-reservas",
@@ -13,9 +15,19 @@ export class ReservasComponent implements OnInit {
     "direccion",
     'detalle'
   ];
-  dataSource = [];
+  dataSource: Evento[] = [];
 
-  constructor() {}
+  constructor( private adminService: AdminService ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.obtenerEventosReservados();
+  }
+
+  obtenerEventosReservados() {
+    this.adminService.obtenerTodosEventos()
+      .subscribe( (data: Evento[]) => {
+        let eventosConfirmados = data.filter( e => e.confirmar === true );
+        this.dataSource = [...eventosConfirmados];
+      })
+  }
 }

@@ -35,7 +35,8 @@ export class ConfirmarEventosComponent implements OnInit {
   obtenerTodosLosEventos() {
     this.adminService.obtenerTodosEventos()
       .subscribe((data: Evento[]) => {
-        this.dataSource = data;
+        let eventosNoConfirmados = data.filter( e => e.confirmar === false);
+        this.dataSource = [...eventosNoConfirmados];
       })
 
   }
@@ -64,7 +65,20 @@ export class ConfirmarEventosComponent implements OnInit {
 
   confirmarEventos() {
     // TODO Aqui enviamos al servidor aquellos eventos confirmados por el administrador
-    console.log('Eventos que enviamos como confirmados a la API', this.eventosSeleccionados)
+
+    let respuestaFiltro = this.eventosSeleccionados.map( e => {
+      return {
+        _id: e._id,
+        confirmar: true
+      }
+    });
+
+    this.adminService.actualizarEventosAConfirmar(respuestaFiltro)
+    .subscribe( data => {
+
+    })
+
+
   }
 
   ngOnDestroy() {

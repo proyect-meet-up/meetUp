@@ -2,30 +2,30 @@
 
   <ng-container matColumnDef="nombre">
     <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+    <mat-cell *matCellDef="let evento"> {{evento.usuario.nombre}} </mat-cell>
   </ng-container>
 
 
   <ng-container matColumnDef="titulo">
     <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
+    <mat-cell *matCellDef="let evento"> {{evento.titulo}} </mat-cell>
   </ng-container>
 
 
-  <ng-container matColumnDef="fechaReserva">
+  <ng-container matColumnDef="fecha">
     <mat-header-cell *matHeaderCellDef> Día reserva </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.fecha | date:'mediumDate'}} </mat-cell>
+    <mat-cell *matCellDef="let evento"> {{evento.fecha | date:'mediumDate'}} </mat-cell>
   </ng-container>
 
 
   <ng-container matColumnDef="direccion">
     <mat-header-cell *matHeaderCellDef> Dirección </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.direccion}} </mat-cell>
+    <mat-cell *matCellDef="let evento"> {{evento.direccion.calle}} {{evento.direccion.numero}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="detalle">
     <mat-header-cell *matHeaderCellDef> Ver detalle </mat-header-cell>
-    <mat-cell *matCellDef="let element"> Editar </mat-cell>
+    <mat-cell *matCellDef="let evento"> Editar </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

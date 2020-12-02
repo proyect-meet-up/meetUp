@@ -9,6 +9,7 @@ export interface Evento {
   usuario: Usuario;
   categoria: Categoria;
   imagen: string;
+  confirmar: boolean;
   precio?: number;
   fecha?: Date;
   tags?: [];

@@ -16,7 +16,8 @@ const  {
     crearEvento,
     actualizarEvento,
     borrarEvento,
-    getEventosDelUsuario
+    getEventosDelUsuario,
+    actualizarEventos
 } = require('../controllers/eventos.controller')
 
 const router = Router();
@@ -30,11 +31,14 @@ router
         check('categoria', 'el id de la categoría debe ser un id válido').isMongoId(),
         validarCampos
     ], 
-    crearEvento);
+    crearEvento)
+    .patch(validarJWT, actualizarEventos)
     
 router
     .route('/usuario')
     .get(validarJWT, getEventosDelUsuario)
+
+
 
 router
     .route('/:id')

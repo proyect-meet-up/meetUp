@@ -97,6 +97,29 @@ const actualizarEvento = async (req, res = response) => {
 	}
 };
 
+const actualizarEventos = async ( req, res ) => {
+
+	let ids = req.body.map( el => el._id)
+
+	try {
+		await Evento.updateMany(
+			{ _id: { $in: ids }},
+			{ $set: { confirmar: true }}
+		)
+	
+		res.status(200).json({
+			ok: true,
+			response: []
+		})
+	} catch (error) {
+		res.status(500).json({
+			ok: false,
+			msg: 'Error en actualizar eventos'
+		});
+	}
+
+}
+
 const borrarEvento = (req, res = response) => {
 	res.json({
 		ok: true,
@@ -110,5 +133,6 @@ module.exports = {
 	crearEvento,
 	actualizarEvento,
 	borrarEvento,
-	getEventosDelUsuario
+	getEventosDelUsuario,
+	actualizarEventos
 };

@@ -1,8 +1,9 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component,OnInit } from '@angular/core';
 import { of, Subscription } from 'rxjs';
+import { Evento } from 'src/app/eventos/evento.model';
+import { EventoService } from 'src/app/eventos/evento.service';
 import { AdminService } from '../admin.service';
-import { EventosReservados, eventosReservados } from '../reservas.model';
 
 @Component({
   selector: 'app-confirmar-eventos',
@@ -11,12 +12,15 @@ import { EventosReservados, eventosReservados } from '../reservas.model';
 })
 export class ConfirmarEventosComponent implements OnInit {
   eventos = [];
-  dataSource: EventosReservados[] = eventosReservados;
-  selection = new SelectionModel<EventosReservados>(true);
+  dataSource: Evento[];
+  selection = new SelectionModel<Evento>(true);
   sub: Subscription;
   estaSeleccionadoTodos: boolean = false;
 
-  constructor(private adminService: AdminService) {}
+  constructor(
+    private adminService: AdminService
+
+    ) {}
 
   ngOnInit(): void {
     this.sub = this.adminService.seleccionadoTodos$.subscribe((data) => {
@@ -28,9 +32,19 @@ export class ConfirmarEventosComponent implements OnInit {
         this.eventos = [];
       }
     });
+
+    this.obtenerTodosLosEventos();
   }
 
-  obtenerEventoSeleccionado(evento: EventosReservados) {
+  obtenerTodosLosEventos() {
+    this.adminService.obtenerTodosEventos()
+      .subscribe((data: Evento[]) => {
+        this.dataSource = data;
+      })
+
+  }
+
+  obtenerEventoSeleccionado(evento: Evento) {
     if (this.eventos.length === 0) {
       this.eventos.push(evento);
     } else {

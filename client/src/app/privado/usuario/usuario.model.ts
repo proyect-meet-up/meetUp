@@ -6,7 +6,7 @@ export class Direccion {
         public numero: string,
         public ciudad: string,
         public provincia: string,
-        public codigoPostal: string
+        public codigo: string
     ) {}
 }
 

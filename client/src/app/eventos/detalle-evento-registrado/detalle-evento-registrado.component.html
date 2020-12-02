@@ -1,4 +1,4 @@
-<div class="detalle-evento-registrado">
+<div class="detalle-evento-registrado" *ngIf="evento">
 
   <div class="detalle-evento-registrado__wrapper">
 
@@ -8,7 +8,7 @@
     <div class="detalle-evento-registrado__usuario mat-elevation-z2">
       <img class="detalle-evento-registrado__img mat-elevation-z6" src="assets/usuarios-imagenes/usuario1.jpg"
         alt="usuario">
-      <span>Creado por: {{evento.usuario}}</span>
+      <span>Creado por: {{ evento.usuario.nombre }}</span>
     </div>
 
     <form class="detalle-evento-registrado__form" [formGroup]="formularioActualizarEvento"
@@ -30,7 +30,7 @@
         <div class="detalle-evento-registrado__fecha">
           <label>Fecha del evento</label>
           <mat-form-field appearance="fill">
-            <input matInput [matDatepicker]="calendario" formControlName="fechaReserva">
+            <input matInput [matDatepicker]="calendario" formControlName="fecha">
             <mat-datepicker-toggle matSuffix [for]="calendario"></mat-datepicker-toggle>
             <mat-datepicker #calendario color="primary"></mat-datepicker>
           </mat-form-field>
@@ -38,7 +38,7 @@
         <div class="detalle-evento-registrado__lugar">
           <label>Localización</label>
           <div class="detalle-evento-registrado__icon">
-            <span>{{evento.direccion}}</span>
+            <span>{{evento.direccion.calle}}, {{evento.direccion.numero}} C.P: {{evento.direccion.codigo}} Provincia: {{evento.direccion.provincia}} </span>
             <mat-icon *ngIf="!expanded, else mostrarBoton" (click)="expandirPanelDireccion()">edit</mat-icon>
             <ng-template #mostrarBoton>
               <mat-icon (click)="expandirPanelDireccion()">arrow_upward</mat-icon>
@@ -47,24 +47,12 @@
         </div>
       </div>
       <div [ngClass]="expanded ? 'expanded': ''" class="detalle-evento-registrado__direccion" [@botonState]="state">
-          <app-direccion class="width" [expanded]="true" (nuevaDireccionEvent)="direccionActualizada($event)"></app-direccion>
+          <app-direccion class="width" [expanded]="true" (nuevaDireccionEvent)="direccionActualizada($event)" [actualizarDireccion]="evento.direccion"></app-direccion>
       </div>
 
       <button class="detalle-evento-registrado__boton" mat-raised-button color="primary">
         <span #text>Modificar</span>
       </button>
     </form>
-
-
-
-
-
   </div>
-
-
-
-
-
-
-
 </div>

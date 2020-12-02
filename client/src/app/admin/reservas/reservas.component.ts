@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { eventosReservados } from '../reservas.model';
-
 
 @Component({
   selector: "app-reservas",
@@ -11,11 +9,11 @@ export class ReservasComponent implements OnInit {
   displayedColumns: string[] = [
     "nombre",
     "titulo",
-    "fechaReserva",
+    "fecha",
     "direccion",
     'detalle'
   ];
-  dataSource = eventosReservados;
+  dataSource = [];
 
   constructor() {}
 

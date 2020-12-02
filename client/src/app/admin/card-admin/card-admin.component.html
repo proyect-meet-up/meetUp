@@ -3,7 +3,7 @@
     <div class="card-admin__header">
       <div class="card-admin__box card-admin__titulo">
         <p>Titulo: {{evento.titulo}}</p>
-        <p>{{evento.fechaReserva | date:'mediumDate'}}</p>
+        <p>{{evento.fecha| date:'mediumDate'}}</p>
       </div>
       <div class="card-admin__box card-admin__detalle">
         <mat-checkbox (click)="$event.stopPropagation()"

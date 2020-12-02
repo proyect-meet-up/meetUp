@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AdminService } from '../admin.service';
-import { EventosReservados } from '../reservas.model';
 import { SelectionModel } from '@angular/cdk/collections';
+import { Evento } from '../../eventos/evento.model';
 
 @Component({
   selector: 'app-checkbox-admin',
@@ -10,8 +10,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 export class CheckboxAdminComponent implements OnInit {
 
-  @Input('data') dataSource: EventosReservados[];
-  @Input('selection') selection: SelectionModel<EventosReservados>;
+  @Input('data') dataSource: Evento[];
+  @Input('selection') selection: SelectionModel<Evento>;
 
   constructor(private adminService: AdminService) { }
 

@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { EventosReservados} from '../reservas.model';
 import { Subscription } from 'rxjs';
 import { AdminService } from '../admin.service';
 import { botonState } from '@shared/componentes/animations/animation';
+import { Evento } from '../../eventos/evento.model';
 
 @Component({
   selector: 'app-card-admin',
@@ -14,16 +14,18 @@ export class CardAdminComponent implements OnInit , OnDestroy{
   state: string = 'inactivo';
   expanded: boolean = false;
 
-  @Input('eventoData') evento: EventosReservados;
+  @Input('eventoData') evento: Evento;
   @Input('index') indexEvento: number;
 
 
   seleccionado: boolean = false;
   sub: Subscription;
 
-  @Output() eventoSelection$: EventEmitter<EventosReservados> = new EventEmitter();
+  @Output() eventoSelection$: EventEmitter<Evento> = new EventEmitter();
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService) {
+
+  }
 
   ngOnInit() {
     this.sub = this.adminService.seleccionadoTodos$.subscribe( (data: boolean) => {

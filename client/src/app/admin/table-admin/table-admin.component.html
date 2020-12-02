@@ -2,7 +2,7 @@
 
   <ng-container matColumnDef="usuario">
     <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-    <mat-cell *matCellDef="let evento"> {{evento.usuario}} </mat-cell>
+    <mat-cell *matCellDef="let evento"> {{evento.usuario.nombre}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="titulo">
@@ -10,9 +10,9 @@
     <mat-cell *matCellDef="let evento"> {{evento.titulo}} </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="fechaReserva">
+  <ng-container matColumnDef="fecha">
     <mat-header-cell *matHeaderCellDef> Día reserva </mat-header-cell>
-    <mat-cell *matCellDef="let evento"> {{evento.fechaReserva | date:'mediumDate'}} </mat-cell>
+    <mat-cell *matCellDef="let evento"> {{evento.fecha | date:'mediumDate'}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="detalle">

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ProvinciaResponse } from '../direccion.model';
+import { Direccion, ProvinciaResponse } from '../direccion.model';
 import { EventoService } from '../../../eventos/evento.service';
 import { SnackbarService } from '../../services/snackbar.service';
 
@@ -17,7 +17,8 @@ interface DataProvincia {
 export class DireccionComponent implements OnInit, OnDestroy {
   direccionFormulario: FormGroup;
   @Output() nuevaDireccionEvent = new EventEmitter();
-  @Input('expanded') expanded : boolean;
+  @Input('expanded') expanded: boolean;
+  @Input('actualizarDireccion') actualizarDireccion: Direccion;
 
   provincias: DataProvincia[];
   codigo: number;
@@ -34,7 +35,7 @@ export class DireccionComponent implements OnInit, OnDestroy {
 
     if (this.direccionFormulario) {
       this.direccionFormulario.valueChanges.subscribe(() => {
-          this.nuevaDireccion();
+        this.nuevaDireccion();
       });
     }
 
@@ -43,11 +44,11 @@ export class DireccionComponent implements OnInit, OnDestroy {
 
   crearFormularioDireccion() {
     this.direccionFormulario = this.fb.group({
-      calle: ['', Validators.required],
-      numero: [null, Validators.required],
-      provincia: ['', Validators.required],
-      codigo: [this.codigo, Validators.required],
-      localidad: [''],
+      calle: [ this.actualizarDireccion ? this.actualizarDireccion.calle : '' , Validators.required],
+      numero: [ this.actualizarDireccion ? this.actualizarDireccion.numero : '' , Validators.required],
+      provincia: [ this.actualizarDireccion ? this.actualizarDireccion.provincia : '' , Validators.required],
+      codigo: [ this.actualizarDireccion ? this.actualizarDireccion.codigo : this.codigo, Validators.required],
+      localidad: [ this.actualizarDireccion ? this.actualizarDireccion.ciudad : '' ]
     });
   }
 
@@ -83,7 +84,7 @@ export class DireccionComponent implements OnInit, OnDestroy {
   }
 
   nuevaDireccion() {
-      this.nuevaDireccionEvent.emit(this.direccionFormulario);
+    this.nuevaDireccionEvent.emit(this.direccionFormulario);
   }
 
   ngOnDestroy() {

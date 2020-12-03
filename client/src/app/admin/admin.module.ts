@@ -21,6 +21,7 @@ import { TableAdminComponent } from './table-admin/table-admin.component';
 import { CheckboxAdminComponent } from './checkbox-admin/checkbox-admin.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { HistorialEventosComponent } from './historial-eventos/historial-eventos.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { MatIconModule } from '@angular/material/icon';
     ReservasComponent,
     CardAdminComponent,
     TableAdminComponent,
-    CheckboxAdminComponent
+    CheckboxAdminComponent,
+    HistorialEventosComponent
   ],
   imports: [
     CommonModule,

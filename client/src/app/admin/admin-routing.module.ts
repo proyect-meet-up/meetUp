@@ -4,33 +4,42 @@ import { DetalleEventoRegistradoComponent } from '../eventos/detalle-evento-regi
 import { NuevoEventoComponent } from '../eventos/nuevo-evento/nuevo-evento.component';
 import { AdminComponent } from './admin/admin.component';
 import { ConfirmarEventosComponent } from './confirmar-eventos/confirmar-eventos.component';
+import { HistorialEventosComponent } from './historial-eventos/historial-eventos.component';
 
 import { ReservasComponent } from './reservas/reservas.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: AdminComponent,
     children: [
       {
-        path: "nuevo-evento",
+        path: 'nuevo-evento',
         component: NuevoEventoComponent,
       },
       {
-        path: "reservas",
+        path: 'reservas',
         component: ReservasComponent,
       },
       {
-        path: "historial",
-        component: ReservasComponent,
+        path: 'historial',
+        component: HistorialEventosComponent,
       },
       {
         path: 'confirmar-eventos',
-        component: ConfirmarEventosComponent
+        component: ConfirmarEventosComponent,
       },
       {
         path: 'confirmar-eventos/:evento',
-        component: DetalleEventoRegistradoComponent
+        component: DetalleEventoRegistradoComponent,
+      },
+      {
+        path: 'reservas/:evento',
+        component: DetalleEventoRegistradoComponent,
+      },
+      {
+        path: 'historial/:evento',
+        component: DetalleEventoRegistradoComponent,
       }
     ],
   },

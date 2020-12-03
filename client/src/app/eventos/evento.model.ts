@@ -11,7 +11,7 @@ export interface Evento {
   imagen: string;
   confirmar: boolean;
   precio?: number;
-  fecha?: Date;
+  fecha?: Date | string;
   tags?: [];
   createdAt?: Date | string;
   updatedAt?: Date | string;

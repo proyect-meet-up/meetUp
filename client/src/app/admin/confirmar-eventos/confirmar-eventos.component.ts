@@ -64,7 +64,6 @@ export class ConfirmarEventosComponent implements OnInit {
   }
 
   confirmarEventos() {
-    // TODO Aqui enviamos al servidor aquellos eventos confirmados por el administrador
 
     let respuestaFiltro = this.eventosSeleccionados.map( e => {
       return {
@@ -73,9 +72,14 @@ export class ConfirmarEventosComponent implements OnInit {
       }
     });
 
-    this.adminService.actualizarEventosAConfirmar(respuestaFiltro)
-    .subscribe( data => {
+    let eventosNoSeleccionados = [ this.dataSource, this.eventosSeleccionados ]
+        .sort((a,b) => b.length - a.length )
+        .reduce((a, b) => a.filter( o => !b.some( v => v._id === o._id)))
 
+
+    this.adminService.actualizarEventosAConfirmar(respuestaFiltro)
+    .subscribe( () => {
+      this.dataSource = [...eventosNoSeleccionados];
     })
 
 

@@ -13,7 +13,8 @@
   <div class="confirmar-eventos__card">
     <app-table-admin
       [data]="dataSource"
-      (eventoSelection$)="obtenerEventoSeleccionado($event)">
+      (eventoSelection$)="obtenerEventoSeleccionado($event)"
+      [vista]="'confirmar'">
     </app-table-admin>
   </div>
 </div>

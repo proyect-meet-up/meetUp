@@ -2,6 +2,7 @@
   <app-card-evento
     *ngFor="let evento of eventos ; let i = index"
     [curso]="evento"
-    [index]="i">
+    [index]="i"
+    [url]="'eventosDelUsuario'">
   </app-card-evento>
 </div>

@@ -30,7 +30,7 @@
         <div class="detalle-evento-registrado__fecha">
           <label>Fecha del evento</label>
           <mat-form-field appearance="fill">
-            <input matInput [matDatepicker]="calendario" formControlName="fecha">
+            <input matInput [matDatepicker]="calendario" formControlName="fecha" readonly>
             <mat-datepicker-toggle matSuffix [for]="calendario"></mat-datepicker-toggle>
             <mat-datepicker #calendario color="primary"></mat-datepicker>
           </mat-form-field>

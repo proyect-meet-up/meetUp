@@ -1,4 +1,4 @@
-import { FormatoFechaPipe } from 'src/app/pipes/formatoFecha.pipe';
+import * as moment from 'moment';
 
 export const quitarAcentos = (cadena) => {
   const acentos = {
@@ -20,5 +20,15 @@ export const quitarAcentos = (cadena) => {
     .toString();
 };
 
+export const formartearFecha = (evento) => {
+  return {
+    ...evento,
+    fecha: moment(evento.fecha).format('YYYY-MM-DD')
+  };
+}
+
+export const diaDeHoy = () => {
+  return moment(new Date(Date.now())).format('YYYY-MM-DD');
+}
 
 

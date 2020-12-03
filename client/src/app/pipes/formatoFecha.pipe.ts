@@ -9,7 +9,7 @@ export class FormatoFechaPipe implements PipeTransform {
     moment.locale('es');
   }
 
-  transform( fecha: Date, formatoFecha: string ): any {
+  transform( fecha: Date | string , formatoFecha: string ): any {
     return moment(fecha).format(formatoFecha)
   }
 }

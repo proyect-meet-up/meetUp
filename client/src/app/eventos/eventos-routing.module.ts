@@ -13,12 +13,11 @@ import { EventosDelUsuarioComponent } from './eventos-del-usuario/eventos-del-us
 const routes: Routes = [
   { path: '', component: ListadoEventosComponent },
   { path: 'detalle-evento/:id', component: DetalleEventoComponent },
-  { path: 'reserva-evento/:id', component: ReservaEventoComponent},
-  { path: 'detalle-evento/:id/registrado', component: DetalleEventoRegistradoComponent},
-  { path: 'eventos', component: ListadoRegistradoComponent},
-  { path: 'nuevo-evento', component: NuevoEventoComponent},
-  { path: 'eventos/usuario' , component: EventosDelUsuarioComponent}
-
+  { path: 'reserva-evento/:id', component: ReservaEventoComponent },
+  { path: 'eventos', component: ListadoRegistradoComponent },
+  { path: 'nuevo-evento', component: NuevoEventoComponent },
+  { path: 'eventos/usuario', component: EventosDelUsuarioComponent },
+  { path: 'eventos/usuario/:evento', component: DetalleEventoRegistradoComponent },
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-<div class="card mat-elevation-z3" *ngIf="curso" [routerLink]="['detalle-evento', curso._id]">
+<div class="card mat-elevation-z3" *ngIf="curso" (click)="irDetalleEvento()">
   <div class="card__container-imagen">
     <div class="card__categoria" [ngStyle]="{ 'background-color': curso.categoria.color }">
       {{ curso.categoria.categoria }}

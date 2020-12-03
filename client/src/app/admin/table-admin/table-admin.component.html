@@ -18,14 +18,13 @@
   <ng-container matColumnDef="detalle">
     <mat-header-cell *matHeaderCellDef> Ver detalle </mat-header-cell>
     <mat-cell *matCellDef="let evento">
-        <mat-icon class="table__detalle-icon" (click)="irDetalle(evento)">visibility</mat-icon>
+        <mat-icon class="table__detalle-icon" (click)="irDetalleEvento(evento)">visibility</mat-icon>
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="select">
 
       <mat-header-cell mat-header-cell *matHeaderCellDef>
-
       </mat-header-cell>
       <mat-cell  mat-cell *matCellDef="let evento">
         <mat-checkbox

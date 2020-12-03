@@ -19,12 +19,22 @@ export class TableAdminComponent implements OnInit, OnChanges {
   ];
 
   @Input('data') dataSource: Evento[];
+  @Input('vista') vistaTemplate: string;
   @Output() eventoSelection$: EventEmitter<any> = new EventEmitter();
   sub: Subscription;
 
   constructor(private adminService: AdminService, private router: Router) {}
 
   ngOnInit() {
+
+    if (this.vistaTemplate === 'reservas' || this.vistaTemplate === 'historial') {
+      let displayReverseColumns = this.displayedColumns.reverse();
+      let [select, ...cambioDisplayedColumns] = displayReverseColumns;
+      cambioDisplayedColumns = cambioDisplayedColumns.reverse();
+      this.displayedColumns = [...cambioDisplayedColumns];
+    }
+
+
     this.sub = this.adminService.seleccionadoTodos$.subscribe((data) => {
       this.dataSource = this.dataSource.map((el) => ({
         ...el,
@@ -34,6 +44,7 @@ export class TableAdminComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
+
     if ( this.dataSource ) {
       this.dataSource = this.dataSource.map((evento) => ({
         ...evento,
@@ -47,8 +58,20 @@ export class TableAdminComponent implements OnInit, OnChanges {
     this.eventoSelection$.emit(evento);
   }
 
-  irDetalle( evento: Evento ): void {
-    this.router.navigate(['admin', 'confirmar-eventos', `${evento._id}`]);
+  irDetalleEvento( evento: Evento ): void {
+    let vista = this.vistaTemplate;
+
+    switch (vista) {
+      case 'reservas':
+        this.router.navigate(['admin','reservas',`${evento._id}`]);
+        break;
+      case 'historial':
+        this.router.navigate(['admin', 'historial', `${evento._id}`]);
+        break;
+      default:
+        this.router.navigate(['admin', 'confirmar-eventos', `${evento._id}`]);
+        break;
+    }
   }
 }
 

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from "@angular/router";
+import { flashingState } from '@shared/componentes/animations/animation';
 import { UrlService } from '@shared/componentes/services/url.service';
 import { fromEvent, Subject, Subscription } from 'rxjs';
 import { skip, takeUntil, takeWhile, tap } from 'rxjs/operators';
@@ -14,6 +15,7 @@ import { EventoService } from "../evento.service";
   selector: 'app-detalle-evento',
   templateUrl: './detalle-evento.component.html',
   styleUrls: ['./detalle-evento.component.scss'],
+  animations: [ flashingState ]
 })
 export class DetalleEventoComponent implements OnInit, OnDestroy {
   evento: Evento;

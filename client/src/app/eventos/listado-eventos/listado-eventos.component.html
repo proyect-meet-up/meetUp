@@ -1,4 +1,4 @@
-<div class="eventos">
+<div class="eventos" @flashing>
   <app-card-evento
     *ngFor="let evento of eventos | async ; let i = index"
     [curso]="evento"
@@ -7,6 +7,7 @@
 </div>
 
 <app-no-resultados-eventos></app-no-resultados-eventos>
+
 
 
 

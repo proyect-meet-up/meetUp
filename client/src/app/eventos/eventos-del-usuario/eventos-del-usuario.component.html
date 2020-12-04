@@ -1,8 +1,10 @@
-<div class="eventos">
-  <app-card-evento
-    *ngFor="let evento of eventos ; let i = index"
-    [curso]="evento"
-    [index]="i"
-    [url]="'eventosDelUsuario'">
-  </app-card-evento>
+<div class="eventos-usuario">
+  <div class="eventos-usuario__container">
+    <app-card-evento
+      *ngFor="let evento of eventos ; let i = index"
+      [curso]="evento"
+      [index]="i"
+      [url]="'eventosDelUsuario'">
+    </app-card-evento>
+  </div>
 </div>

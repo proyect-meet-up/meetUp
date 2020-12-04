@@ -1,6 +1,8 @@
-<app-header *ngIf="!estaLogueado"></app-header>
-<app-header-registro *ngIf="(estaLogueado && !admin)"></app-header-registro>
-<app-header-admin *ngIf="(estaLogueado && admin)"></app-header-admin>
+<div #headerscroll>
+  <app-header *ngIf="!estaLogueado"></app-header>
+  <app-header-registro *ngIf="(estaLogueado && !admin)"></app-header-registro>
+  <app-header-admin *ngIf="(estaLogueado && admin)"></app-header-admin>
+</div>
 
 <app-buscador *ngIf="mostrarBuscador"></app-buscador>
 <div class="o-container">

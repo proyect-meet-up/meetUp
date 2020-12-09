@@ -50,9 +50,12 @@
           <app-direccion class="width" [expanded]="true" (nuevaDireccionEvent)="direccionActualizada($event)" [actualizarDireccion]="evento.direccion"></app-direccion>
       </div>
 
-      <button class="detalle-evento-registrado__boton" mat-raised-button color="primary">
+      <button class="detalle-evento-registrado__boton" mat-raised-button color="primary" *ngIf="!mostrarBotonGuardar">
         <span #text>Modificar</span>
       </button>
     </form>
+    <button class="detalle-evento-registrado__boton" mat-raised-button color="primary" *ngIf="mostrarBotonGuardar" (click)="enviarDatos()">
+     Guardar cambios
+    </button>
   </div>
 </div>

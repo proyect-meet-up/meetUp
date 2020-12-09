@@ -15,6 +15,11 @@ import { EventoService } from '../evento.service';
 export class DetalleEventoRegistradoComponent implements OnInit {
   state: string = 'inactivo';
   expanded: boolean = false;
+  mostrarBotonGuardar: boolean = false;
+  idEvento: string;
+  direccionParaActualizar;
+  direccionHaSidoActualicada: boolean = false;
+  usuarioId: string;
 
   evento: Evento;
   formularioActualizarEvento: FormGroup;
@@ -33,21 +38,48 @@ export class DetalleEventoRegistradoComponent implements OnInit {
           this.eventosService.obtenerEvento(param['evento'])
             .subscribe((evento: Evento) => {
               this.evento = evento;
-              if ( this.evento ) {
+              if ( this.evento ) {      
+                this.idEvento = this.evento._id;   
+                this.usuarioId = this.evento.usuario._id;
+             
                 this.crearFormulario();
               }
             })
       })
   }
 
-  actualizarEvento() {
-    this.formularioActualizarEvento.enable();
+  actualizarEvento() {    
+    this.formularioActualizarEvento.enable();   
     // this.render.setProperty(this.formularioBoton.nativeElement, 'textContent','Actualizar datos');
+   
+    this.mostrarBotonGuardar = true;    
 
   }
 
-  crearFormulario() {
+  enviarDatos() {   
+  
+    if(this.direccionHaSidoActualicada) {
+      this.evento = {       
+        ...this.formularioActualizarEvento.value,
+        direccion: this.direccionParaActualizar,
+        usuario: this.usuarioId
+      }    
+    } else {
+      let { direccion } = this.evento;
+      this.evento = {        
+        ...this.formularioActualizarEvento.value,
+        direccion,
+        usuario: this.usuarioId
+      }     
+    }    
+    this.eventosService.actualizarEvento(this.idEvento, this.evento).subscribe(datos => {
+      console.log("HA FUNCIONADOOO", datos)
+    }) 
+  }
 
+
+  crearFormulario() {
+    console.log(this.evento);
     this.formularioActualizarEvento = this.fb.group({
       titulo: [this.evento ? this.evento.titulo : '', [Validators.required]],
       descripcion: [
@@ -80,13 +112,15 @@ export class DetalleEventoRegistradoComponent implements OnInit {
   }
 
   direccionActualizada($event: FormGroup) {
-    let direccionActualizada = { ...$event.value };
-    let { direccion, ...eventoActualizado} = this.evento;
 
+    this.direccionHaSidoActualicada = true;
+     this.direccionParaActualizar = { ...$event.value };    
+  
     this.evento = {
-      ...eventoActualizado,
-      direccion: direccionActualizada
+      ...this.formularioActualizarEvento.value,
+      direccion: this.direccionParaActualizar
     }
+
 
   }
 }

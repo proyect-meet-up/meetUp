@@ -75,14 +75,17 @@ const actualizarEvento = async (req, res = response) => {
 	const idEvento = req.params.id;
 	let datos = req.body;
 
+	
 	try {
 		const evento = await Evento.findById({ _id: idEvento });
-
+		
 		const direccionNueva = await Direccion.findByIdAndUpdate(evento.direccion._id, datos.direccion, { new: true });
+		
 		datos.direccion = evento.direccion._id;
+	
 		const eventoActualizado = await Evento.findByIdAndUpdate(mongoose.Types.ObjectId(idEvento), datos, {
 			new: true
-		});
+		});		
 
 		res.json({
 			ok: true,

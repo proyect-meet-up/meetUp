@@ -77,7 +77,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login() {
 
-
     this.authService.login(this.formularioLogin.value).subscribe(
       (data: LoginRespuesta) => {
 
@@ -85,7 +84,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           if ( this.urlPrevio.length === 0 ) {
             this.router.navigate(['privado'])
           } else {
-            this.router.navigate([`${this.urlPrevio[1]}`, `${this.urlPrevio[2]}`])
+            this.router.navigate(['privado', `${this.urlPrevio[1]}`, `${this.urlPrevio[2]}`])
             this.urlService.setPreviousUrl(null)
           }
 

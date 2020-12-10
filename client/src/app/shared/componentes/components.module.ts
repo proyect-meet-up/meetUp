@@ -33,6 +33,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { SnackbarComponent } from './snackbar/snackbar.component';
+import { IconMisEventosComponent } from './icon-mis-eventos/icon-mis-eventos.component';
+import { EtiquetaComponent } from './etiqueta/etiqueta.component';
 
 
 
@@ -49,7 +51,9 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
     HeaderAdminComponent,
     MenuTogglerComponent,
     MapaComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    IconMisEventosComponent,
+    EtiquetaComponent
   ],
   imports: [
     CommonModule,
@@ -80,7 +84,9 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
     HeaderAdminComponent,
     MenuTogglerComponent,
     MapaComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    IconMisEventosComponent,
+    EtiquetaComponent
   ],
   entryComponents: [ModalComponent],
   providers: [

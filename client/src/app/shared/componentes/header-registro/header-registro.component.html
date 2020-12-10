@@ -3,14 +3,12 @@
     <span class="header-registro__logo" [routerLink]="['privado']">
       Área Privada
     </span>
-    <div *ngIf="total > 0">
-      <span [routerLink]="['privado', 'eventos', 'usuario']">Mis eventos</span>
-    </div>
     <div class="header-registro__links">
       <a *ngIf="usuario" class="header-registro__links-items">Bienvenido {{ usuario.nombre }}</a>
       <a class="header-registro__links-items header-registro__dropdown">
         <img class="header-registro__avatar" src="assets/usuarios-imagenes/usuario1.jpg" alt="usuario">
       </a>
+      <app-icon-mis-eventos [url]="'usuario'" (numEventos$)="existenMisEventos($event)"  @flashing></app-icon-mis-eventos>
       <button mat-button [matMenuTriggerFor]="menu" class="header-registro__links-items m-l">
         <span>Mis gestiones</span>
         <mat-icon>arrow_drop_down</mat-icon>

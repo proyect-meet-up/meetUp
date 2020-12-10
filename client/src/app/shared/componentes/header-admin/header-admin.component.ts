@@ -4,37 +4,43 @@ import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/rou
 import { AuthService } from 'src/app/auth/auth.service';
 import { AdminService } from '../../../admin/admin.service';
 import { Subscription } from 'rxjs';
+import { flashingState } from '@shared/componentes/animations/animation';
 
 @Component({
   selector: 'app-header-admin',
   templateUrl: './header-admin.component.html',
-  styleUrls: ['./header-admin.component.scss']
+  styleUrls: ['./header-admin.component.scss'],
+  animations: [flashingState],
 })
-export class HeaderAdminComponent implements OnInit , OnDestroy{
-
+export class HeaderAdminComponent implements OnInit, OnDestroy {
   toggle: boolean = false;
   subRouter: Subscription;
   titulo: string = 'Confirmar eventos';
+  total: number;
 
-  constructor(private authService: AuthService, private adminService : AdminService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private adminService: AdminService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-
-    this.subRouter = this.router.events.subscribe( (data: NavigationEnd) => {
-
+    this.subRouter = this.router.events.subscribe((data: NavigationEnd) => {
       this.toggle = false;
-      if ( data instanceof RouterEvent) {
-        if ( data instanceof NavigationEnd) {
-          this.transformarUrlToTitulo(data.url)
+      if (data instanceof RouterEvent) {
+        if (data instanceof NavigationEnd) {
+          this.transformarUrlToTitulo(data.url);
         }
       }
-    })
+    });
   }
 
-  transformarUrlToTitulo( url: string) {
-    let transformar = url.split('/').filter( el => el !== '' && el !== 'admin');
+  transformarUrlToTitulo(url: string) {
+    let transformar = url
+      .split('/')
+      .filter((el) => el !== '' && el !== 'admin');
     let [titulo] = transformar;
-    if ( titulo) {
+    if (titulo) {
       this.titulo = titulo.replace('-', ' ');
     }
   }
@@ -50,6 +56,10 @@ export class HeaderAdminComponent implements OnInit , OnDestroy{
 
   cerrarSesion() {
     this.authService.logout(false);
+  }
+
+  existenMisEventos($event: number) {
+    this.total = $event;
   }
 
   ngOnDestroy() {

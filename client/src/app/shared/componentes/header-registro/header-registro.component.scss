@@ -35,6 +35,16 @@
     }
   }
 
+  &__icon-mis-eventos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__figcaption {
+    font-size: 1.3rem;
+  }
+
   &__links {
     display: flex;
     justify-content: flex-end;

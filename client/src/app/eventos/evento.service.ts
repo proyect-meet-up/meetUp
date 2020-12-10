@@ -10,7 +10,7 @@ import { ProvinciaResponse } from '../shared/componentes/direccion.model';
 import { environment } from '@env/environment';
 import { Categoria } from './categoria.model';
 
-import { quitarAcentos } from '../shared/helpers/helpers';
+import { diaDeHoy, formartearFecha, quitarAcentos } from '../shared/helpers/helpers';
 
 
 @Injectable({
@@ -32,7 +32,7 @@ export class EventoService {
   URL = environment.URL;
 
   constructor(private http: HttpClient) {
-    this.obtenerTodosEventos();
+    // this.obtenerTodosEventos();
   }
 
   obtenerTodosEventos(): Subscription {
@@ -40,6 +40,13 @@ export class EventoService {
       .get<Evento[]>(`${this.URL}/eventos`)
       .pipe(
         pluck('eventos'),
+        map((eventos: Evento[]) => eventos.map(formartearFecha)),
+        map((eventos: Evento[]) =>
+          eventos
+            .filter((e) => e.confirmar === true)
+            .filter((e) => e.fecha >= diaDeHoy())
+        ),
+
         tap((eventos: Evento[]) => this.eventosBuscadosSource.next(eventos))
       )
       .subscribe((eventos: Evento[]) => {

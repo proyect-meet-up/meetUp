@@ -11,11 +11,13 @@
       <div class="header-admin__items">
         <img class="header-admin__avatar" src="assets/usuarios-imagenes/usuario1.jpg" alt="usuario">
       </div>
+      <app-icon-mis-eventos [url]="'admin'" (numEventos$)="existenMisEventos($event)" @flashing></app-icon-mis-eventos>
       <button class="header-admin__items" mat-button [matMenuTriggerFor]="menu" >
         <span>Mis gestiones</span>
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
+        <button *ngIf="total > 0" mat-menu-item [routerLink]="['admin', 'eventos', 'usuario']" >Mis eventos</button>
         <button mat-menu-item [routerLink]="['admin', 'confirmar-eventos']">Confirmar eventos</button>
         <button mat-menu-item [routerLink]="['admin', 'nuevo-evento']">Crear evento</button>
         <button mat-menu-item [routerLink]="['admin', 'reservas']">Reservas</button>

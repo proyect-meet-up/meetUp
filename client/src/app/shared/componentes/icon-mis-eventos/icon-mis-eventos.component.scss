@@ -1,0 +1,18 @@
+
+.icon-mis-eventos {
+  cursor: pointer;
+
+  &__figure{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__figcaption {
+    font-size: 1rem;
+    color: #bd8888;
+  }
+
+
+}
+

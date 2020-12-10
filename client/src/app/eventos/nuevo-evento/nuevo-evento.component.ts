@@ -23,6 +23,8 @@ export class NuevoEventoComponent implements OnInit {
   checked: boolean;
   hoy: string | Date = new Date(Date.now());
 
+  padding: boolean;
+
   get valorPrecioChecked() {
     return this.checked;
   }
@@ -78,9 +80,10 @@ export class NuevoEventoComponent implements OnInit {
     };
 
     this.eventoService.crearEvento(evento).subscribe(() => {
-      this.snackbarService.mostrar(`Enhorabuena ${this.usuario.nombre} acabas de crear un nuevo evento`);
-      this.router.navigate(['privado', 'eventos', 'usuario'])
-
+      this.snackbarService.mostrar(
+        `Enhorabuena ${this.usuario.nombre} acabas de crear un nuevo evento`
+      );
+      this.router.navigate(['privado', 'eventos', 'usuario']);
     });
   }
 
@@ -102,6 +105,10 @@ export class NuevoEventoComponent implements OnInit {
     });
   }
 
+  observandoPanelExtendido($event) {
+    console.log('Evento desde el hijo....', $event)
+    this.padding = $event;
+  }
 
   cambioValidaciones() {
     if (this.valorPrecioChecked) {

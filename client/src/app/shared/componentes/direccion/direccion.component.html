@@ -1,5 +1,5 @@
 <mat-accordion class="direccion" multi>
-  <mat-expansion-panel [expanded]="expanded">
+  <mat-expansion-panel [expanded]="expanded" (opened)="panelAbierto(panel)" (closed)="panelCerrado(panel)" #panel="matExpansionPanel">
     <mat-expansion-panel-header>
       <mat-panel-title>
       </mat-panel-title>

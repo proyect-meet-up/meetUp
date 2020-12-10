@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Direccion, ProvinciaResponse } from '../direccion.model';
 import { EventoService } from '../../../eventos/evento.service';
 import { SnackbarService } from '../../services/snackbar.service';
+import { MatExpansionPanel } from '@angular/material/expansion';
 
 interface DataProvincia {
   provincia: string,
@@ -17,8 +18,11 @@ interface DataProvincia {
 export class DireccionComponent implements OnInit, OnDestroy {
   direccionFormulario: FormGroup;
   @Output() nuevaDireccionEvent = new EventEmitter();
+  @Output()
+  panelExpandido: EventEmitter<boolean> = new EventEmitter();
   @Input('expanded') expanded: boolean;
   @Input('actualizarDireccion') actualizarDireccion: Direccion;
+  panel: MatExpansionPanel;
 
   provincias: DataProvincia[];
   codigo: number;
@@ -44,11 +48,27 @@ export class DireccionComponent implements OnInit, OnDestroy {
 
   crearFormularioDireccion() {
     this.direccionFormulario = this.fb.group({
-      calle: [ this.actualizarDireccion ? this.actualizarDireccion.calle : '' , Validators.required],
-      numero: [ this.actualizarDireccion ? this.actualizarDireccion.numero : '' , Validators.required],
-      provincia: [ this.actualizarDireccion ? this.actualizarDireccion.provincia : '' , Validators.required],
-      codigo: [ this.actualizarDireccion ? this.actualizarDireccion.codigo : this.codigo, Validators.required],
-      localidad: [ this.actualizarDireccion ? this.actualizarDireccion.ciudad : '' ]
+      calle: [
+        this.actualizarDireccion ? this.actualizarDireccion.calle : '',
+        Validators.required,
+      ],
+      numero: [
+        this.actualizarDireccion ? this.actualizarDireccion.numero : '',
+        Validators.required,
+      ],
+      provincia: [
+        this.actualizarDireccion ? this.actualizarDireccion.provincia : '',
+        Validators.required,
+      ],
+      codigo: [
+        this.actualizarDireccion
+          ? this.actualizarDireccion.codigo
+          : this.codigo,
+        Validators.required,
+      ],
+      localidad: [
+        this.actualizarDireccion ? this.actualizarDireccion.ciudad : '',
+      ],
     });
   }
 
@@ -85,6 +105,14 @@ export class DireccionComponent implements OnInit, OnDestroy {
 
   nuevaDireccion() {
     this.nuevaDireccionEvent.emit(this.direccionFormulario);
+  }
+
+  panelAbierto(panel: MatExpansionPanel) {
+    this.panelExpandido.emit(panel.expanded);
+  }
+
+  panelCerrado(panel: MatExpansionPanel) {
+    this.panelExpandido.emit(panel.expanded);
   }
 
   ngOnDestroy() {

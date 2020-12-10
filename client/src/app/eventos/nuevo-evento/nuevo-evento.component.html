@@ -1,4 +1,4 @@
-<div class="nuevo-evento">
+<div class="nuevo-evento" [ngClass]="padding ? 'padding' : ''">
   <div class="nuevo-evento__wrapper mat-elevation-z4">
     <div class="nuevo-evento__checkbox">
       <mat-checkbox [(ngModel)]="checked" (ngModelChange)="cambioValidaciones()">¿ Tiene precio este evento ?</mat-checkbox>
@@ -32,7 +32,7 @@
 
       <label>Dirección</label>
       <div class="nuevo-evento__direccion">
-        <app-direccion (nuevaDireccionEvent)="nuevaDireccion($event)"></app-direccion>
+        <app-direccion (nuevaDireccionEvent)="nuevaDireccion($event)" (panelExpandido)="observandoPanelExtendido($event)"></app-direccion>
       </div>
       <div class="nuevo-evento__form--col-2">
         <div *ngIf="checked" class="nuevo-evento__precio">

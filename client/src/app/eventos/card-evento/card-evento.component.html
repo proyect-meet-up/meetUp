@@ -1,11 +1,12 @@
-<div class="card mat-elevation-z3" *ngIf="curso" (click)="irDetalleEvento()">
-  <div class="card__container-imagen">
+<div *ngIf="curso"  class="card mat-elevation-z3" (click)="irDetalleEvento()">
+  <app-etiqueta *ngIf="hoy >= evento.fecha"></app-etiqueta>
+  <div class="card__container-imagen" [ngClass]="hoy >= evento.fecha ? 'evento-imagen-disabled evento-disabled' : '' ">
     <div class="card__categoria" [ngStyle]="{ 'background-color': curso.categoria.color }">
       {{ curso.categoria.categoria }}
     </div>
     <img class="card__imagen" [src]="curso.imagen" alt="{{curso.imagen}}">
   </div>
-  <div class="card__container-texto">
+  <div class="card__container-texto" [ngClass]="hoy >= evento.fecha ? 'evento-disabled' : '' ">
     <div class="card__title">
       {{curso.titulo | upperLetterFisrtWord}}
     </div>

@@ -7,6 +7,7 @@
   max-width: 350px;
   background-color: white;
   border-radius: 10px;
+  position: relative;
 
   &__container-imagen {
     padding: 15px;
@@ -87,6 +88,16 @@
     direction: ltr;
     -webkit-font-smoothing: antialiased;
 
+  }
+
+  .evento-disabled {
+    cursor: not-allowed;
+    // pointer-events: none;
+
+  }
+
+  .evento-imagen-disabled {
+    filter: grayscale(1);
   }
 
 }

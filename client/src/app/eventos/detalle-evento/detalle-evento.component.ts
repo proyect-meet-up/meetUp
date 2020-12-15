@@ -6,6 +6,7 @@ import { UrlService } from '@shared/componentes/services/url.service';
 import { fromEvent, Subject, Subscription } from 'rxjs';
 import { skip, takeUntil, takeWhile, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Usuario } from "../../privado/usuario/usuario.model";
 import { ModalComponent } from 'src/app/shared/componentes/modal/modal.component';
 import { Evento } from "../evento.model";
 import { EventoService } from "../evento.service";
@@ -22,6 +23,8 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   eventosSuscription: Subscription;
   id: string;
   logueado = false;
+  usuario: Usuario;
+  sub: Subscription;
 
 
   constructor(
@@ -34,6 +37,9 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   ) {
     /* const id = Number(this.route.snapshot.params["id"]);
     this.evento = this.eventoService.obtenerEvento(id); */
+    this.sub = this.authService.usuario$.subscribe(
+      (data: Usuario) => (this.usuario = data)
+    );
   }
 
   ngOnInit(): void {
@@ -62,7 +68,10 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   irReserva() {
     this.urlService.setPreviousUrl(this.router.url);
 
-    if (this.logueado) {
+    if (this.logueado) {    
+      this.eventoService.reservarEvento(this.id, this.usuario._id).subscribe( data => {
+        console.log("reserva correcta", data)
+      })
       this.router.navigate(['privado', 'reserva-evento', this.evento._id]);
     } else {
       this.abrirModalNoAutenticado();

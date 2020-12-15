@@ -100,8 +100,12 @@ export class EventoService {
     return this.http.post(`${this.URL}/eventos`, formEvento);
   }
 
-  actualizarEvento(idEvento: string, eventoParaActualizar) {
+  actualizarEvento(idEvento: string, eventoParaActualizar) {    
     return this.http.put(`${this.URL}/eventos/${idEvento}`, eventoParaActualizar);
+  }
 
+  reservarEvento(idEvento: string, idUsuario) {
+    let usuario = {_id: idUsuario }
+    return this.http.put(`${this.URL}/eventos/reservar/${idEvento}`, usuario);
   }
 }

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const Evento = require('../models/evento');
 const Direccion = require('../models/direccion');
+const { findById } = require('../models/evento');
 
 const getEventos = async (req, res = response) => {
 	const eventos = await Evento.find()
@@ -130,6 +131,28 @@ const borrarEvento = (req, res = response) => {
 	});
 };
 
+const reservarEvento = async (req, res = response) => {
+	const idEvento = req.params.id;
+	const idUsuario = req.body._id;
+
+	try {
+		const evento = await Evento.findByIdAndUpdate(idEvento, { $addToSet : { reservas: [ idUsuario ] }}, { new: true });		
+		
+		res.status(200).json({
+			ok: true,
+			evento
+		});
+
+	} catch (error) {
+		res.status(500).json({
+			ok: false,
+			msg: error
+		})
+	}
+
+
+}
+
 module.exports = {
 	getEventos,
 	getEvento,
@@ -137,5 +160,6 @@ module.exports = {
 	actualizarEvento,
 	borrarEvento,
 	getEventosDelUsuario,
-	actualizarEventos
+	actualizarEventos,
+	reservarEvento
 };

@@ -17,7 +17,8 @@ const  {
     actualizarEvento,
     borrarEvento,
     getEventosDelUsuario,
-    actualizarEventos
+    actualizarEventos,
+    reservarEvento
 } = require('../controllers/eventos.controller')
 
 const router = Router();
@@ -38,8 +39,6 @@ router
     .route('/usuario')
     .get(validarJWT, getEventosDelUsuario)
 
-
-
 router
     .route('/:id')
     .get(getEvento)
@@ -47,7 +46,15 @@ router
         validarJWT,
         check('evento', 'el id del evento debe ser un id válido').isMongoId(),
     ], actualizarEvento)
-    .delete(borrarEvento);
+    .delete(borrarEvento)
+    
+router
+    .route('/reservar/:id')
+    .put([
+        validarJWT,
+        check('evento', 'el id del evento debe ser un id válido').isMongoId(),
+    ], reservarEvento)
+
 
 
 

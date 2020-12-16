@@ -22,7 +22,7 @@ export class AuthService {
   );
   estaLogueado$ = this.estaLogueadoSource.asObservable();
 
-  esAdmin = new BehaviorSubject(localStorage.getItem('panel') != null);
+  esAdmin = new BehaviorSubject(JSON.parse(localStorage.getItem('panel')) === true);
   esAdmin$ = this.esAdmin.asObservable();
 
   constructor(private http: HttpClient) {}

@@ -34,13 +34,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private urlService: UrlService
   ) {
-    this.sub = this.urlService.previousUrl$.subscribe( data => {
+    this.sub = this.urlService.previousUrl$
+      .subscribe( data => {
 
-      if ( data !== null) {
-        this.urlPrevio = data.split('/');
-      } else {
-        this.urlPrevio = [];
-      }
+          if ( data !== null) {
+            this.urlPrevio = data.split('/');
+          } else {
+            this.urlPrevio = [];
+          }
     })
   }
 
@@ -76,6 +77,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login() {
+    console.log('URL Previo:', this.urlPrevio)
 
     this.authService.login(this.formularioLogin.value).subscribe(
       (data: LoginRespuesta) => {
@@ -88,10 +90,20 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.urlService.setPreviousUrl(null)
           }
 
-
         } else {
           this.authService.isAdmin(true);
-          this.router.navigate(['admin', 'confirmar-eventos']);
+          if ( this.urlPrevio.length === 0) {
+            this.router.navigate(['admin', 'confirmar-eventos']);
+            this.urlService.setPreviousUrl(null);
+          } else {
+            // TODO - Enviar al administrador al detalle del evento ( componente detalle evento ) para realizar la reserva.
+            this.router.navigate([
+              'admin',
+              `${this.urlPrevio[1]}`,
+              `${this.urlPrevio[2]}`,
+            ]);
+            this.urlService.setPreviousUrl(null);
+          }
         }
       }
     );

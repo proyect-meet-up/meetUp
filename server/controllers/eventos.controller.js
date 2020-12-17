@@ -21,7 +21,8 @@ const getEventos = async (req, res = response) => {
 const getEvento = async (req, res = response) => {
 	const evento = await Evento.findById(req.params.id)
 	.populate( 'direccion','calle numero localidad provincia codigo')
-	.populate( 'usuario', 'nombre')
+	.populate( 'usuario', 'nombre imagen')
+	.populate( 'categoria', 'categoria color' )
 
 	res.json({
 		ok: true,

@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { AdminService } from '../../../admin/admin.service';
 import { Subscription } from 'rxjs';
 import { flashingState } from '@shared/componentes/animations/animation';
+import { Usuario } from 'src/app/privado/usuario/usuario.model';
 
 @Component({
   selector: 'app-header-admin',
@@ -17,6 +18,8 @@ export class HeaderAdminComponent implements OnInit, OnDestroy {
   subRouter: Subscription;
   titulo: string = 'Confirmar eventos';
   total: number;
+  usuario: Usuario;
+  usuarioSub: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -33,6 +36,11 @@ export class HeaderAdminComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+    this.usuarioSub = this.authService.usuario$
+      .subscribe( (usuario: Usuario) => this.usuario = usuario)
+
+
   }
 
   transformarUrlToTitulo(url: string) {
@@ -64,5 +72,6 @@ export class HeaderAdminComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subRouter.unsubscribe();
+    this.usuarioSub.unsubscribe();
   }
 }

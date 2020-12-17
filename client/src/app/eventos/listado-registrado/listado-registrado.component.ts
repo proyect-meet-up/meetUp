@@ -22,8 +22,6 @@ export class ListadoRegistradoComponent implements OnInit {
   ngOnInit(): void {
     this.authService.usuario$.subscribe( (data: Usuario) => {
       this.usuario = data;
-      console.log('Datos del usuario', this.usuario)
-
     } );
     this.eventosService.eventosBuscados$
       .pipe(
@@ -32,8 +30,7 @@ export class ListadoRegistradoComponent implements OnInit {
         ),
         map((eventos) =>
           eventos.filter((ev) => ev.reservas.find((r) => r === this.usuario._id))
-        ),
-        tap((e) => console.log(e))
+        )
       )
       .subscribe( (data: Evento[]) => this.eventos = data)
   }

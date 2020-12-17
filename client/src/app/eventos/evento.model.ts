@@ -15,4 +15,5 @@ export interface Evento {
   tags?: [];
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reservas?: []
 }

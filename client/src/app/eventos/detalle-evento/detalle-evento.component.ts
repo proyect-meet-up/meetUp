@@ -16,7 +16,7 @@ import { EventoService } from "../evento.service";
   selector: 'app-detalle-evento',
   templateUrl: './detalle-evento.component.html',
   styleUrls: ['./detalle-evento.component.scss'],
-  animations: [ flashingState ]
+  animations: [flashingState],
 })
 export class DetalleEventoComponent implements OnInit, OnDestroy {
   evento: Evento;
@@ -25,7 +25,6 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   logueado = false;
   usuario: Usuario;
   sub: Subscription;
-
 
   constructor(
     private route: ActivatedRoute,
@@ -44,20 +43,16 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.eventosSuscription = this.eventoService.keyUpBuscador$
-      .pipe(
-        skip(1)
-      )
+      .pipe(skip(1))
       .subscribe(() => {
         this.router.navigate(['/']);
       });
 
-
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-      this.eventoService.obtenerEvento(this.id)
-        .subscribe( (evento: Evento) =>{
-           this.evento = evento
-          })
+      this.eventoService.obtenerEvento(this.id).subscribe((evento: Evento) => {
+        this.evento = evento;
+      });
     });
 
     this.authService.estaLogueado$.subscribe((valor) => {
@@ -65,13 +60,17 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
     });
   }
 
-  irReserva() {
+  botonReserva() {
     this.urlService.setPreviousUrl(this.router.url);
+    // TODO - Si el usuario es el administrador hay que redirigir a una ruta que todavía hay que especificar en el admin router
 
-    if (this.logueado) {    
-      this.eventoService.reservarEvento(this.id, this.usuario._id).subscribe( data => {
-        console.log("reserva correcta", data)
-      })
+    if (this.logueado) {
+      this.eventoService
+        .reservarEvento(this.id, this.usuario._id)
+        .subscribe(() => {
+          // Volvemos a llamar a la API para actiualizar la BBDD
+          this.eventoService.obtenerTodosEventos();
+        });
       this.router.navigate(['privado', 'reserva-evento', this.evento._id]);
     } else {
       this.abrirModalNoAutenticado();

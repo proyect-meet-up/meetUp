@@ -11,7 +11,6 @@ export class UrlService {
   constructor() {}
 
   setPreviousUrl(previousUrl: string) {
-    console.log(previousUrl)
     this.previousUrl.next(previousUrl);
   }
 }

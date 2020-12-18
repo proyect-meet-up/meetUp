@@ -149,9 +149,29 @@ const reservarEvento = async (req, res = response) => {
 			msg: error
 		})
 	}
-
-
 }
+
+const obtenerReservasDelUsuario = async (req, res = response) => {
+	const idEvento = req.params.id;
+	const idUsuario = req.body._id;
+
+	try {
+		const reservas = await Evento.find( {_id: idEvento, reservas: idUsuario });
+
+		res.status(200).json({
+			ok: true,
+			reservas
+		})
+
+	} catch(error) {
+		res.status(500).json({
+			ok: false,
+			msg: error
+		})
+	}
+}
+
+
 
 module.exports = {
 	getEventos,
@@ -161,5 +181,6 @@ module.exports = {
 	borrarEvento,
 	getEventosDelUsuario,
 	actualizarEventos,
-	reservarEvento
+	reservarEvento,
+	obtenerReservasDelUsuario
 };

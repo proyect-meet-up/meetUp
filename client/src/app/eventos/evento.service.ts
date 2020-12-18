@@ -108,4 +108,9 @@ export class EventoService {
     let usuario = {_id: idUsuario }
     return this.http.put(`${this.URL}/eventos/reservar/${idEvento}`, usuario);
   }
+
+  obtenerReservasDelUsuario(idEvento: string, idUsuario: string) {
+   // const params = new HttpParams().append('p', idUsuario);   
+    return this.http.get(`${this.URL}/eventos/comprobarReserva/${idEvento}/${idUsuario}` )
+  }
 }

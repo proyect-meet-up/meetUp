@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.router.navigate(['admin', 'confirmar-eventos']);
             this.urlService.setPreviousUrl(null);
           } else {
-            // TODO - Enviar al administrador al detalle del evento ( componente detalle evento ) para realizar la reserva.
+
             this.router.navigate([
               'admin',
               `${this.urlPrevio[1]}`,

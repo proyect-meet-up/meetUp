@@ -57,7 +57,7 @@ router
     ], reservarEvento)
 
 router
-    .route('/comprobarReserva/:id')
+    .route('/comprobarReserva/:id/:usuario')
     .get([
         validarJWT,
         check('evento', 'el id del evento debe ser un id válido').isMongoId(),

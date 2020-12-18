@@ -153,7 +153,8 @@ const reservarEvento = async (req, res = response) => {
 
 const obtenerReservasDelUsuario = async (req, res = response) => {
 	const idEvento = req.params.id;
-	const idUsuario = req.body._id;
+	const idUsuario = req.params.usuario;
+	// TODO: comprobar el idUsuario contra el token, para asegurar que no ha sido modificado en la url
 
 	try {
 		const reservas = await Evento.find( {_id: idEvento, reservas: idUsuario });

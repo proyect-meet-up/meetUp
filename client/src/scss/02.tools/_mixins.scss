@@ -53,3 +53,13 @@ ORDER: Base + typography > general layout + grid > page layout > components
     min-width: 200px;
     font-size: 1.8rem;
 }
+
+@mixin flex-c {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-r {
+  display: flex;
+  flex-direction: row;
+}

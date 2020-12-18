@@ -1,47 +1,55 @@
-<div class="reserva-form" *ngIf="evento">
-  <div class="reserva-form__left">
-    <div class="reserva-form__title">
-      <h3>Datos personales</h3>
-    </div>
-    <form class="reserva-form__form" [formGroup]="formularioReserva" (ngSubmit)="reservarEvento()">
-      <mat-form-field appearance="fill">
-        <mat-label>Nombre</mat-label>
-        <input matInput placeholder="Nombre" formControlName="nombre">
-        <mat-icon matSuffix>face</mat-icon>
-      </mat-form-field>
+<div class="card-reserva-evento" *ngIf="evento">
 
-      <mat-form-field appearance="fill">
-        <mat-label>Apellido</mat-label>
-        <input matInput placeholder="Apellido" formControlName="apellido">
-        <mat-icon matSuffix>person</mat-icon>
-      </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="E-mail" formControlName="email">
-        <mat-icon matSuffix>mail</mat-icon>
-      </mat-form-field>
+  <div class="card-reserva-evento__card mat-elevation-z2">
 
-      <mat-form-field appearance="fill">
-        <mat-label>Teléfono</mat-label>
-        <input matInput placeholder="Teléfono" formControlName="telefono">
-        <mat-icon matSuffix>phone</mat-icon>
-      </mat-form-field>
-      <button mat-raised-button color="primary" [disabled]="!formularioReserva.valid">Reservar</button>
-    </form>
-  </div>
-  <div class="reserva-form__right">
-     <div class="reserva-form__title">
-      <h3>{{evento.titulo}}</h3>
-    </div>
-    <div class="reserva-form__imagen">
-      <img src="{{evento.imagen}}" alt="{{evento.imagen}}">
-    </div>
-    <div class="reserva-form__location">
-      <div class="reserva-form__direction">
-        <p>Calle: {{evento.direccion.calle}}</p>
-        <p>Provincia: {{evento.direccion.provincia}}</p>
+    <div class="card-reserva-evento__titulo">
+      <label>Titulo</label>
+      <div>
+        {{ evento.titulo }}
       </div>
     </div>
+
+    <div class="card-reserva-evento__imagen">
+       <img [src]="evento.imagen" alt="{{evento.imagen}}">
+    </div>
+
+    <div class="card-reserva-evento__categoria">
+      <div class="card-reserva-evento__etiqueta" [ngStyle]="{ 'background-color': evento.categoria.color }">
+        <span>
+          {{ evento.categoria.categoria }}
+        </span>
+      </div>
+    </div>
+
+    <div class="card-reserva-evento__direccion">
+      <label>Dirección</label>
+        <div class="card-reserva-evento__direccion-items">
+          <p>Calle: {{ evento.direccion.calle }}, {{ evento.direccion.numero }}</p>
+          <p>Provincia: {{ evento.direccion.provincia }}</p>
+          <p>Código Postal: {{ evento.direccion.codigo }}</p>
+        </div>
+    </div>
+
+    <div class="card-reserva-evento__precio" *ngIf="evento.precio !== 0, else noPrecio">
+      <label>Precio</label>
+      <span> {{ evento.precio }} €</span>
+    </div>
+    <ng-template #noPrecio>
+      <span class="card-reserva-evento__precio-free">
+        <img src="assets/iconos/free.ico" alt="free">
+      </span>
+    </ng-template>
+
+
+    <div class="card-reserva-evento__fecha">
+      <label>{{ evento.fecha  | formatoFecha: 'LL' }}</label>
+      <button mat-raised-button class="boton-cancelar">Cancelar</button>
+
+    </div>
+
   </div>
+
+
+
 </div>

@@ -20,5 +20,6 @@
       <app-mapa class="detalle-evento__mapa" [direccion]="evento.direccion"></app-mapa>
     </div>
   </div>
-  <button mat-raised-button color="primary" (click)="botonReserva()">Reserva</button>
+  <button mat-raised-button color="primary" (click)="botonReserva()" *ngIf="mostrarBotonReserva">Reserva</button>
+  <p class="detalle-evento__title" *ngIf="!mostrarBotonReserva">¡¡¡HEEEYYY que ya tienes reservado esto !!!</p>
 </div>

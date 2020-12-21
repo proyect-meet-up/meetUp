@@ -25,6 +25,7 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   logueado = false;
   usuario: Usuario;
   sub: Subscription;
+  mostrarBotonReserva = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,8 +38,17 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
     /* const id = Number(this.route.snapshot.params["id"]);
     this.evento = this.eventoService.obtenerEvento(id); */
     this.sub = this.authService.usuario$.subscribe(
-      (data: Usuario) => (this.usuario = data)
+      (data: Usuario) => (this.usuario = data)     
     );
+
+    this.route.params.subscribe((params: Params) => {
+      this.id = params['id'];
+      this.eventoService.obtenerEvento(this.id).subscribe((evento: Evento) => {
+        this.evento = evento;
+      });
+    });
+
+    this.obtenerEventoDelUsuario();
   }
 
   ngOnInit(): void {
@@ -48,12 +58,7 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
         this.router.navigate(['/']);
       });
 
-    this.route.params.subscribe((params: Params) => {
-      this.id = params['id'];
-      this.eventoService.obtenerEvento(this.id).subscribe((evento: Evento) => {
-        this.evento = evento;
-      });
-    });
+ 
 
     this.authService.estaLogueado$.subscribe((valor) => {
       this.logueado = valor;
@@ -71,7 +76,7 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
           // Volvemos a llamar a la API para actiualizar la BBDD
           this.eventoService.obtenerTodosEventos();
         });
-      this.router.navigate(['privado', 'reserva-evento', this.evento._id]);
+      this.router.navigate(['privado', 'reserva-evento', this.evento._id]);     
     } else {
       this.abrirModalNoAutenticado();
     }
@@ -81,7 +86,22 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
     this.dialog.open(ModalComponent, {});
   }
 
+  obtenerEventoDelUsuario() {
+    console.log("los datos del usuario son: ", this.usuario)
+    if(this.usuario != null) {
+      this.eventoService.obtenerReservasDelUsuario(this.id, this.usuario._id).subscribe( (evento: Evento) => {
+        console.log("los eventos del usuario: ", evento.reservas.length);
+        if(evento.reservas.length > 0) {
+          this.mostrarBotonReserva = false;
+        } else {
+          this.mostrarBotonReserva = true;
+        }
+      })
+
+    }
+  }
+
   ngOnDestroy() {
-    this.eventosSuscription.unsubscribe();
+    this.eventosSuscription.unsubscribe();   
   }
 }

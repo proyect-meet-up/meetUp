@@ -49,5 +49,6 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
     localStorage.removeItem('panel');
+    this.usuarioSubject.next(null);
   }
 }

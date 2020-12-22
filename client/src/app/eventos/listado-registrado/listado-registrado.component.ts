@@ -33,5 +33,10 @@ export class ListadoRegistradoComponent implements OnInit {
         )
       )
       .subscribe( (data: Evento[]) => this.eventos = data)
+
+    this.eventosService.obtenerEventosReservadosDelUsuario()
+        .subscribe( data => console.log(data))
   }
+
+
 }

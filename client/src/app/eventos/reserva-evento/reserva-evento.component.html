@@ -4,10 +4,10 @@
   <div class="card-reserva-evento__card mat-elevation-z2">
 
     <div class="card-reserva-evento__titulo">
-      <label>Titulo</label>
-      <div>
+      <span>
         {{ evento.titulo }}
-      </div>
+      </span>
+
     </div>
 
     <div class="card-reserva-evento__imagen">
@@ -23,11 +23,10 @@
     </div>
 
     <div class="card-reserva-evento__direccion">
-      <label>Dirección</label>
         <div class="card-reserva-evento__direccion-items">
-          <p>Calle: {{ evento.direccion.calle }}, {{ evento.direccion.numero }}</p>
-          <p>Provincia: {{ evento.direccion.provincia }}</p>
-          <p>Código Postal: {{ evento.direccion.codigo }}</p>
+          <span>Calle: {{ evento.direccion.calle }}, {{ evento.direccion.numero }}</span>
+          <span>Provincia: {{ evento.direccion.provincia }}</span>
+          <span>Código Postal: {{ evento.direccion.codigo }}</span>
         </div>
     </div>
 
@@ -43,7 +42,16 @@
 
 
     <div class="card-reserva-evento__fecha">
-      <label>{{ evento.fecha  | formatoFecha: 'LL' }}</label>
+      <!-- <label>{{ evento.fecha  | formatoFecha: 'LL' }}</label> -->
+      <div class="calendario">
+        <div class="calendario__mes">
+          {{ evento.fecha  | formatoFecha: 'MMM YYYY' | uppercase }}
+        </div>
+        <div class="calendario__dia">
+           {{ evento.fecha  | formatoFecha: 'DD' | uppercase }}
+        </div>
+
+      </div>
       <button mat-raised-button class="boton-cancelar">Cancelar</button>
 
     </div>

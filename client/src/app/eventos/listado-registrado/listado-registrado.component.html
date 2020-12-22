@@ -3,7 +3,7 @@
     [curso]="evento">
 </app-card-evento> -->
 <div class="listado-reservados__container">
-  <app-reserva-evento [ngStyle]="{'width': '100%'}"
+  <app-reserva-evento
       *ngFor="let evento of eventos"
       [eventoInput]="evento">
   </app-reserva-evento>

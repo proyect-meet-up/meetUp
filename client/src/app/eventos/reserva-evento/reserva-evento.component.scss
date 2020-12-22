@@ -4,14 +4,24 @@
   font-size: 1.5rem;
 
   &__card {
-    width: 50%;
-    margin: 0 auto;
     border-radius: 10px;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(3, auto);
-    grid-template-rows: repeat(2, auto);
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: minmax(-webkit-min-content, 70px) auto;
+    grid-template-rows: minmax(min-content, 70px) auto;
     grid-gap: 5px;
+  }
+
+  &__titulo {
+    grid-row: 1;
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: 1.7rem;
+    }
   }
 
   &__imagen {
@@ -19,28 +29,7 @@
     grid-column: 1;
 
     img {
-      max-width: 250px;
       border-radius: 5px;
-    }
-  }
-
-  &__titulo {
-    grid-row: 1;
-    grid-column: 1;
-    display: flex;
-    flex-direction: column;
-    max-height: 120px;
-    justify-content: space-evenly;
-
-    label {
-      font-weight: bold;
-      font-size: 1.3rem;
-      background-color: #fb8500;
-      padding: 2px 5px;
-      border-radius: 15px;
-      color: white;
-      width: max-content;
-      margin-bottom: 5px;
     }
   }
 
@@ -56,6 +45,8 @@
     color: white;
     font-weight: bold;
     max-width: fit-content;
+    max-width: -webkit-fit-content;
+    max-width: -moz-fit-content;
 
     span {
       font-size: 1.3rem;
@@ -68,22 +59,13 @@
     grid-row: 2;
     grid-column: 2;
     display: flex;
-    flex-direction: column;
-    max-height: 160px;
-    justify-content: space-evenly;
-
-    label {
-      background-color: yellowgreen;
-      padding: 2px 5px;
-      border-radius: 15px;
-      color: white;
-      font-size: 1.3rem;
-      max-width: fit-content;
-    }
   }
 
-  &__items {
-    width: max-content;
+  &__direccion-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
   }
 
   &__precio {
@@ -97,7 +79,6 @@
     max-height: 120px;
     justify-content: space-evenly;
     align-items: center;
-
 
     label {
       background-color: #f4a261;
@@ -115,15 +96,15 @@
     }
   }
 
-   &__precio-free {
+  &__precio-free {
     grid-row: 1;
     grid-column: 3;
     align-self: flex-start;
     justify-self: end;
 
-      img {
-        width: 35px;
-      }
+    img {
+      width: 35px;
+    }
   }
 
   &__fecha {
@@ -133,21 +114,45 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-top: 30px;
+    align-items: center;
 
     label {
-    background-color: darkkhaki;
-    color: white;
-    padding: 2px 5px;
-    border-radius: 15px;
-    font-size: 1.3rem;
+      background-color: darkkhaki;
+      color: white;
+      padding: 2px 5px;
+      border-radius: 15px;
+      font-size: 1.3rem;
     }
-
   }
 
   .mat-raised-button.boton-cancelar {
     background-color: tomato;
     color: white;
+    align-self: flex-end;
+  }
+
+  .calendario {
+    border: 2px solid indianred;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 85px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+    &__mes {
+      background-color: indianred;
+      align-self: stretch;
+      color: white;
+      display: flex;
+      justify-content: center;
+      font-size: 1.4rem;
+      padding: 3px;
+    }
+
+    &__dia {
+      font-size: 3rem;
+    }
   }
 
   .flex-c {

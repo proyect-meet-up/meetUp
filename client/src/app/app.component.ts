@@ -1,3 +1,4 @@
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Component, OnInit, Renderer2, ViewChild, ViewChildren, ElementRef, AfterViewInit, ContentChild, TemplateRef } from '@angular/core';
 import { Router, NavigationEnd, RouterEvent, Scroll } from "@angular/router";
 import { AuthService } from './auth/auth.service';
@@ -33,16 +34,18 @@ export class AppComponent implements OnInit {
       }
     });
 
-    this.renderer.listen('window', 'scroll', () => {
-      if (
-        document.body.scrollTop > 80 ||
-        document.documentElement.scrollTop > 80
-      ) {
-        this.renderer.addClass(this.headerScroll.nativeElement, 'scrolling')
-      } else {
-        this.renderer.removeClass(this.headerScroll.nativeElement, 'scrolling')
-      }
-    })
+    // TODO: Fix scrolling header
+    // this.renderer.listen('window', 'scroll', () => {
+
+    //   if (
+    //     document.body.scrollTop > 80 ||
+    //     document.documentElement.scrollTop > 80
+    //   ) {
+    //     this.renderer.addClass(this.headerScroll.nativeElement, 'scrolling')
+    //   } else {
+    //     this.renderer.removeClass(this.headerScroll.nativeElement, 'scrolling')
+    //   }
+    // })
   }
 
   ngOnInit() {

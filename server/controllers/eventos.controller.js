@@ -3,7 +3,19 @@ const mongoose = require('mongoose');
 
 const Evento = require('../models/evento');
 const Direccion = require('../models/direccion');
-const { findById } = require('../models/evento');
+
+const getEventosRersevados =  async ( req , res ) => {
+		const usuarioId = req.uid;
+		const eventosDB = await Evento.find({ reservas: usuarioId })
+			.select('tags imagen _id titulo descripcion precio fecha')
+			.populate('categoria', 'categoria color')
+			.populate('direccion', 'calle numero provincia codigo');
+
+		res.json({
+			ok: true,
+			eventos: eventosDB
+		});
+} 
 
 const getEventos = async (req, res = response) => {
 	const eventos = await Evento.find()
@@ -184,5 +196,6 @@ module.exports = {
 	getEventosDelUsuario,
 	actualizarEventos,
 	reservarEvento,
-	obtenerReservasDelUsuario
+	obtenerReservasDelUsuario,
+	getEventosRersevados
 };

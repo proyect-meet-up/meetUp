@@ -19,7 +19,8 @@ const  {
     getEventosDelUsuario,
     actualizarEventos,
     reservarEvento,
-    obtenerReservasDelUsuario
+    obtenerReservasDelUsuario,
+    getEventosRersevados
 } = require('../controllers/eventos.controller')
 
 const router = Router();
@@ -35,6 +36,10 @@ router
     ], 
     crearEvento)
     .patch(validarJWT, actualizarEventos)
+
+router
+    .route('/reservados')
+    .get(validarJWT, getEventosRersevados)
     
 router
     .route('/usuario')

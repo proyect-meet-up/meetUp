@@ -100,7 +100,7 @@ export class EventoService {
     return this.http.post(`${this.URL}/eventos`, formEvento);
   }
 
-  actualizarEvento(idEvento: string, eventoParaActualizar) {    
+  actualizarEvento(idEvento: string, eventoParaActualizar) {
     return this.http.put(`${this.URL}/eventos/${idEvento}`, eventoParaActualizar);
   }
 
@@ -110,7 +110,13 @@ export class EventoService {
   }
 
   obtenerReservasDelUsuario(idEvento: string, idUsuario: string) {
-   // const params = new HttpParams().append('p', idUsuario);   
+   // const params = new HttpParams().append('p', idUsuario);
     return this.http.get(`${this.URL}/eventos/comprobarReserva/${idEvento}/${idUsuario}` )
+  }
+
+  obtenerEventosReservadosDelUsuario() {
+       return this.http.get(
+         `${this.URL}/eventos/reservados`
+       );
   }
 }

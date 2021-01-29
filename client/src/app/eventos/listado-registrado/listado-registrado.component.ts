@@ -37,6 +37,9 @@ export class ListadoRegistradoComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe( (data: Evento[]) => this.eventos = data)
+
+    this.eventosService.obtenerEventosReservadosDelUsuario()
+        .subscribe( data => console.log(data))
   }
 
   ngOnDestroy() {
